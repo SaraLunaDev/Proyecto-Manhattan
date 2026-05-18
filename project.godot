@@ -55,6 +55,12 @@ derecha={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="suelo"
+3d_physics/layer_2="jugador"
+3d_physics/layer_3="enemigo"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

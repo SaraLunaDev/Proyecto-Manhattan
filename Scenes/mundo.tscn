@@ -1,36 +1,48 @@
 [gd_scene format=3 uid="uid://drichfimvmgkt"]
 
 [ext_resource type="PackedScene" uid="uid://dhfo0h8c5e80v" path="res://Scenes/jugador.tscn" id="1_4cw5y"]
+[ext_resource type="Script" uid="uid://b3myd05m4r2a0" path="res://Scripts/Managers/spawn_manager.gd" id="1_gqidu"]
 [ext_resource type="PackedScene" uid="uid://drb3hy16ggec2" path="res://Scenes/Enemigos/enemigo_1.tscn" id="2_uqtxj"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_wlvdl"]
-lightmap_size_hint = Vector2i(944, 354)
-top_radius = 18.0
-bottom_radius = 10.0
-height = 6.0
-radial_segments = 16
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wlvdl"]
-albedo_color = Color(0.28118682, 0.28118688, 0.28118682, 1)
+[sub_resource type="NavigationMesh" id="NavigationMesh_uqtxj"]
+vertices = PackedVector3Array(15.75, 0.5, 4.2, 16.25, 0.5, 4.2, 17.5, 0.5, 0.6999998, 16.25, 0.5, -4.05, 12.75, 0.5, -7.3, 7.25, 0.5, -9.55, -17.5, 0.5, -0.5500002, -16.25, 0.5, 4.2, -15.75, 0.5, 4.2, -12.75, 0.5, -7.3, -16.25, 0.5, -4.05, -6.25, 0.5, -9.8, 2, 0.5, -10.3, -12.5, 0.5, 7.45, -6.75, 0.5, 9.7, -2.75, 0.5, 10.2, 6.75, 0.5, 9.7, 12.5, 0.5, 7.45)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(8, 7, 6), PackedInt32Array(10, 9, 6), PackedInt32Array(6, 9, 11), PackedInt32Array(5, 11, 12), PackedInt32Array(8, 6, 13), PackedInt32Array(13, 6, 14), PackedInt32Array(14, 6, 15), PackedInt32Array(16, 15, 0), PackedInt32Array(0, 15, 5), PackedInt32Array(5, 15, 11), PackedInt32Array(11, 15, 6), PackedInt32Array(0, 17, 16)]
 
 [node name="Mundo" type="Node3D" unique_id=1887002618]
+
+[node name="SpawnManager" type="Node3D" parent="." unique_id=251638114 node_paths=PackedStringArray("temporizador_spawn")]
+script = ExtResource("1_gqidu")
+enemigos = Array[PackedScene]([ExtResource("2_uqtxj")])
+temporizador_spawn = NodePath("../TemporizadorSpawn")
 
 [node name="Luz" type="DirectionalLight3D" parent="." unique_id=1692816446]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 27, 0)
 light_color = Color(0.9222459, 0.91938186, 0.8812527, 1)
 light_energy = 6.0
 
-[node name="Jugador" parent="." unique_id=1492616832 instance=ExtResource("1_4cw5y")]
-
 [node name="Camara" type="Camera3D" parent="." unique_id=268590377]
 transform = Transform3D(1, 0, 0, 0, 0.86602545, 0.49999997, 0, -0.49999997, 0.86602545, 0, 19, 31)
 projection = 1
 size = 23.051
 
-[node name="Base" type="MeshInstance3D" parent="." unique_id=187480035]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.6, 0, -3, 0)
-mesh = SubResource("CylinderMesh_wlvdl")
-surface_material_override/0 = SubResource("StandardMaterial3D_wlvdl")
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=553603247]
+navigation_mesh = SubResource("NavigationMesh_uqtxj")
 
-[node name="Enemigo1" parent="." unique_id=624671194 instance=ExtResource("2_uqtxj")]
+[node name="Jugador" parent="NavigationRegion3D" unique_id=1492616832 instance=ExtResource("1_4cw5y")]
+
+[node name="CSGSuelo" type="CSGCylinder3D" parent="NavigationRegion3D" unique_id=1497073952]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.6, 0, -0.5, 0)
+use_collision = true
+collision_mask = 6
+radius = 18.0
+height = 1.0
+sides = 16
+
+[node name="Enemigo1" parent="NavigationRegion3D" unique_id=624671194 instance=ExtResource("2_uqtxj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 5)
+
+[node name="TemporizadorSpawn" type="Timer" parent="." unique_id=1286301521]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="TemporizadorSpawn" to="SpawnManager" method="_on_temporizador_spawn_timeout"]

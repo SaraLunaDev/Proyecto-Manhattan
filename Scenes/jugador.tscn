@@ -17,6 +17,8 @@ height = 0.755
 albedo_color = Color(0.56078434, 1, 1, 1)
 
 [node name="Jugador" type="CharacterBody3D" unique_id=1492616832 groups=["jugador"]]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_5ydob")
 
 [node name="Colision" type="CollisionShape3D" parent="." unique_id=938434462]
