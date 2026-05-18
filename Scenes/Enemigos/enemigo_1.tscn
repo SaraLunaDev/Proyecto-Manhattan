@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://drb3hy16ggec2"]
+
+[ext_resource type="Script" uid="uid://bd58yaatotsbt" path="res://Scripts/enemigo.gd" id="1_apwrj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sdp0i"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sdp0i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_apwrj"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_apwrj"]
+radius = 0.22
+height = 0.755
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdp0i"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_apwrj"]
+radius = 1.0
+height = 3.5
+
+[node name="Enemigo1" type="CharacterBody3D" unique_id=624671194 groups=["enemigo"]]
+script = ExtResource("1_apwrj")
+
+[node name="Colision" type="CollisionShape3D" parent="." unique_id=1011292639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_sdp0i")
+
+[node name="Forma" type="MeshInstance3D" parent="." unique_id=1503446778]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_sdp0i")
+surface_material_override/0 = SubResource("StandardMaterial3D_apwrj")
+
+[node name="Gafas" type="MeshInstance3D" parent="Forma" unique_id=1885611450]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0.46535528, 0.38249063)
+mesh = SubResource("CapsuleMesh_apwrj")
+surface_material_override/0 = SubResource("StandardMaterial3D_sdp0i")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=2146639920]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=766747387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_apwrj")
