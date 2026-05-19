@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dhfo0h8c5e80v"]
 
 [ext_resource type="Script" uid="uid://boekfmoai7vi4" path="res://Scripts/jugador.gd" id="1_5ydob"]
+[ext_resource type="PackedScene" uid="uid://3th2l2j0mfqf" path="res://Scenes/Enemigos/proyectil.tscn" id="2_c1mnh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_or7eb"]
 
@@ -16,10 +17,91 @@ height = 0.755
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ydob"]
 albedo_color = Color(0.56078434, 1, 1, 1)
 
-[node name="Jugador" type="CharacterBody3D" unique_id=1492616832 groups=["jugador"]]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ydob"]
+radius = 0.75
+height = 2.1875
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_c1mnh"]
+radius = 3.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_c1mnh"]
+radius = 0.2
+height = 0.4
+
+[sub_resource type="Animation" id="Animation_tn1hq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnclajeEspada/Espada:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnclajeEspada:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_c1mnh"]
+resource_name = "espadazo"
+length = 0.43333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnclajeEspada/Espada:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.39999998, 0.4001),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnclajeEspada:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4001),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tn1hq"]
+_data = {
+&"RESET": SubResource("Animation_tn1hq"),
+&"espadazo": SubResource("Animation_c1mnh")
+}
+
+[node name="Jugador" type="CharacterBody3D" unique_id=1492616832 node_paths=PackedStringArray("hitbox", "daño_cd", "espada_cd", "punto_proyectil", "hitbox_espada", "animacion") groups=["jugador"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_5ydob")
+hitbox = NodePath("Hitbox")
+"daño_cd" = NodePath("DañoCD")
+espada_cd = NodePath("EspadaCD")
+proyectil = ExtResource("2_c1mnh")
+punto_proyectil = NodePath("PuntoProyectil")
+hitbox_espada = NodePath("HitboxEspada")
+puede_disparar = true
+puede_espadear = true
+animacion = NodePath("Animacion")
 
 [node name="Colision" type="CollisionShape3D" parent="." unique_id=938434462]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -34,3 +116,46 @@ surface_material_override/0 = SubResource("StandardMaterial3D_or7eb")
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0.46535528, 0.38249063)
 mesh = SubResource("CapsuleMesh_5ydob")
 surface_material_override/0 = SubResource("StandardMaterial3D_5ydob")
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=1611399840]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Forma" type="CollisionShape3D" parent="Hitbox" unique_id=1129997483]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96875, 0)
+shape = SubResource("CapsuleShape3D_5ydob")
+
+[node name="PuntoProyectil" type="Marker3D" parent="." unique_id=1090116525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="DañoCD" type="Timer" parent="." unique_id=1857227122]
+one_shot = true
+
+[node name="ProyectilCD" type="Timer" parent="." unique_id=444540685]
+wait_time = 0.6
+autostart = true
+
+[node name="EspadaCD" type="Timer" parent="." unique_id=1463576026]
+wait_time = 1.4
+one_shot = true
+
+[node name="HitboxEspada" type="Area3D" parent="." unique_id=1454333423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 16
+collision_mask = 4
+
+[node name="Forma" type="CollisionShape3D" parent="HitboxEspada" unique_id=2072156737]
+shape = SubResource("CylinderShape3D_c1mnh")
+
+[node name="AnclajeEspada" type="Node3D" parent="." unique_id=1039403199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+
+[node name="Espada" type="MeshInstance3D" parent="AnclajeEspada" unique_id=69607407]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2.5)
+mesh = SubResource("SphereMesh_c1mnh")
+
+[node name="Animacion" type="AnimationPlayer" parent="." unique_id=361146771]
+libraries/ = SubResource("AnimationLibrary_tn1hq")
+
+[connection signal="timeout" from="ProyectilCD" to="." method="_on_proyectil_cd_timeout"]
+[connection signal="animation_finished" from="Animacion" to="." method="_on_animacion_animation_finished"]

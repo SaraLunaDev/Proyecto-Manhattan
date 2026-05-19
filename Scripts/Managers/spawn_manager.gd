@@ -5,7 +5,8 @@ class_name SpawnManager
 # -----------------------------------------------
 @export var enemigos: Array[PackedScene]
 @export var temporizador_spawn: Timer
-@export var enemigos_maximos = 4
+@export var enemigos_maximos = 10
+@export var punto_spawn: PathFollow3D
 
 # Spawn de Enemigos
 # -----------------------------------------------
@@ -20,12 +21,12 @@ func spawnear_enemigo() -> void:
 	var enemigo = enemigos.get(enemigo_rng).instantiate()
 	
 	# Obtener una posicion random en el tablero
-	var posicion_spawn = Vector3.ZERO
-	posicion_spawn.x = randf_range(-8, 8)
-	posicion_spawn.z = randf_range(-3, 3)
+	punto_spawn.progress_ratio = randf()
+	var posicion_spawn = punto_spawn.transform.origin
+	# TODO: Almacenar ultimo spawn para que el nuevo spawn sea distinto
 	
 	# Instanciar el enemigo
-	enemigo.global_position = posicion_spawn
+	enemigo.transform.origin = posicion_spawn
 	add_child(enemigo)
 
 # Se ejecuta cuando termina el temporizador
