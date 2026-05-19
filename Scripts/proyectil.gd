@@ -5,6 +5,8 @@ extends Area3D
 
 func _physics_process(delta: float) -> void:
 	var enemigos = get_tree().get_nodes_in_group("enemigo")
+	if enemigos.size() <= 0:
+		queue_free()
 	var enemigo = enemigos[0]
 	enemigo.set_siendo_apuntado(true)
 	if enemigos.size() > 0:

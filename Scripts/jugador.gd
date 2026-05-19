@@ -9,13 +9,16 @@ class_name Jugador
 @export var hitbox: Area3D
 @export var daño_cd: Timer
 @export var espada_cd: Timer
+@export var espada_animacion: Timer
 @export var proyectil: PackedScene
 @export var punto_proyectil: Marker3D
 @export var hitbox_espada: Area3D
-@export var daño = 1.0
+@export var daño_espada = 2.0
 @export var puede_disparar: bool = false
 @export var puede_espadear: bool = false
-@export var animacion: AnimationPlayer
+@export var agent: NavigationAgent3D
+var esta_espadeando: bool = false
+@export var animaciones: AnimationTree
 
 # Process
 # -----------------------------------------------
@@ -23,15 +26,19 @@ func _physics_process(delta: float) -> void:
 	# Obtener el Input de direccion
 	var input = Input.get_vector("izquierda", "derecha", "arriba", "abajo")
 	var direccion = (Vector3(input.x, 0, input.y)).normalized()
-	
-	if (direccion):
+
+	if direccion:
 		# Movimiento hacia direccion con aceleracion
 		velocity.x = move_toward(velocity.x, direccion.x * velocidad, aceleracion * delta)
 		velocity.z = move_toward(velocity.z, direccion.z * velocidad, aceleracion * delta)
+		animaciones.set("parameters/conditions/andando", true)
+		animaciones.set("parameters/conditions/quieto", false)
 	else:
 		# Pausar movimiento con deceleracion
 		velocity.x = move_toward(velocity.x, 0, aceleracion * delta)
 		velocity.z = move_toward(velocity.z, 0, aceleracion * delta)
+		animaciones.set("parameters/conditions/andando", false)
+		animaciones.set("parameters/conditions/quieto", true)
 	
 	# Rotar el jugador hacia donde va su direccion
 	if direccion.length() > 0:
@@ -50,10 +57,11 @@ func _physics_process(delta: float) -> void:
 		var enemigos_rango_espada = hitbox_espada.get_overlapping_bodies()
 		if enemigos_rango_espada.size() > 0:
 			if espada_cd.time_left <= 0:
-				animacion.play("espadazo")
+				esta_espadeando = true
+				espada_animacion.start()
 				espada_cd.start()
 				for enemigo_rango_espada in enemigos_rango_espada:
-					enemigo_rango_espada.recibir_daño(daño)
+					enemigo_rango_espada.recibir_daño(daño_espada)
 
 # Gestion de daño recibido
 # -----------------------------------------------
@@ -63,6 +71,7 @@ func recibir_daño(daño_recibido) -> void:
 		return
 	# Restar vida al Jugador
 	vida -= daño_recibido
+	print(vida)
 	if vida <= 0:
 		vida = 0.0
 		morir()
@@ -107,3 +116,6 @@ func _on_proyectil_cd_timeout() -> void:
 				disparar_proyectil()
 		else:
 			disparar_proyectil()
+
+func _on_espada_animacion_timeout() -> void:
+	esta_espadeando = false
