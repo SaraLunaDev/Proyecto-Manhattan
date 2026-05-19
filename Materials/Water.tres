@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b03xda4iyk7w1"]
+
+[ext_resource type="Shader" uid="uid://dc2wpbq655tq6" path="res://Shaders/water.gdshader" id="1_7u5yi"]
+[ext_resource type="Texture2D" uid="uid://dfwe8pwjigha6" path="res://Textures/file.jpg" id="2_1eskk"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_7u5yi")
+shader_parameter/iChannel0 = ExtResource("2_1eskk")
+shader_parameter/iTime = 15.0
+shader_parameter/water_color = Color(0.1, 0.4, 0.5, 1)
+shader_parameter/water_direction = Vector2(1, 0.5)
+shader_parameter/speed1 = 2.0
+shader_parameter/speed2 = 3.0

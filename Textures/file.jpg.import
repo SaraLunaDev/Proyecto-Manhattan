@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vdfuy8jl1xj7"
-path.s3tc="res://.godot/imported/walterwite.webp-ace1e04f28ca2dcff42573bf06a9f27a.s3tc.ctex"
+uid="uid://dfwe8pwjigha6"
+path.s3tc="res://.godot/imported/file.jpg-cccb70585e2de6785823fbbed383ac51.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://walterwite.webp"
-dest_files=["res://.godot/imported/walterwite.webp-ace1e04f28ca2dcff42573bf06a9f27a.s3tc.ctex"]
+source_file="res://Textures/file.jpg"
+dest_files=["res://.godot/imported/file.jpg-cccb70585e2de6785823fbbed383ac51.s3tc.ctex"]
 
 [params]
 
