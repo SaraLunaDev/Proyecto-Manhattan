@@ -1,34 +1,159 @@
 [gd_scene format=3 uid="uid://dhfo0h8c5e80v"]
 
 [ext_resource type="Script" uid="uid://boekfmoai7vi4" path="res://Scripts/jugador.gd" id="1_5ydob"]
+[ext_resource type="PackedScene" uid="uid://3th2l2j0mfqf" path="res://Scenes/Enemigos/proyectil.tscn" id="2_c1mnh"]
+[ext_resource type="PackedScene" uid="uid://y03j0bg6me4r" path="res://Models/Player/playerGame.glb" id="3_tn1hq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_or7eb"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_or7eb"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ydob"]
+radius = 0.75
+height = 2.1875
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_or7eb"]
-albedo_color = Color(0.40069774, 0.40069774, 0.40069768, 1)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_c1mnh"]
+radius = 5.0
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_5ydob"]
-radius = 0.22
-height = 0.755
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c1mnh"]
+animation = &"Idle_001"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ydob"]
-albedo_color = Color(0.56078434, 1, 1, 1)
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tn1hq"]
+animation = &"Walk_001"
 
-[node name="Jugador" type="CharacterBody3D" unique_id=1492616832 groups=["jugador"]]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tn1hq"]
+xfade_time = 0.2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a0p7g"]
+advance_mode = 2
+advance_condition = &"andando"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n4xcq"]
+advance_mode = 2
+advance_condition = &"quieto"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_a0p7g"]
+states/Idle_001/node = SubResource("AnimationNodeAnimation_c1mnh")
+states/Idle_001/position = Vector2(460, 100)
+"states/Walk_001 2/node" = SubResource("AnimationNodeAnimation_tn1hq")
+"states/Walk_001 2/position" = Vector2(460, -20)
+transitions = ["Start", "Idle_001", SubResource("AnimationNodeStateMachineTransition_tn1hq"), "Idle_001", "Walk_001 2", SubResource("AnimationNodeStateMachineTransition_a0p7g"), "Walk_001 2", "Idle_001", SubResource("AnimationNodeStateMachineTransition_n4xcq")]
+graph_offset = Vector2(-253, -116)
+
+[node name="Jugador" type="CharacterBody3D" unique_id=1492616832 node_paths=PackedStringArray("hitbox", "daño_cd", "espada_cd", "espada_animacion", "punto_proyectil", "hitbox_espada", "agent", "animaciones") groups=["jugador"]]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_5ydob")
+hitbox = NodePath("Hitbox")
+"daño_cd" = NodePath("DañoCD")
+espada_cd = NodePath("EspadaCD")
+espada_animacion = NodePath("EspadaCD/EspadaAnimacion")
+proyectil = ExtResource("2_c1mnh")
+punto_proyectil = NodePath("PuntoProyectil")
+hitbox_espada = NodePath("HitboxEspada")
+puede_disparar = true
+puede_espadear = true
+agent = NodePath("Agente")
+animaciones = NodePath("AnimationTree")
+
+[node name="playerGame" parent="." unique_id=461575356 instance=ExtResource("3_tn1hq")]
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
+
+[node name="EscudoAura_006" parent="playerGame/Idle" parent_id_path=PackedInt32Array(461575356, 1107588309) index="0" unique_id=571847939]
+visible = false
+
+[node name="Trail_006" parent="playerGame/Idle" parent_id_path=PackedInt32Array(461575356, 1107588309) index="1" unique_id=1837844260]
+visible = false
+
+[node name="Skeleton3D" parent="playerGame/Idle" parent_id_path=PackedInt32Array(461575356, 1107588309) index="2" unique_id=352658292]
+bones/0/position = Vector3(-5.9812533e-09, -0.5508877, -7.055088e-08)
+bones/0/rotation = Quaternion(0.23436609, -0.0058832713, -0.024395714, 0.97182447)
+bones/1/rotation = Quaternion(0.34020117, 0.034896865, 0.022458466, 0.93943655)
+bones/2/rotation = Quaternion(-0.445536, -0.37878805, -0.65245056, 0.48200172)
+bones/3/rotation = Quaternion(0.20361331, 0.124556184, -0.80438155, 0.5440568)
+bones/4/rotation = Quaternion(0.07642063, 0.0033382503, -0.10781707, 0.9912237)
+bones/5/rotation = Quaternion(-0.040736746, -0.43338647, -0.07437766, 0.89720947)
+bones/6/rotation = Quaternion(-0.5777681, -0.013224664, 0.002876341, 0.81608874)
+bones/7/rotation = Quaternion(-0.4817593, 0.2540318, 0.44801947, 0.70898116)
+bones/8/rotation = Quaternion(0.216239, -0.10818968, 0.85217744, 0.4640359)
+bones/9/rotation = Quaternion(0.10783118, -0.004049771, 0.16327095, 0.9806624)
+bones/10/rotation = Quaternion(-0.030410118, 0.5242597, -0.2169711, 0.8228916)
+bones/12/rotation = Quaternion(0.62989783, 0.32129228, 0.62989795, -0.32129225)
+bones/13/rotation = Quaternion(-0.3359613, -0.26191127, -0.53326535, 0.7308629)
+bones/14/rotation = Quaternion(0.024651622, 0.0001909456, 0.38870335, 0.9210332)
+bones/15/rotation = Quaternion(0.118462764, -0.20374045, -0.62218934, 0.74654996)
+bones/17/rotation = Quaternion(-0.39609754, 0.21856269, 0.26735887, 0.8507975)
+bones/18/rotation = Quaternion(0.022894979, -0.00019330124, -0.36100456, 0.93228304)
+bones/19/rotation = Quaternion(0.23716994, 0.686728, 0.5004527, 0.47085273)
+bones/20/position = Vector3(-1.0740734, -2.0953472, 2.3344882)
+bones/20/rotation = Quaternion(-0.33450258, -0.03870614, 0.94115496, -0.028935447)
+bones/21/position = Vector3(0.06610036, -2.9143455, 2.821942)
+bones/21/rotation = Quaternion(-0.25419378, 0.017947597, -0.85901546, -0.44402224)
+bones/22/position = Vector3(1.2458396, -6.972304, 1.4156177)
+bones/22/rotation = Quaternion(0.6570923, 0.54701686, 0.39049968, 0.34133896)
+bones/23/position = Vector3(-1.8012803, -6.9608974, -1.8614078)
+bones/23/rotation = Quaternion(-0.78377557, 0.6136625, -0.06999476, 0.06492271)
+bones/24/position = Vector3(-2.3191693, 0.8424299, -8.307907)
+bones/24/rotation = Quaternion(0.049098767, -0.70540017, 0.70540005, -0.04909876)
+bones/25/position = Vector3(-0.5205109, -0.8555801, -2.3108342)
+bones/25/rotation = Quaternion(0.04909885, 0.7054001, -0.7054001, -0.049098853)
+
+[node name="Hand_r" parent="playerGame/Idle/Skeleton3D" index="0" unique_id=288305742]
+transform = Transform3D(-0.4764595, -0.7719677, 0.42077464, 0.75371915, -0.6050441, -0.25657013, 0.4526513, 0.19490044, 0.87012637, 0.06610322, -2.9143417, 2.8219435)
+
+[node name="EscudoAura" parent="playerGame" index="1" unique_id=567196146]
+visible = false
+
+[node name="Trail" parent="playerGame" index="2" unique_id=1679295087]
+visible = false
 
 [node name="Colision" type="CollisionShape3D" parent="." unique_id=938434462]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_or7eb")
 
-[node name="Forma" type="MeshInstance3D" parent="." unique_id=1990567186]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_or7eb")
-surface_material_override/0 = SubResource("StandardMaterial3D_or7eb")
+[node name="Hitbox" type="Area3D" parent="." unique_id=1611399840]
+collision_layer = 2
+collision_mask = 4
 
-[node name="Gafas" type="MeshInstance3D" parent="Forma" unique_id=1921091805]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0.46535528, 0.38249063)
-mesh = SubResource("CapsuleMesh_5ydob")
-surface_material_override/0 = SubResource("StandardMaterial3D_5ydob")
+[node name="Forma" type="CollisionShape3D" parent="Hitbox" unique_id=1129997483]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96875, 0)
+shape = SubResource("CapsuleShape3D_5ydob")
+
+[node name="PuntoProyectil" type="Marker3D" parent="." unique_id=1090116525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="DañoCD" type="Timer" parent="." unique_id=1857227122]
+one_shot = true
+
+[node name="ProyectilCD" type="Timer" parent="." unique_id=444540685]
+wait_time = 0.6
+autostart = true
+
+[node name="EspadaCD" type="Timer" parent="." unique_id=1463576026]
+wait_time = 1.4
+one_shot = true
+
+[node name="EspadaAnimacion" type="Timer" parent="EspadaCD" unique_id=1736046818]
+wait_time = 0.4
+one_shot = true
+
+[node name="HitboxEspada" type="Area3D" parent="." unique_id=1454333423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 16
+collision_mask = 4
+
+[node name="Forma" type="CollisionShape3D" parent="HitboxEspada" unique_id=2072156737]
+shape = SubResource("CylinderShape3D_c1mnh")
+
+[node name="Agente" type="NavigationAgent3D" parent="." unique_id=2015025616]
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=5107744]
+root_node = NodePath("../playerGame")
+tree_root = SubResource("AnimationNodeStateMachine_a0p7g")
+anim_player = NodePath("../playerGame/AnimationPlayer")
+parameters/conditions/andando = false
+parameters/conditions/quieto = false
+
+[connection signal="timeout" from="ProyectilCD" to="." method="_on_proyectil_cd_timeout"]
+[connection signal="timeout" from="EspadaCD/EspadaAnimacion" to="." method="_on_espada_animacion_timeout"]
+
+[editable path="playerGame"]
