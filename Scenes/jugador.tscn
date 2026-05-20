@@ -19,9 +19,6 @@ animation = &"Attack"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5nsjc"]
 animation = &"Death"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iw3ti"]
-animation = &"Hit"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tn1hq"]
 animation = &"Idle"
 
@@ -69,44 +66,7 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"andando"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x1a6r"]
-xfade_time = 1.2
-advance_mode = 2
-advance_condition = &"golpeado"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_oua2g"]
-xfade_time = 0.2
-advance_mode = 2
-advance_condition = &"golpeado"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mb44e"]
-xfade_time = 0.2
-advance_mode = 2
-advance_condition = &"golpeado"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aknpy"]
-xfade_time = 0.2
-advance_mode = 2
-advance_condition = &"atacando"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1bknw"]
-xfade_time = 0.2
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"quieto"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fr03m"]
-xfade_time = 0.2
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"andando"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yy7ku"]
-xfade_time = 0.2
-advance_mode = 2
-advance_condition = &"muerto"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bnm2g"]
 xfade_time = 0.2
 advance_mode = 2
 advance_condition = &"muerto"
@@ -125,15 +85,13 @@ advance_condition = &"muerto"
 states/Attack/node = SubResource("AnimationNodeAnimation_n4xcq")
 states/Attack/position = Vector2(665, 100)
 states/Death/node = SubResource("AnimationNodeAnimation_5nsjc")
-states/Death/position = Vector2(511, 6)
-states/Hit/node = SubResource("AnimationNodeAnimation_iw3ti")
-states/Hit/position = Vector2(665, -86)
+states/Death/position = Vector2(665, -86)
 states/Idle/node = SubResource("AnimationNodeAnimation_tn1hq")
 states/Idle/position = Vector2(364, 100)
 states/Start/position = Vector2(158, 100)
 states/Walk/node = SubResource("AnimationNodeAnimation_a0p7g")
 states/Walk/position = Vector2(364, -86)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_n4xcq"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_iw3ti"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_5nsjc"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_6vc6x"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_3cdix"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_tn1hq"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_a0p7g"), "Attack", "Hit", SubResource("AnimationNodeStateMachineTransition_x1a6r"), "Idle", "Hit", SubResource("AnimationNodeStateMachineTransition_oua2g"), "Walk", "Hit", SubResource("AnimationNodeStateMachineTransition_mb44e"), "Hit", "Attack", SubResource("AnimationNodeStateMachineTransition_aknpy"), "Hit", "Idle", SubResource("AnimationNodeStateMachineTransition_1bknw"), "Hit", "Walk", SubResource("AnimationNodeStateMachineTransition_fr03m"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_yy7ku"), "Hit", "Death", SubResource("AnimationNodeStateMachineTransition_bnm2g"), "Walk", "Death", SubResource("AnimationNodeStateMachineTransition_wu5nh"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_y2gsv")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_n4xcq"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_iw3ti"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_5nsjc"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_6vc6x"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_3cdix"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_tn1hq"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_a0p7g"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_yy7ku"), "Walk", "Death", SubResource("AnimationNodeStateMachineTransition_wu5nh"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_y2gsv")]
 graph_offset = Vector2(-277, -125)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tn1hq"]
@@ -162,48 +120,8 @@ hitbox_espadas_cercanos = NodePath("HitboxEspadasCercanos")
 [node name="playerGame" parent="." unique_id=1083809072 instance=ExtResource("3_tn1hq")]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 
-[node name="Idle" parent="playerGame" index="0" unique_id=639512988]
-transform = Transform3D(1, 0, -3.496911e-07, 0, 1, 0, 3.496911e-07, 0, 1, 0, 7.3506484, 0)
-
-[node name="EscudoAura_001" parent="playerGame/Idle" index="0" unique_id=2102455931]
+[node name="EscudoAura_001" parent="playerGame/Idle" parent_id_path=PackedInt32Array(1083809072, 639512988) index="0" unique_id=2102455931]
 visible = false
-
-[node name="Skeleton3D" parent="playerGame/Idle" index="1" unique_id=15032218]
-bones/0/position = Vector3(-5.792425e-17, -1.2229143, -0.81521064)
-bones/0/rotation = Quaternion(0.1410434, 0, -3.1317925e-17, 0.99000347)
-bones/1/rotation = Quaternion(0.23650905, -1.2770003e-24, -5.2515563e-17, 0.97162926)
-bones/2/rotation = Quaternion(-0.8342875, -0.2740524, -0.38776138, 0.28017983)
-bones/3/rotation = Quaternion(0.23178022, 0.08438586, -0.90965354, 0.3341969)
-bones/4/rotation = Quaternion(0.20749256, 0.0055163335, -0.33142653, 0.92036563)
-bones/5/rotation = Quaternion(-0.16339058, 0.10279861, 0.3896531, 0.9005034)
-bones/6/rotation = Quaternion(-0.26853472, -0.010214299, -0.008466671, 0.96317863)
-bones/7/rotation = Quaternion(-0.75181365, 0.33530673, 0.42199406, 0.3798245)
-bones/8/rotation = Quaternion(0.22182536, -0.09992495, 0.87311244, 0.42247266)
-bones/9/rotation = Quaternion(0.1283028, -0.0044518495, 0.19857873, 0.9716404)
-bones/10/rotation = Quaternion(-0.2991858, 0.848442, 0.21027505, 0.3826466)
-bones/13/rotation = Quaternion(-0.34132242, -0.46125945, -0.4520762, 0.6829098)
-bones/14/rotation = Quaternion(0.032812167, 0.00017729167, 0.51737654, 0.8551285)
-bones/15/rotation = Quaternion(-0.120395854, 0.24350114, -0.6058652, 0.7477563)
-bones/17/rotation = Quaternion(-0.25402787, 0.4396764, 0.273648, 0.8168669)
-bones/18/rotation = Quaternion(0.036526423, -0.00016931421, -0.5759419, 0.81667423)
-bones/19/rotation = Quaternion(0.07966908, 0.42797866, 0.67542416, 0.59522206)
-bones/20/position = Vector3(-0.61474586, 0.081929445, 3.707949)
-bones/20/rotation = Quaternion(-0.29604846, -0.16912976, 0.5922983, -0.73002267)
-bones/21/position = Vector3(0.03411746, 1.1785388, 3.0806746)
-bones/21/rotation = Quaternion(-0.035439927, 0.7596008, 0.64808255, -0.041708633)
-bones/22/position = Vector3(1.2458388, -7.156848, 0.9395986)
-bones/22/rotation = Quaternion(0.5182532, 0.41394752, 0.5921287, 0.45765135)
-bones/23/position = Vector3(-1.8012819, -7.1568475, -1.8806632)
-bones/23/rotation = Quaternion(-0.7860003, 0.6167842, 0.037507176, -0.019342095)
-bones/24/position = Vector3(-1.9555047, -2.770359, 3.9020476)
-bones/24/rotation = Quaternion(0.049098767, -0.70540017, 0.70540005, -0.04909876)
-bones/25/position = Vector3(1.6986597, -1.4237037, -1.9383755)
-bones/25/rotation = Quaternion(0.049098846, 0.7054001, -0.7054001, -0.049098846)
-bones/26/position = Vector3(0.093816936, -3.2076175, -2.729338)
-bones/27/position = Vector3(-0.109517455, -3.2339509, -2.7904818)
-
-[node name="Hand_r" parent="playerGame/Idle/Skeleton3D" index="0" unique_id=1309155735]
-transform = Transform3D(-0.99400836, 0.00022168085, -0.10929993, -0.10790186, 0.15746558, 0.9816117, 0.017428562, 0.98752415, -0.15649837, 0.034100294, 1.1785477, 3.0806875)
 
 [node name="Colision" type="CollisionShape3D" parent="." unique_id=938434462]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -248,7 +166,6 @@ tree_root = SubResource("AnimationNodeStateMachine_a0p7g")
 anim_player = NodePath("../playerGame/AnimationPlayer")
 parameters/conditions/andando = false
 parameters/conditions/atacando = false
-parameters/conditions/golpeado = false
 parameters/conditions/muerto = false
 parameters/conditions/quieto = false
 
@@ -269,6 +186,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_a0p7g")
 
 [connection signal="timeout" from="ProyectilCD" to="." method="_on_proyectil_cd_timeout"]
-[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 
 [editable path="playerGame"]

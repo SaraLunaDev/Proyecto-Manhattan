@@ -18,7 +18,6 @@ class_name Jugador
 @export var agent: NavigationAgent3D
 var esta_espadeando: bool = false
 @export var animaciones: AnimationTree
-var esta_recibiendo_daño: bool = false
 var esta_muriendose: bool = false
 @export var hitbox_proyectil: Area3D
 @export var hitbox_espadas_cercanos: Area3D
@@ -33,21 +32,21 @@ func _physics_process(delta: float) -> void:
 
 	if direccion:
 		# Movimiento hacia direccion con aceleracion
+		ejecutar_animacion("andando")
 		velocity.x = move_toward(velocity.x, direccion.x * velocidad, aceleracion * delta)
 		velocity.z = move_toward(velocity.z, direccion.z * velocidad, aceleracion * delta)
-		ejecutar_animacion("Walk")
 	else:
+		ejecutar_animacion("quieto")
 		# Pausar movimiento con deceleracion
 		velocity.x = move_toward(velocity.x, 0, aceleracion * delta)
 		velocity.z = move_toward(velocity.z, 0, aceleracion * delta)
-		ejecutar_animacion("Idle")
 	
 	# Rotar el jugador hacia donde va su direccion
 	if direccion.length() > 0:
-		if not esta_espadeando and not esta_muriendose and not esta_recibiendo_daño:
+		if not esta_espadeando and not esta_muriendose:
 			look_at(global_position + direccion, Vector3.UP, true)
 	
-	if  not esta_muriendose and not esta_recibiendo_daño:
+	if  not esta_muriendose:
 		move_and_slide()
 	
 	# Detectar colision con enemigo
@@ -62,9 +61,9 @@ func _physics_process(delta: float) -> void:
 		var enemigos_rango_espada_cercanos = hitbox_espadas_cercanos.get_overlapping_bodies()
 		if enemigos_rango_espada.size() > 0:
 			if espada_cd.time_left <= 0:
-				ejecutar_animacion("Attack")
 				esta_espadeando = true
 				espada_cd.start()
+				ejecutar_animacion("atacando")
 				await get_tree().create_timer(.4).timeout
 				for enemigo_rango_espada in enemigos_rango_espada_cercanos:
 					if enemigo_rango_espada:
@@ -79,8 +78,6 @@ func recibir_daño(daño_recibido) -> void:
 	# Si el daño_recibido esta en CD no hacer nada
 	if daño_cd.time_left > 0:
 		return
-	ejecutar_animacion("Hit")
-	esta_recibiendo_daño = true
 	# Restar vida al Jugador
 	vida -= daño_recibido
 	print(vida)
@@ -94,7 +91,6 @@ func recibir_daño(daño_recibido) -> void:
 # -----------------------------------------------
 func morir() -> void:
 	esta_muriendose = true
-	ejecutar_animacion("Death")
 	await get_tree().create_timer(6).timeout
 	get_tree().reload_current_scene()
 
@@ -138,37 +134,17 @@ func _on_proyectil_cd_timeout() -> void:
 			else:
 				disparar_proyectil(enemigo_objetivo)
 
-func ejecutar_animacion(nombre: StringName) -> void:
-	match nombre:
-		"Death":
-			animaciones.set("parameters/conditions/muerto", true)
-			await get_tree().create_timer(.1).timeout
-			animaciones.set("parameters/conditions/muerto", false)
-		"Attack":
-			animaciones.set("parameters/conditions/atacando", true)
-			await get_tree().create_timer(.1).timeout
-			animaciones.set("parameters/conditions/atacando", false)
-		"Hit":
-			animaciones.set("parameters/conditions/golpeado", true)
-			await get_tree().create_timer(.1).timeout
-			animaciones.set("parameters/conditions/golpeado", false)
-		"Walk":
+func ejecutar_animacion(animacion: StringName):
+	match animacion:
+		"andando":
 			animaciones.set("parameters/conditions/andando", true)
 			animaciones.set("parameters/conditions/quieto", false)
-		"Idle":
-			#Idle
-			animaciones.set("parameters/conditions/andando", false)
+		"quieto":
 			animaciones.set("parameters/conditions/quieto", true)
-
-
-func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
-	match anim_name:
-		"Death":
-			esta_recibiendo_daño = false
-			esta_muriendose = false
-		"Attack":
-			esta_recibiendo_daño = false
-		"Hit":
-			esta_recibiendo_daño = false
-			espada_cd.stop()
-			espada_cd.start()
+			animaciones.set("parameters/conditions/andando", false)
+		"atacando":
+			animaciones.set("parameters/conditions/atacando", true)
+			await get_tree().create_timer(.4).timeout
+			animaciones.set("parameters/conditions/atacando", false)
+		"muerto":
+			animaciones.set("parameters/conditions/muerto", true)
