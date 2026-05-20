@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dhfo0h8c5e80v" path="res://Scenes/jugador.tscn" id="1_4cw5y"]
 [ext_resource type="Script" uid="uid://b3myd05m4r2a0" path="res://Scripts/Managers/spawn_manager.gd" id="1_gqidu"]
 [ext_resource type="PackedScene" uid="uid://drb3hy16ggec2" path="res://Scenes/Enemigos/enemigo.tscn" id="2_uqtxj"]
-[ext_resource type="Script" uid="uid://duv0btj4gmwo3" path="res://Scripts/camara.gd" id="3_glouy"]
+[ext_resource type="Script" path="res://Scripts/camara.gd" id="3_glouy"]
 
 [sub_resource type="Curve3D" id="Curve3D_qxsm7"]
 closed = true
