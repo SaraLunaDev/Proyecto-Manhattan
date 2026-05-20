@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://boekfmoai7vi4" path="res://Scripts/jugador.gd" id="1_5ydob"]
 [ext_resource type="PackedScene" uid="uid://3th2l2j0mfqf" path="res://Scenes/Enemigos/proyectil.tscn" id="2_c1mnh"]
 [ext_resource type="PackedScene" uid="uid://bicaj3xabikdp" path="res://Models/Player/playerGame.glb" id="3_tn1hq"]
+[ext_resource type="PackedScene" uid="uid://br8v1fh0tdmxr" path="res://Models/Player/playerShoot.glb" id="4_a0p7g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_or7eb"]
 
@@ -100,7 +101,11 @@ radius = 6.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_a0p7g"]
 radius = 5.0
 
-[node name="Jugador" type="CharacterBody3D" unique_id=1492616832 node_paths=PackedStringArray("hitbox", "daño_cd", "espada_cd", "punto_proyectil", "hitbox_espada", "agent", "animaciones", "hitbox_proyectil", "hitbox_espadas_cercanos") groups=["jugador"]]
+[sub_resource type="GDScript" id="GDScript_a0p7g"]
+script/source = "extends Node3D
+"
+
+[node name="Jugador" type="CharacterBody3D" unique_id=1492616832 node_paths=PackedStringArray("hitbox", "daño_cd", "espada_cd", "punto_proyectil", "hitbox_espada", "agent", "animaciones", "hitbox_proyectil", "hitbox_espadas_cercanos", "nodo_torreta") groups=["jugador"]]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_5ydob")
@@ -112,10 +117,12 @@ punto_proyectil = NodePath("PuntoProyectil")
 hitbox_espada = NodePath("HitboxEspada")
 puede_disparar = true
 puede_espadear = true
+puede_rayo = true
 agent = NodePath("Agente")
 animaciones = NodePath("AnimationTree")
 hitbox_proyectil = NodePath("HitboxProyectil")
 hitbox_espadas_cercanos = NodePath("HitboxEspadasCercanos")
+nodo_torreta = NodePath("Torreta")
 
 [node name="playerGame" parent="." unique_id=1083809072 instance=ExtResource("3_tn1hq")]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
@@ -169,7 +176,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96875, 0)
 shape = SubResource("CapsuleShape3D_5ydob")
 
 [node name="PuntoProyectil" type="Marker3D" parent="." unique_id=1090116525]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.23597, 0)
 
 [node name="DañoCD" type="Timer" parent="." unique_id=1857227122]
 wait_time = 2.0
@@ -182,6 +189,10 @@ autostart = true
 [node name="EspadaCD" type="Timer" parent="." unique_id=1463576026]
 wait_time = 2.4
 one_shot = true
+
+[node name="RayoCD" type="Timer" parent="." unique_id=1707304062]
+wait_time = 1.5999999999999999
+autostart = true
 
 [node name="HitboxEspada" type="Area3D" parent="." unique_id=1454333423]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -218,6 +229,20 @@ collision_mask = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_a0p7g")
 
+[node name="Torreta" type="Node3D" parent="." unique_id=831959207]
+
+[node name="playerShoot" parent="Torreta" unique_id=939623718 instance=ExtResource("4_a0p7g")]
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, -0.052850723, 0, 0.38312075)
+script = SubResource("GDScript_a0p7g")
+
+[node name="Shoot" parent="Torreta/playerShoot" index="0" unique_id=287310875]
+transform = Transform3D(0.9988901, -0.04710009, -8.122308e-09, 0.04710009, 0.9988901, -2.457079e-10, 8.124866e-09, -1.3712627e-10, 1, 0.3024956, 14.15554, -2.4211545)
+
+[node name="AnimationPlayer" parent="Torreta/playerShoot" index="1" unique_id=233760110]
+autoplay = &"IdleShoot"
+
 [connection signal="timeout" from="ProyectilCD" to="." method="_on_proyectil_cd_timeout"]
+[connection signal="timeout" from="RayoCD" to="." method="_on_rayo_cd_timeout"]
 
 [editable path="playerGame"]
+[editable path="Torreta/playerShoot"]

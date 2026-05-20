@@ -15,6 +15,7 @@ class_name Jugador
 @export var daño_espada = 2.0
 @export var puede_disparar: bool = false
 @export var puede_espadear: bool = false
+@export var puede_rayo: bool = false
 @export var agent: NavigationAgent3D
 var esta_espadeando: bool = false
 @export var animaciones: AnimationTree
@@ -22,6 +23,13 @@ var esta_muriendose: bool = false
 @export var hitbox_proyectil: Area3D
 @export var hitbox_espadas_cercanos: Area3D
 var ultima_animacion: StringName
+@export var nodo_torreta: Node3D
+var enemigo_objetivo: Enemigo
+var cam: Camera3D
+@export var daño_rayo = 1.0
+
+func _ready() -> void:
+	cam = get_viewport().get_camera_3d()
 
 # Process
 # -----------------------------------------------
@@ -29,7 +37,7 @@ func _physics_process(delta: float) -> void:
 	# Obtener el Input de direccion
 	var input = Input.get_vector("izquierda", "derecha", "arriba", "abajo")
 	var direccion = (Vector3(input.x, 0, input.y)).normalized()
-
+	
 	if direccion:
 		# Movimiento hacia direccion con aceleracion
 		ejecutar_animacion("andando")
@@ -71,6 +79,12 @@ func _physics_process(delta: float) -> void:
 				
 				await get_tree().create_timer(.6).timeout
 				esta_espadeando = false
+	
+	if enemigo_objetivo:
+		nodo_torreta.look_at(enemigo_objetivo.global_position, Vector3.UP, true)
+	else:
+		if cam:
+			nodo_torreta.look_at(Vector3(cam.global_transform.origin.x,0,cam.global_transform.origin.z), Vector3.UP)
 
 # Gestion de daño recibido
 # -----------------------------------------------
@@ -97,7 +111,7 @@ func morir() -> void:
 
 # Gestion de disparo de proyectil
 # -----------------------------------------------
-func disparar_proyectil(enemigo_objetivo: Enemigo) -> void:
+func disparar_proyectil() -> void:
 	if puede_disparar:
 		var nuevo_proyectil = proyectil.instantiate()
 		nuevo_proyectil.transform.origin = punto_proyectil.global_position
@@ -112,12 +126,10 @@ func _on_proyectil_cd_timeout() -> void:
 		for enemigo_proyectil in hitbox_proyectil.get_overlapping_bodies():
 			if not enemigo_cercano:
 				enemigo_cercano = enemigo_proyectil
-			
 			if enemigo_cercano.get_distancia_a_jugador() > enemigo_proyectil.get_distancia_a_jugador():
 				enemigo_cercano = enemigo_proyectil
 		
 		var es_apuntado = false
-		var enemigo_objetivo
 		if not enemigo_cercano.get_siendo_apuntado():
 			es_apuntado = true
 			enemigo_objetivo = enemigo_cercano
@@ -131,9 +143,9 @@ func _on_proyectil_cd_timeout() -> void:
 					daño_total += daño_proyectil
 				
 				if not daño_total >= vida_enemigo:
-					disparar_proyectil(enemigo_objetivo)
+					disparar_proyectil()
 			else:
-				disparar_proyectil(enemigo_objetivo)
+				disparar_proyectil()
 
 func ejecutar_animacion(animacion: StringName):
 	match animacion:
@@ -149,3 +161,11 @@ func ejecutar_animacion(animacion: StringName):
 			animaciones.set("parameters/conditions/atacando", false)
 		"muerto":
 			animaciones.set("parameters/conditions/muerto", true)
+
+
+func _on_rayo_cd_timeout() -> void:
+	if puede_rayo:
+		if hitbox_proyectil.get_overlapping_bodies().size() > 0:
+			var enemigo_rayo = hitbox_proyectil.get_overlapping_bodies().pick_random()
+			if enemigo_rayo is Enemigo:
+				enemigo_rayo.recibir_daño(daño_rayo, 0)
