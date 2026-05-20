@@ -64,7 +64,7 @@ func _physics_process(delta: float) -> void:
 				esta_espadeando = true
 				espada_cd.start()
 				ejecutar_animacion("atacando")
-				await get_tree().create_timer(.4).timeout
+				await get_tree().create_timer(.5).timeout
 				for enemigo_rango_espada in enemigos_rango_espada_cercanos:
 					if enemigo_rango_espada:
 						enemigo_rango_espada.recibir_daño(daño_espada, 1)
@@ -80,7 +80,8 @@ func recibir_daño(daño_recibido) -> void:
 		return
 	# Restar vida al Jugador
 	vida -= daño_recibido
-	print(vida)
+	espada_cd.stop()
+	espada_cd.start()
 	if vida <= 0:
 		vida = 0.0
 		morir()

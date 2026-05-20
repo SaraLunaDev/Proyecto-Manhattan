@@ -85,14 +85,14 @@ advance_condition = &"muerto"
 states/Attack/node = SubResource("AnimationNodeAnimation_n4xcq")
 states/Attack/position = Vector2(665, 100)
 states/Death/node = SubResource("AnimationNodeAnimation_5nsjc")
-states/Death/position = Vector2(665, -86)
+states/Death/position = Vector2(512, 6)
 states/Idle/node = SubResource("AnimationNodeAnimation_tn1hq")
 states/Idle/position = Vector2(364, 100)
 states/Start/position = Vector2(158, 100)
 states/Walk/node = SubResource("AnimationNodeAnimation_a0p7g")
 states/Walk/position = Vector2(364, -86)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_n4xcq"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_iw3ti"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_5nsjc"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_6vc6x"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_3cdix"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_tn1hq"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_a0p7g"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_yy7ku"), "Walk", "Death", SubResource("AnimationNodeStateMachineTransition_wu5nh"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_y2gsv")]
-graph_offset = Vector2(-277, -125)
+graph_offset = Vector2(-203, -118)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_tn1hq"]
 radius = 6.0
