@@ -184,9 +184,9 @@ blend_shape_mode = 0
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2049829421]
 transform = Transform3D(1, 0, 0, 0, -0.9117048, 0.4108462, 0, -0.4108462, -0.9117048, 0, 9.329172, 0)
 
-[node name="Stage2" parent="." unique_id=1779734305 instance=ExtResource("1_kvk04")]
+[node name="Stage2" parent="." unique_id=1046888763 instance=ExtResource("1_kvk04")]
 
-[node name="Skeleton3D" parent="Stage2/Armature" parent_id_path=PackedInt32Array(1779734305, 2103866770) index="0" unique_id=562369322]
+[node name="Skeleton3D" parent="Stage2/Armature" parent_id_path=PackedInt32Array(1046888763, 220547780) index="0" unique_id=275605101]
 bones/2/rotation = Quaternion(0.049387544, 0.03152096, -0.4309443, 0.9004745)
 bones/3/rotation = Quaternion(-0.8111809, 0.14163284, 0.05970568, 0.56423485)
 bones/4/rotation = Quaternion(-0.47226226, 5.6979278e-08, -0.49306753, 0.7306523)
@@ -198,13 +198,13 @@ bones/9/rotation = Quaternion(0.2295367, 0.03195046, 0.45062244, 0.86210877)
 bones/10/rotation = Quaternion(0.18963371, 0.08940359, 0.41346657, 0.886054)
 bones/11/rotation = Quaternion(0.78249645, -8.684051e-08, -1.0913326e-07, 0.62265503)
 
-[node name="Cube_004" parent="Stage2/Armature/Skeleton3D" index="0" unique_id=1496468478]
+[node name="Cube_004" parent="Stage2/Armature/Skeleton3D" index="0" unique_id=1575972434]
 mesh = SubResource("ArrayMesh_fhjyq")
 
-[node name="Floor" parent="Stage2/Armature/Skeleton3D" index="1" unique_id=1541128219]
+[node name="Floor" parent="Stage2/Armature/Skeleton3D" index="1" unique_id=1707118043]
 mesh = SubResource("ArrayMesh_2rmra")
 
-[node name="AnimationPlayer" parent="Stage2" index="1" unique_id=1268030565]
+[node name="AnimationPlayer" parent="Stage2" index="1" unique_id=203415240]
 script = ExtResource("7_2rmra")
 
 [editable path="Stage2"]
