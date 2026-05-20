@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://boekfmoai7vi4" path="res://Scripts/jugador.gd" id="1_5ydob"]
 [ext_resource type="PackedScene" uid="uid://3th2l2j0mfqf" path="res://Scenes/Enemigos/proyectil.tscn" id="2_c1mnh"]
-[ext_resource type="PackedScene" uid="uid://y03j0bg6me4r" path="res://Models/Player/playerGame.glb" id="3_tn1hq"]
+[ext_resource type="PackedScene" uid="uid://bicaj3xabikdp" path="res://Models/Player/playerGame.glb" id="3_tn1hq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_or7eb"]
 
@@ -58,13 +58,7 @@ animaciones = NodePath("AnimationTree")
 [node name="playerGame" parent="." unique_id=461575356 instance=ExtResource("3_tn1hq")]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 
-[node name="EscudoAura_006" parent="playerGame/Idle" parent_id_path=PackedInt32Array(461575356, 1107588309) index="0" unique_id=571847939]
-visible = false
-
-[node name="Trail_006" parent="playerGame/Idle" parent_id_path=PackedInt32Array(461575356, 1107588309) index="1" unique_id=1837844260]
-visible = false
-
-[node name="Skeleton3D" parent="playerGame/Idle" parent_id_path=PackedInt32Array(461575356, 1107588309) index="2" unique_id=352658292]
+[node name="Skeleton3D" parent="playerGame/Idle" parent_id_path=PackedInt32Array(461575356, 1894779117) index="1" unique_id=19818769]
 bones/0/position = Vector3(-5.9812533e-09, -0.5508877, -7.055088e-08)
 bones/0/rotation = Quaternion(0.23436609, -0.0058832713, -0.024395714, 0.97182447)
 bones/1/rotation = Quaternion(0.34020117, 0.034896865, 0.022458466, 0.93943655)
@@ -97,14 +91,8 @@ bones/24/rotation = Quaternion(0.049098767, -0.70540017, 0.70540005, -0.04909876
 bones/25/position = Vector3(-0.5205109, -0.8555801, -2.3108342)
 bones/25/rotation = Quaternion(0.04909885, 0.7054001, -0.7054001, -0.049098853)
 
-[node name="Hand_r" parent="playerGame/Idle/Skeleton3D" index="0" unique_id=288305742]
-transform = Transform3D(-0.4764595, -0.7719677, 0.42077464, 0.75371915, -0.6050441, -0.25657013, 0.4526513, 0.19490044, 0.87012637, 0.06610322, -2.9143417, 2.8219435)
-
-[node name="EscudoAura" parent="playerGame" index="1" unique_id=567196146]
-visible = false
-
-[node name="Trail" parent="playerGame" index="2" unique_id=1679295087]
-visible = false
+[node name="Hand_r" parent="playerGame/Idle/Skeleton3D" index="0" unique_id=1627432745]
+transform = Transform3D(-0.47645956, -0.7719678, 0.4207747, 0.7537191, -0.60504425, -0.25657007, 0.45265138, 0.19490056, 0.8701265, 0.06610119, -2.914344, 2.8219445)
 
 [node name="Colision" type="CollisionShape3D" parent="." unique_id=938434462]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

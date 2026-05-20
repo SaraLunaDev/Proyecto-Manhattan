@@ -1,7 +1,6 @@
 shader_type spatial;
 render_mode unshaded;
 uniform sampler2D iChannel0;
-uniform float iTime;
 uniform vec3 water_color : source_color = vec3(0.1, 0.4, 0.5);
 uniform vec2 water_direction = vec2(1.0, 0.5);
 uniform float speed1 = 0.03;
@@ -17,8 +16,8 @@ void fragment()
     vec2 dir = water_direction;
     dir = dir * 0.5 + 0.5;
 
-    float time1 = iTime * speed1;
-    float time2 = iTime * speed2;
+    float time1 = TIME * speed1;
+    float time2 = TIME * speed2;
 
     vec2 uv1 = uv + dir * time1;
     vec2 uv2 = uv - dir.yx * time2;
