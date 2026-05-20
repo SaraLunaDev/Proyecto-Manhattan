@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dhfo0h8c5e80v" path="res://Scenes/jugador.tscn" id="1_4cw5y"]
 [ext_resource type="Script" uid="uid://b3myd05m4r2a0" path="res://Scripts/Managers/spawn_manager.gd" id="1_gqidu"]
 [ext_resource type="PackedScene" uid="uid://drb3hy16ggec2" path="res://Scenes/Enemigos/enemigo.tscn" id="2_uqtxj"]
+[ext_resource type="Script" uid="uid://duv0btj4gmwo3" path="res://Scripts/camara.gd" id="3_glouy"]
 
 [sub_resource type="Curve3D" id="Curve3D_qxsm7"]
 closed = true
@@ -41,10 +42,12 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2
 light_color = Color(0.9222459, 0.91938186, 0.8812527, 1)
 light_energy = 6.0
 
-[node name="Camara" type="Camera3D" parent="." unique_id=268590377]
-transform = Transform3D(1, 0, 0, 0, 0.86602545, 0.49999997, 0, -0.49999997, 0.86602545, 0, 31, 53)
-fov = 20.0
+[node name="Camara" type="Camera3D" parent="." unique_id=268590377 node_paths=PackedStringArray("jugador")]
+transform = Transform3D(1, 0, 0, 0, 0.86602545, 0.49999997, 0, -0.49999997, 0.86602545, 0, 9, 14)
+fov = 70.0
 size = 23.051
+script = ExtResource("3_glouy")
+jugador = NodePath("../NavigationRegion3D/Jugador")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=553603247]
 navigation_mesh = SubResource("NavigationMesh_uqtxj")
