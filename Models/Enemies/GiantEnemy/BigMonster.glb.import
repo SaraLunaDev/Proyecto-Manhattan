@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://o711cmac4oxd"
-path="res://.godot/imported/playerGame.glb-209e4ce44e94851732a7e54c0416ff06.scn"
+uid="uid://c5u80q2mak4ue"
+path="res://.godot/imported/BigMonster.glb-51337a9b0e771576e09637c98e1e1e83.scn"
 
 [deps]
 
-source_file="res://Models/Player/playerGame.glb"
-dest_files=["res://.godot/imported/playerGame.glb-209e4ce44e94851732a7e54c0416ff06.scn"]
+source_file="res://Models/Enemies/GiantEnemy/BigMonster.glb"
+dest_files=["res://.godot/imported/BigMonster.glb-51337a9b0e771576e09637c98e1e1e83.scn"]
 
 [params]
 

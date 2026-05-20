@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://o711cmac4oxd"
-path="res://.godot/imported/playerGame.glb-209e4ce44e94851732a7e54c0416ff06.scn"
+uid="uid://bbtw30mulcghj"
+path="res://.godot/imported/AntMonster.glb-c97aa6f850eb72a8710411672d2d03ec.scn"
 
 [deps]
 
-source_file="res://Models/Player/playerGame.glb"
-dest_files=["res://.godot/imported/playerGame.glb-209e4ce44e94851732a7e54c0416ff06.scn"]
+source_file="res://Models/Enemies/AntEnemy/AntMonster.glb"
+dest_files=["res://.godot/imported/AntMonster.glb-c97aa6f850eb72a8710411672d2d03ec.scn"]
 
 [params]
 
