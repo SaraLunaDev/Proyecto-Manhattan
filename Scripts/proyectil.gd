@@ -13,6 +13,9 @@ func _physics_process(delta: float) -> void:
 	if (enemigo_objetivo.get_punto_daño().global_position != global_position):
 		look_at(enemigo_objetivo.get_punto_daño().global_position, Vector3.UP, true)
 	
+	if not enemigo_objetivo.get_punto_daño().global_position == global_position:
+		look_at(enemigo_objetivo.get_punto_daño().global_position, Vector3.UP, true)
+	
 	# Eliminar proyectil cuando colisione
 	var enemigos_colisionados = get_overlapping_bodies()
 	if enemigos_colisionados.size() > 0:

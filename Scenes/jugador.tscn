@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dhfo0h8c5e80v"]
+[gd_scene format=4 uid="uid://dhfo0h8c5e80v"]
 
 [ext_resource type="Script" uid="uid://boekfmoai7vi4" path="res://Scripts/jugador.gd" id="1_5ydob"]
 [ext_resource type="PackedScene" uid="uid://3th2l2j0mfqf" path="res://Scenes/Enemigos/proyectil.tscn" id="2_c1mnh"]
@@ -101,11 +101,39 @@ radius = 6.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_a0p7g"]
 radius = 5.0
 
-[sub_resource type="GDScript" id="GDScript_a0p7g"]
-script/source = "extends Node3D
-"
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gsqqg"]
 
-[node name="Jugador" type="CharacterBody3D" unique_id=1492616832 node_paths=PackedStringArray("hitbox", "daño_cd", "espada_cd", "punto_proyectil", "hitbox_espada", "agent", "animaciones", "hitbox_proyectil", "hitbox_espadas_cercanos", "nodo_torreta") groups=["jugador"]]
+[sub_resource type="ArrayMesh" id="ArrayMesh_bhy8k"]
+_surfaces = [{
+"aabb": AABB(-1.1973503, -1, -1.1973503, 2.3947005, 2, 2.3947005),
+"format": 34896613377,
+"index_count": 96,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAwAEAAEABQAAAAIABgADAAAABwAGAAAABwAAAAUABgAIAAMACQAHAAUABQACAAoACQAFAAsACwAFAAoADAAJAAsACwAKAA0ADAALAA4ADgALAA0ADwAMAA4ADgANABAADwAOABEAEQAOABAAEgAPABEAEQAQABMAEgARABQAFAARABMAFQASABQAFAATABYAFQAUABcAFwAUABYACAAVABcAFwAWAAQACAAXAAMAAwAXAAQA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/3//fwAAAACWy///aDQAAP9///8YFQAAgdr/f30lAADm6v///38AAH0l/399JQAA/38AABgVAABoNAAAaDQAAJbLAABoNAAAGBUAAP9/AABoNP//aDQAAAAA/3//fwAAaDQAAJbLAAAYFf///38AAH0l/3+B2gAA/38AAObqAABoNP//lssAAP9//3///wAAlssAAJbLAAD/f///5uoAAIHa/3+B2gAA5uoAAP9/AACWy///lssAAP///3//fwAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pam0n"]
+resource_name = "playerGame_Cylinder_001"
+_surfaces = [{
+"aabb": AABB(-1.1973503, -1, -1.1973503, 2.3947005, 2, 2.3947005),
+"attribute_data": PackedByteArray("////P//fAAD//wAA/9//P//f/z//vwAA/98AAP+//z//v/8//58AAP+/AAD/n/8//5//P/9/AAD/nwAA/3//P/9//z//XwAA/38AAP9f/z//X/8//z8AAP9fAAD/P/8//z//f/8f/z//P/8//x//f/8//z//HwAA/z8AAP8f/z//H/8/AAAAAP8fAAAAAP8//x//fwAA/z//H/8/AAD/f/9f/3//P/8//1//P/8//3//f/9//1//P/9//z//X/9//5//f/9//z//n/8//3//f/+//3//n/8//7//P/+f/3//3/9//7//P//f/z//v/9/////f//f/z////8//9//fw=="),
+"format": 34896613399,
+"index_count": 96,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0A"),
+"material": SubResource("StandardMaterial3D_gsqqg"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 64,
+"vertex_data": PackedByteArray("/3//fwAAD/CWy///aDQP8P9///8YFQ/wgdr/f30lD/CB2v9/fSU30Obq////fzfQlsv//2g0N9D///9//3830P///3//f32wlsv//5bLfbDm6v///399sIHa/3+B2n2wgdr/f4HalZH/f///5uqVkZbL//+Wy5WR/3//f///lZH/f/9///+VkWg0//+Wy5WR/3///+bqlZF9Jf9/gdqVkX0l/3+B2n2wGBX///9/fbBoNP//lst9sAAA/3//f32wGBUAAP9/N9B9Jf9/fSU30AAA/3//fzfQaDQAAGg0N9AAAP9//3830Gg0//9oNDfQGBX///9/N9B9Jf9/fSU30H0l/399JQ/w/3///xgVD/BoNP//aDQP8P9//38AAA/waDQAAGg0D/D/f/9/AAAP8H0l/399JQ/w/38AABgVD/BoNAAAlst9sAAA/3//f32wfSX/f4HafbAYFQAA/399sP9/AADm6pWRfSX/f4HalZH/f/9///+VkWg0AACWy5WRlssAAJbLlZH/f/9///+VkYHa/3+B2pWR/38AAObqlZHm6gAA/399sIHa/3+B2n2w////f/9/fbCWywAAlst9sJbLAABoNDfQ////f/9/N9CB2v9/fSU30ObqAAD/fzfQ/38AABgVD/CB2v9/fSUP8P9//38AAA/wlssAAGg0D/CEjBMChIwTAoSMEwKEjBMCxpC4BsaQuAbGkLgGxpC4BpKXIQ6SlyEOkpchDpKXIQ4mraklJq2pJSatqSUmraklqaXX0qml19KppdfSqaXX0iGOa+ghjmvoIY5r6CGOa+g4b0b5OG9G+ThvRvk4b0b5t4Y377eGN++3hjfvt4Y37xOCefMTgnnzE4J58xOCefN6c+v9enPr/Xpz6/16c+v9bGjd8Wxo3fFsaN3xbGjd8dhSVdrYUlXa2FJV2thSVdpVWictVVonLVVaJy1VWict3XGTF91xkxfdcZMX3XGTF0d5xxBHeccQR3nHEEd5xxDrfYUM632FDOt9hQzrfYUM")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_bhy8k")
+
+[node name="Jugador" type="CharacterBody3D" unique_id=1492616832 node_paths=PackedStringArray("hitbox", "daño_cd", "espada_cd", "punto_proyectil", "hitbox_espada", "agent", "animaciones", "hitbox_proyectil", "hitbox_espadas_cercanos", "nodo_torreta", "escudo_forma", "escudo_cd") groups=["jugador"]]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_5ydob")
@@ -122,46 +150,17 @@ agent = NodePath("Agente")
 animaciones = NodePath("AnimationTree")
 hitbox_proyectil = NodePath("HitboxProyectil")
 hitbox_espadas_cercanos = NodePath("HitboxEspadasCercanos")
-nodo_torreta = NodePath("Torreta")
+nodo_torreta = NodePath("PosicionTorreta")
+escudo_forma = NodePath("Escudo/Forma")
+puede_escudo = true
+escudo_cd = NodePath("EscudoCD")
+puede_rayo = true
 
 [node name="playerGame" parent="." unique_id=1083809072 instance=ExtResource("3_tn1hq")]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 
-[node name="Skeleton3D" parent="playerGame/Idle" parent_id_path=PackedInt32Array(461575356, 1894779117) index="1" unique_id=19818769]
-bones/0/position = Vector3(-5.9812533e-09, -0.5508877, -7.055088e-08)
-bones/0/rotation = Quaternion(0.23436609, -0.0058832713, -0.024395714, 0.97182447)
-bones/1/rotation = Quaternion(0.34020117, 0.034896865, 0.022458466, 0.93943655)
-bones/2/rotation = Quaternion(-0.445536, -0.37878805, -0.65245056, 0.48200172)
-bones/3/rotation = Quaternion(0.20361331, 0.124556184, -0.80438155, 0.5440568)
-bones/4/rotation = Quaternion(0.07642063, 0.0033382503, -0.10781707, 0.9912237)
-bones/5/rotation = Quaternion(-0.040736746, -0.43338647, -0.07437766, 0.89720947)
-bones/6/rotation = Quaternion(-0.5777681, -0.013224664, 0.002876341, 0.81608874)
-bones/7/rotation = Quaternion(-0.4817593, 0.2540318, 0.44801947, 0.70898116)
-bones/8/rotation = Quaternion(0.216239, -0.10818968, 0.85217744, 0.4640359)
-bones/9/rotation = Quaternion(0.10783118, -0.004049771, 0.16327095, 0.9806624)
-bones/10/rotation = Quaternion(-0.030410118, 0.5242597, -0.2169711, 0.8228916)
-bones/12/rotation = Quaternion(0.62989783, 0.32129228, 0.62989795, -0.32129225)
-bones/13/rotation = Quaternion(-0.3359613, -0.26191127, -0.53326535, 0.7308629)
-bones/14/rotation = Quaternion(0.024651622, 0.0001909456, 0.38870335, 0.9210332)
-bones/15/rotation = Quaternion(0.118462764, -0.20374045, -0.62218934, 0.74654996)
-bones/17/rotation = Quaternion(-0.39609754, 0.21856269, 0.26735887, 0.8507975)
-bones/18/rotation = Quaternion(0.022894979, -0.00019330124, -0.36100456, 0.93228304)
-bones/19/rotation = Quaternion(0.23716994, 0.686728, 0.5004527, 0.47085273)
-bones/20/position = Vector3(-1.0740734, -2.0953472, 2.3344882)
-bones/20/rotation = Quaternion(-0.33450258, -0.03870614, 0.94115496, -0.028935447)
-bones/21/position = Vector3(0.06610036, -2.9143455, 2.821942)
-bones/21/rotation = Quaternion(-0.25419378, 0.017947597, -0.85901546, -0.44402224)
-bones/22/position = Vector3(1.2458396, -6.972304, 1.4156177)
-bones/22/rotation = Quaternion(0.6570923, 0.54701686, 0.39049968, 0.34133896)
-bones/23/position = Vector3(-1.8012803, -6.9608974, -1.8614078)
-bones/23/rotation = Quaternion(-0.78377557, 0.6136625, -0.06999476, 0.06492271)
-bones/24/position = Vector3(-2.3191693, 0.8424299, -8.307907)
-bones/24/rotation = Quaternion(0.049098767, -0.70540017, 0.70540005, -0.04909876)
-bones/25/position = Vector3(-0.5205109, -0.8555801, -2.3108342)
-bones/25/rotation = Quaternion(0.04909885, 0.7054001, -0.7054001, -0.049098853)
-
-[node name="Hand_r" parent="playerGame/Idle/Skeleton3D" index="0" unique_id=1627432745]
-transform = Transform3D(-0.47645956, -0.7719678, 0.4207747, 0.7537191, -0.60504425, -0.25657007, 0.45265138, 0.19490056, 0.8701265, 0.06610119, -2.914344, 2.8219445)
+[node name="EscudoAura_001" parent="playerGame/Idle" parent_id_path=PackedInt32Array(1083809072, 1878676365) index="0" unique_id=524065205]
+visible = false
 
 [node name="Colision" type="CollisionShape3D" parent="." unique_id=938434462]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -176,7 +175,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96875, 0)
 shape = SubResource("CapsuleShape3D_5ydob")
 
 [node name="PuntoProyectil" type="Marker3D" parent="." unique_id=1090116525]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.23597, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 
 [node name="DañoCD" type="Timer" parent="." unique_id=1857227122]
 wait_time = 2.0
@@ -188,6 +187,13 @@ autostart = true
 
 [node name="EspadaCD" type="Timer" parent="." unique_id=1463576026]
 wait_time = 2.4
+one_shot = true
+
+[node name="EscudoCD" type="Timer" parent="." unique_id=615492639]
+wait_time = 4.0
+one_shot = true
+[node name="EscudoCD" type="Timer" parent="." unique_id=615492639]
+wait_time = 4.0
 one_shot = true
 
 [node name="RayoCD" type="Timer" parent="." unique_id=1707304062]
@@ -229,20 +235,26 @@ collision_mask = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_a0p7g")
 
-[node name="Torreta" type="Node3D" parent="." unique_id=831959207]
+[node name="Escudo" type="Node3D" parent="." unique_id=1982493486]
 
-[node name="playerShoot" parent="Torreta" unique_id=939623718 instance=ExtResource("4_a0p7g")]
-transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, -0.052850723, 0, 0.38312075)
-script = SubResource("GDScript_a0p7g")
+[node name="Forma" type="MeshInstance3D" parent="Escudo" unique_id=1041145228]
+transform = Transform3D(0.895, 0, 0, 0, 0.517, 0, 0, 0, 0.895, 0, 1.146419, 0)
+mesh = SubResource("ArrayMesh_pam0n")
 
-[node name="Shoot" parent="Torreta/playerShoot" index="0" unique_id=287310875]
-transform = Transform3D(0.9988901, -0.04710009, -8.122308e-09, 0.04710009, 0.9988901, -2.457079e-10, 8.124866e-09, -1.3712627e-10, 1, 0.3024956, 14.15554, -2.4211545)
+[node name="PosicionTorreta" type="Node3D" parent="." unique_id=1258163016]
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 
-[node name="AnimationPlayer" parent="Torreta/playerShoot" index="1" unique_id=233760110]
+[node name="playerShoot" parent="PosicionTorreta" unique_id=939623718 instance=ExtResource("4_a0p7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3127631, 1.3790345, 2.3947825)
+
+[node name="Shoot" parent="PosicionTorreta/playerShoot" index="0" unique_id=287310875]
+transform = Transform3D(0.9981726, -0.06042795, -8.119029e-09, 0.06042795, 0.9981726, -2.4553137e-10, 8.119029e-09, -2.455336e-10, 1, 0.3024956, 14.289502, -2.4211545)
+
+[node name="AnimationPlayer" parent="PosicionTorreta/playerShoot" index="1" unique_id=233760110]
 autoplay = &"IdleShoot"
 
 [connection signal="timeout" from="ProyectilCD" to="." method="_on_proyectil_cd_timeout"]
-[connection signal="timeout" from="RayoCD" to="." method="_on_rayo_cd_timeout"]
+[connection signal="timeout" from="EscudoCD" to="." method="_on_escudo_cd_timeout"]
 
 [editable path="playerGame"]
-[editable path="Torreta/playerShoot"]
+[editable path="PosicionTorreta/playerShoot"]

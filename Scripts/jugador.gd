@@ -6,6 +6,8 @@ class_name Jugador
 @export var velocidad = 2.0
 @export var aceleracion = 40.0
 @export var vida = 10.0
+@export var escudo = 4.0
+@export var escudo_max = 4.0
 @export var hitbox: Area3D
 @export var daño_cd: Timer
 @export var espada_cd: Timer
@@ -27,9 +29,15 @@ var ultima_animacion: StringName
 var enemigo_objetivo: Enemigo
 var cam: Camera3D
 @export var daño_rayo = 1.0
+@export var escudo_forma: MeshInstance3D
+@export var puede_escudo: bool = false
+@export var escudo_cd: Timer
+@export var puede_rayo: bool = false
 
 func _ready() -> void:
 	cam = get_viewport().get_camera_3d()
+	escudo_forma.show()
+	escudo = escudo_max
 
 # Process
 # -----------------------------------------------
@@ -54,7 +62,7 @@ func _physics_process(delta: float) -> void:
 		if not esta_espadeando and not esta_muriendose:
 			look_at(global_position + direccion, Vector3.UP, true)
 	
-	if  not esta_muriendose:
+	if not esta_muriendose:
 		move_and_slide()
 	
 	# Detectar colision con enemigo
@@ -79,12 +87,12 @@ func _physics_process(delta: float) -> void:
 				
 				await get_tree().create_timer(.6).timeout
 				esta_espadeando = false
-	
-	if enemigo_objetivo:
-		nodo_torreta.look_at(enemigo_objetivo.global_position, Vector3.UP, true)
-	else:
-		if cam:
-			nodo_torreta.look_at(Vector3(cam.global_transform.origin.x,0,cam.global_transform.origin.z), Vector3.UP)
+		
+		if enemigo_objetivo:
+			nodo_torreta.look_at(enemigo_objetivo.global_position, Vector3.UP, true)
+		else:
+			if cam:
+				nodo_torreta.look_at(Vector3(cam.global_position.x, 0, cam.global_position.z), Vector3.UP, false)
 
 # Gestion de daño recibido
 # -----------------------------------------------
@@ -92,13 +100,21 @@ func recibir_daño(daño_recibido) -> void:
 	# Si el daño_recibido esta en CD no hacer nada
 	if daño_cd.time_left > 0:
 		return
-	# Restar vida al Jugador
-	vida -= daño_recibido
-	espada_cd.stop()
-	espada_cd.start()
-	if vida <= 0:
-		vida = 0.0
-		morir()
+	
+	if escudo > 0:
+		escudo -= daño_recibido
+		if escudo <= 0:
+			escudo = 0.0
+			explotar_escudo()
+	else:
+		# Restar vida al Jugador
+		vida -= daño_recibido
+		espada_cd.stop()
+		espada_cd.start()
+		if vida <= 0:
+			vida = 0.0
+			morir()
+	
 	# Comenzar el CD
 	daño_cd.start()
 
@@ -162,10 +178,18 @@ func ejecutar_animacion(animacion: StringName):
 		"muerto":
 			animaciones.set("parameters/conditions/muerto", true)
 
-
 func _on_rayo_cd_timeout() -> void:
 	if puede_rayo:
 		if hitbox_proyectil.get_overlapping_bodies().size() > 0:
 			var enemigo_rayo = hitbox_proyectil.get_overlapping_bodies().pick_random()
 			if enemigo_rayo is Enemigo:
 				enemigo_rayo.recibir_daño(daño_rayo, 0)
+
+func explotar_escudo() -> void:
+	if puede_escudo:
+		escudo_forma.hide()
+		escudo_cd.start()
+
+func _on_escudo_cd_timeout() -> void:
+	escudo_forma.show()
+	escudo = escudo_max
