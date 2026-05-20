@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bicaj3xabikdp"
-path="res://.godot/imported/playerGame.glb-209e4ce44e94851732a7e54c0416ff06.scn"
+uid="uid://ccjcbhiud3an1"
+path="res://.godot/imported/playerProyectile.glb-301c750aae8bc08b1bf99ea24d5cbd8e.scn"
 
 [deps]
 
-source_file="res://Models/Player/playerGame.glb"
-dest_files=["res://.godot/imported/playerGame.glb-209e4ce44e94851732a7e54c0416ff06.scn"]
+source_file="res://Models/Player/playerProyectile.glb"
+dest_files=["res://.godot/imported/playerProyectile.glb-301c750aae8bc08b1bf99ea24d5cbd8e.scn"]
 
 [params]
 
@@ -39,7 +39,7 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "animations": {
-"Walk": {
+"ProyectileIdle": {
 "save_to_file/enabled": false,
 "save_to_file/fallback_path": "",
 "save_to_file/keep_custom_tracks": "",
