@@ -40,10 +40,6 @@ materials/extract_path=""
 _subresources={
 "animations": {
 "ArmatureAction": {
-"save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Models/Stage/anim.anim",
-"save_to_file/keep_custom_tracks": true,
-"save_to_file/path": "uid://dn4aox5b0r0qs",
 "save_to_file/enabled": false,
 "save_to_file/fallback_path": "",
 "save_to_file/keep_custom_tracks": "",

@@ -18,7 +18,6 @@ class_name Jugador
 @export var puede_disparar: bool = false
 @export var puede_espadear: bool = false
 @export var puede_rayo: bool = false
-@export var puede_rayo: bool = false
 @export var agent: NavigationAgent3D
 var esta_espadeando: bool = false
 @export var animaciones: AnimationTree
@@ -33,7 +32,6 @@ var cam: Camera3D
 @export var escudo_forma: MeshInstance3D
 @export var puede_escudo: bool = false
 @export var escudo_cd: Timer
-@export var puede_rayo: bool = false
 
 func _ready() -> void:
 	cam = get_viewport().get_camera_3d()
@@ -129,7 +127,6 @@ func morir() -> void:
 
 # Gestion de disparo de proyectil
 # -----------------------------------------------
-func disparar_proyectil() -> void:
 func disparar_proyectil() -> void:
 	if puede_disparar:
 		var nuevo_proyectil = proyectil.instantiate()
