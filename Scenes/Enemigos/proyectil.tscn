@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cpm2hlwr6uqds" path="res://Scripts/proyectil.gd" id="1_ikltb"]
 [ext_resource type="PackedScene" uid="uid://ccjcbhiud3an1" path="res://Models/Player/playerProyectile.glb" id="2_xr767"]
-[ext_resource type="PackedScene" uid="uid://ccjcbhiud3an1" path="res://Models/Player/playerProyectile.glb" id="2_xr767"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mnpxj"]
 radius = 0.25

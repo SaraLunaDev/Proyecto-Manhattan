@@ -18,6 +18,7 @@ class_name Jugador
 @export var puede_disparar: bool = false
 @export var puede_espadear: bool = false
 @export var puede_rayo: bool = false
+@export var puede_rayo: bool = false
 @export var agent: NavigationAgent3D
 var esta_espadeando: bool = false
 @export var animaciones: AnimationTree
@@ -45,6 +46,7 @@ func _physics_process(delta: float) -> void:
 	# Obtener el Input de direccion
 	var input = Input.get_vector("izquierda", "derecha", "arriba", "abajo")
 	var direccion = (Vector3(input.x, 0, input.y)).normalized()
+	
 	
 	if direccion:
 		# Movimiento hacia direccion con aceleracion
@@ -128,6 +130,7 @@ func morir() -> void:
 # Gestion de disparo de proyectil
 # -----------------------------------------------
 func disparar_proyectil() -> void:
+func disparar_proyectil() -> void:
 	if puede_disparar:
 		var nuevo_proyectil = proyectil.instantiate()
 		nuevo_proyectil.transform.origin = punto_proyectil.global_position
@@ -159,6 +162,7 @@ func _on_proyectil_cd_timeout() -> void:
 					daño_total += daño_proyectil
 				
 				if not daño_total >= vida_enemigo:
+					disparar_proyectil()
 					disparar_proyectil()
 			else:
 				disparar_proyectil()
