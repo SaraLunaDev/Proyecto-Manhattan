@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://y03j0bg6me4r"
+uid="uid://o711cmac4oxd"
 path="res://.godot/imported/playerGame.glb-209e4ce44e94851732a7e54c0416ff06.scn"
 
 [deps]
@@ -37,6 +37,7 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
+_subresources={}
 _subresources={
 "animations": {
 "Idle": {
