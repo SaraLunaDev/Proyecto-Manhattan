@@ -11,42 +11,102 @@ radius = 0.75
 height = 2.1875
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_c1mnh"]
-radius = 5.0
+radius = 2.25
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c1mnh"]
-animation = &"Idle_001"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n4xcq"]
+animation = &"Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5nsjc"]
+animation = &"Death"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tn1hq"]
-animation = &"Walk_001"
+animation = &"Idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tn1hq"]
-xfade_time = 0.2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a0p7g"]
-advance_mode = 2
-advance_condition = &"andando"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a0p7g"]
+animation = &"Walk"
+use_custom_timeline = true
+timeline_length = 0.6
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n4xcq"]
 advance_mode = 2
 advance_condition = &"quieto"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_a0p7g"]
-states/Idle_001/node = SubResource("AnimationNodeAnimation_c1mnh")
-states/Idle_001/position = Vector2(460, 100)
-"states/Walk_001 2/node" = SubResource("AnimationNodeAnimation_tn1hq")
-"states/Walk_001 2/position" = Vector2(460, -20)
-transitions = ["Start", "Idle_001", SubResource("AnimationNodeStateMachineTransition_tn1hq"), "Idle_001", "Walk_001 2", SubResource("AnimationNodeStateMachineTransition_a0p7g"), "Walk_001 2", "Idle_001", SubResource("AnimationNodeStateMachineTransition_n4xcq")]
-graph_offset = Vector2(-253, -116)
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iw3ti"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"andando"
 
-[node name="Jugador" type="CharacterBody3D" unique_id=1492616832 node_paths=PackedStringArray("hitbox", "daño_cd", "espada_cd", "espada_animacion", "punto_proyectil", "hitbox_espada", "agent", "animaciones") groups=["jugador"]]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5nsjc"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"quieto"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6vc6x"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"atacando"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3cdix"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"atacando"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tn1hq"]
+xfade_time = 1.2
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"quieto"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a0p7g"]
+xfade_time = 1.2
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"andando"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yy7ku"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"muerto"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wu5nh"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"muerto"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y2gsv"]
+xfade_time = 2.0
+advance_mode = 2
+advance_condition = &"muerto"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_a0p7g"]
+states/Attack/node = SubResource("AnimationNodeAnimation_n4xcq")
+states/Attack/position = Vector2(665, 100)
+states/Death/node = SubResource("AnimationNodeAnimation_5nsjc")
+states/Death/position = Vector2(512, 6)
+states/Idle/node = SubResource("AnimationNodeAnimation_tn1hq")
+states/Idle/position = Vector2(364, 100)
+states/Start/position = Vector2(158, 100)
+states/Walk/node = SubResource("AnimationNodeAnimation_a0p7g")
+states/Walk/position = Vector2(364, -86)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_n4xcq"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_iw3ti"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_5nsjc"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_6vc6x"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_3cdix"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_tn1hq"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_a0p7g"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_yy7ku"), "Walk", "Death", SubResource("AnimationNodeStateMachineTransition_wu5nh"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_y2gsv")]
+graph_offset = Vector2(-203, -118)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tn1hq"]
+radius = 6.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_a0p7g"]
+radius = 5.0
+
+[node name="Jugador" type="CharacterBody3D" unique_id=1492616832 node_paths=PackedStringArray("hitbox", "daño_cd", "espada_cd", "punto_proyectil", "hitbox_espada", "agent", "animaciones", "hitbox_proyectil", "hitbox_espadas_cercanos") groups=["jugador"]]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_5ydob")
 hitbox = NodePath("Hitbox")
 "daño_cd" = NodePath("DañoCD")
 espada_cd = NodePath("EspadaCD")
-espada_animacion = NodePath("EspadaCD/EspadaAnimacion")
 proyectil = ExtResource("2_c1mnh")
 punto_proyectil = NodePath("PuntoProyectil")
 hitbox_espada = NodePath("HitboxEspada")
@@ -54,8 +114,10 @@ puede_disparar = true
 puede_espadear = true
 agent = NodePath("Agente")
 animaciones = NodePath("AnimationTree")
+hitbox_proyectil = NodePath("HitboxProyectil")
+hitbox_espadas_cercanos = NodePath("HitboxEspadasCercanos")
 
-[node name="playerGame" parent="." unique_id=461575356 instance=ExtResource("3_tn1hq")]
+[node name="playerGame" parent="." unique_id=1083809072 instance=ExtResource("3_tn1hq")]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 
 [node name="Skeleton3D" parent="playerGame/Idle" parent_id_path=PackedInt32Array(461575356, 1894779117) index="1" unique_id=19818769]
@@ -110,6 +172,7 @@ shape = SubResource("CapsuleShape3D_5ydob")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="DañoCD" type="Timer" parent="." unique_id=1857227122]
+wait_time = 2.0
 one_shot = true
 
 [node name="ProyectilCD" type="Timer" parent="." unique_id=444540685]
@@ -117,11 +180,7 @@ wait_time = 0.6
 autostart = true
 
 [node name="EspadaCD" type="Timer" parent="." unique_id=1463576026]
-wait_time = 1.4
-one_shot = true
-
-[node name="EspadaAnimacion" type="Timer" parent="EspadaCD" unique_id=1736046818]
-wait_time = 0.4
+wait_time = 2.4
 one_shot = true
 
 [node name="HitboxEspada" type="Area3D" parent="." unique_id=1454333423]
@@ -139,9 +198,26 @@ root_node = NodePath("../playerGame")
 tree_root = SubResource("AnimationNodeStateMachine_a0p7g")
 anim_player = NodePath("../playerGame/AnimationPlayer")
 parameters/conditions/andando = false
+parameters/conditions/atacando = false
+parameters/conditions/muerto = false
 parameters/conditions/quieto = false
 
+[node name="HitboxProyectil" type="Area3D" parent="." unique_id=993958807]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Forma" type="CollisionShape3D" parent="HitboxProyectil" unique_id=603288207]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_tn1hq")
+
+[node name="HitboxEspadasCercanos" type="Area3D" parent="." unique_id=313252239]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Forma" type="CollisionShape3D" parent="HitboxEspadasCercanos" unique_id=1785410298]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_a0p7g")
+
 [connection signal="timeout" from="ProyectilCD" to="." method="_on_proyectil_cd_timeout"]
-[connection signal="timeout" from="EspadaCD/EspadaAnimacion" to="." method="_on_espada_animacion_timeout"]
 
 [editable path="playerGame"]
