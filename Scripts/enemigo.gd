@@ -8,6 +8,7 @@ class_name Enemigo
 @export var retroceso = 6.0
 @export_enum("Amarillo", "Rosa", "Verde", "Violeta") var color: int
 @onready var jugador = get_tree().get_first_node_in_group("jugador")
+@export var hitbox: Area3D
 @onready var agent: NavigationAgent3D = $Agente
 @export var vida = 4.0
 @export var daño = 1.0
@@ -18,10 +19,18 @@ var siendo_apuntado = false
 var distancia_a_jugador
 var recibiendo_daño = false
 var tipo_daño = 0
+@export var animaciones: AnimationTree
+var activo = false
 
 # Process
 # -----------------------------------------------
 func _physics_process(delta: float) -> void:
+	# Rotar el enemigo hacia donde va su direccion
+	look_at(jugador.global_position, Vector3.UP, true)
+	
+	if not activo:
+		return
+	
 	distancia_a_jugador = (jugador.global_position - global_position).length()
 	# Establecer direccion destino del NavAgent
 	agent.target_position = jugador.global_transform.origin
@@ -42,11 +51,17 @@ func _physics_process(delta: float) -> void:
 		# Movimiento hacia direccion con aceleracion
 		velocity = velocity.move_toward(direccion, aceleracion * delta)
 	
-	# Rotar el enemigo hacia donde va su direccion
-	if direccion.length() > 0:
-		look_at(global_position + direccion, Vector3.UP, true)
-	
 	move_and_slide()
+	
+	# Detectar colision con jugador
+	if hitbox.get_overlapping_bodies().size() > 0:
+		var jugador_objetivo = hitbox.get_overlapping_bodies()[0]
+		if jugador_objetivo is Jugador:
+			if jugador_objetivo.get_daño_cd_timer() == 0.0:
+				animaciones.set("parameters/conditions/atacando", true)
+				await get_tree().create_timer(.2).timeout
+				animaciones.set("parameters/conditions/atacando", false)
+				jugador_objetivo.recibir_daño(daño)
 
 # Recibir daño
 # -----------------------------------------------
@@ -69,7 +84,7 @@ func recibir_daño(daño_recibido, tipo: int) -> void:
 		morir()
 
 func morir() -> void:
-	queue_free()
+	animaciones.set("parameters/conditions/muerto", true)
 
 # Getters y Setters
 # -----------------------------------------------
@@ -90,3 +105,11 @@ func get_vida() -> float:
 
 func get_distancia_a_jugador() -> float:
 	return distancia_a_jugador
+
+
+func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	match anim_name:
+		"Death":
+			queue_free()
+		"Spawn":
+			activo = true
