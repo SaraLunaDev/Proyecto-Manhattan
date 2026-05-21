@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://isjmc7pyy01g"]
+
+[ext_resource type="Shader" uid="uid://c4ki8ufcnqurf" path="res://Shaders/spinRotation.gdshader" id="1_nw8ty"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_nw8ty")
+shader_parameter/color = Vector3(0, 0, 0)
+shader_parameter/alpha = 0.475
+shader_parameter/emission = Color(0.7379654, 0.5659127, 0, 1)
+shader_parameter/spin_color = Color(0.66604036, 9.1448425e-07, 0.34689084, 1)
