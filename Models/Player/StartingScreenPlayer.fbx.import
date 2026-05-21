@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dd6ekh45ib3ow"
-path="res://.godot/imported/Stage.glb-d8e39bb502116b8def8022dbb757b575.scn"
+uid="uid://bs1f4anjmeg5l"
+path="res://.godot/imported/StartingScreenPlayer.fbx-25248ddfaaf83ec913dc1fae18f040db.scn"
 
 [deps]
 
-source_file="res://Models/Stage/Stage.glb"
-dest_files=["res://.godot/imported/Stage.glb-d8e39bb502116b8def8022dbb757b575.scn"]
+source_file="res://Models/Player/StartingScreenPlayer.fbx"
+dest_files=["res://.godot/imported/StartingScreenPlayer.fbx-25248ddfaaf83ec913dc1fae18f040db.scn"]
 
 [params]
 
@@ -30,7 +30,7 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=false
+animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
@@ -39,11 +39,11 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "animations": {
-"ArmatureAction": {
-"save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Models/Stage/anim.anim",
-"save_to_file/keep_custom_tracks": true,
-"save_to_file/path": "uid://dn4aox5b0r0qs",
+"Armature|ArmatureAction": {
+"save_to_file/enabled": false,
+"save_to_file/fallback_path": "",
+"save_to_file/keep_custom_tracks": "",
+"save_to_file/path": "",
 "settings/loop_mode": 1,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
@@ -2095,12 +2095,9 @@ _subresources={
 "slice_99/start_frame": 0,
 "slices/amount": 0
 }
-},
-"nodes": {
-"PATH:AnimationPlayer": {
-"node/script": null
 }
 }
-}
-gltf/naming_version=2
-gltf/embedded_image_handling=1
+fbx/importer=0
+fbx/allow_geometry_helper_nodes=false
+fbx/embedded_image_handling=1
+fbx/naming_version=2
