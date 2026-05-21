@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bhpda3uxh3quo" path="res://Shaders/Stage.tscn" id="1_84iix"]
 [ext_resource type="Material" uid="uid://dqnv3i1pqp7bf" path="res://Materials/SkyBoxMat.tres" id="1_plxqo"]
 [ext_resource type="Shader" uid="uid://b2t2voetnqpyy" path="res://Shaders/retro.gdshader" id="3_70rqm"]
+[ext_resource type="PackedScene" uid="uid://bwbks3v8dpk2t" path="res://Models/Stage/stage_decoration.tscn" id="4_xgxar"]
 
 [sub_resource type="Sky" id="Sky_70rqm"]
 sky_material = ExtResource("1_plxqo")
@@ -28,7 +29,7 @@ shader_parameter/distort_intensity = 0.0090000004275
 shader_parameter/noise_opacity = 0.6190000294025
 shader_parameter/noise_speed = 5.0
 shader_parameter/static_noise_intensity = 0.06000000285
-shader_parameter/aberration = 0.010000047974999982
+shader_parameter/aberration = 0.01000004797499998
 shader_parameter/brightness = 0.6
 shader_parameter/discolor = false
 shader_parameter/warp_amount = 1.110000052725
@@ -56,6 +57,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="StageDecoration" parent="." unique_id=1196195918 instance=ExtResource("4_xgxar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06090212, 0, 0.059319973)
 
 [editable path="Stage"]
 [editable path="Stage/Stage2"]

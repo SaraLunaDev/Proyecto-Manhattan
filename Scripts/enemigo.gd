@@ -36,6 +36,9 @@ func _physics_process(delta: float) -> void:
 	if not muriendo:
 		look_at(jugador.global_position, Vector3.UP, true)
 	
+	if not activo:
+		return
+	
 	distancia_a_jugador = (jugador.global_position - global_position).length()
 	# Establecer direccion destino del NavAgent
 	agent.target_position = jugador.global_transform.origin
