@@ -6,10 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://bicaj3xabikdp" path="res://Models/Player/playerGame.glb" id="3_tn1hq"]
 [ext_resource type="Material" uid="uid://b75barw2orci0" path="res://Materials/ShieldMat.tres" id="4_3cdix"]
 [ext_resource type="Material" uid="uid://b658hxgiehj5g" path="res://Materials/Yellow.tres" id="4_6vc6x"]
+[ext_resource type="PackedScene" uid="uid://br8v1fh0tdmxr" path="res://Models/Player/playerShoot.glb" id="4_a0p7g"]
 [ext_resource type="Material" uid="uid://3hvgrqv00cq3" path="res://Materials/Green.tres" id="5_3cdix"]
 [ext_resource type="Material" uid="uid://c1ar0spnk5ljl" path="res://Materials/Purple.tres" id="6_x1a6r"]
 [ext_resource type="Material" uid="uid://ctaqk57hbgkrs" path="res://Materials/Pink.tres" id="7_oua2g"]
 [ext_resource type="Material" uid="uid://bmc1f4u4yiru7" path="res://Materials/Violet.tres" id="8_mb44e"]
+[ext_resource type="Shader" uid="uid://c4ki8ufcnqurf" path="res://Shaders/spinRotation.gdshader" id="13_aknpy"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_bhy8k"]
 _surfaces = [{
@@ -267,42 +269,6 @@ radius = 6.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_a0p7g"]
 radius = 5.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gsqqg"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_bhy8k"]
-_surfaces = [{
-"aabb": AABB(-1.1973503, -1, -1.1973503, 2.3947005, 2, 2.3947005),
-"format": 34896613377,
-"index_count": 96,
-"index_data": PackedByteArray("AAABAAIAAAADAAEAAwAEAAEABQAAAAIABgADAAAABwAGAAAABwAAAAUABgAIAAMACQAHAAUABQACAAoACQAFAAsACwAFAAoADAAJAAsACwAKAA0ADAALAA4ADgALAA0ADwAMAA4ADgANABAADwAOABEAEQAOABAAEgAPABEAEQAQABMAEgARABQAFAARABMAFQASABQAFAATABYAFQAUABcAFwAUABYACAAVABcAFwAWAAQACAAXAAMAAwAXAAQA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 24,
-"vertex_data": PackedByteArray("/3//fwAAAACWy///aDQAAP9///8YFQAAgdr/f30lAADm6v///38AAH0l/399JQAA/38AABgVAABoNAAAaDQAAJbLAABoNAAAGBUAAP9/AABoNP//aDQAAAAA/3//fwAAaDQAAJbLAAAYFf///38AAH0l/3+B2gAA/38AAObqAABoNP//lssAAP9//3///wAAlssAAJbLAAD/f///5uoAAIHa/3+B2gAA5uoAAP9/AACWy///lssAAP///3//fwAA")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_pam0n"]
-resource_name = "playerGame_Cylinder_001"
-_surfaces = [{
-"aabb": AABB(-1.1973503, -1, -1.1973503, 2.3947005, 2, 2.3947005),
-"attribute_data": PackedByteArray("////P//fAAD//wAA/9//P//f/z//vwAA/98AAP+//z//v/8//58AAP+/AAD/n/8//5//P/9/AAD/nwAA/3//P/9//z//XwAA/38AAP9f/z//X/8//z8AAP9fAAD/P/8//z//f/8f/z//P/8//x//f/8//z//HwAA/z8AAP8f/z//H/8/AAAAAP8fAAAAAP8//x//fwAA/z//H/8/AAD/f/9f/3//P/8//1//P/8//3//f/9//1//P/9//z//X/9//5//f/9//z//n/8//3//f/+//3//n/8//7//P/+f/3//3/9//7//P//f/z//v/9/////f//f/z////8//9//fw=="),
-"format": 34896613399,
-"index_count": 96,
-"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0A"),
-"material": SubResource("StandardMaterial3D_gsqqg"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 64,
-"vertex_data": PackedByteArray("/3//fwAAD/CWy///aDQP8P9///8YFQ/wgdr/f30lD/CB2v9/fSU30Obq////fzfQlsv//2g0N9D///9//3830P///3//f32wlsv//5bLfbDm6v///399sIHa/3+B2n2wgdr/f4HalZH/f///5uqVkZbL//+Wy5WR/3//f///lZH/f/9///+VkWg0//+Wy5WR/3///+bqlZF9Jf9/gdqVkX0l/3+B2n2wGBX///9/fbBoNP//lst9sAAA/3//f32wGBUAAP9/N9B9Jf9/fSU30AAA/3//fzfQaDQAAGg0N9AAAP9//3830Gg0//9oNDfQGBX///9/N9B9Jf9/fSU30H0l/399JQ/w/3///xgVD/BoNP//aDQP8P9//38AAA/waDQAAGg0D/D/f/9/AAAP8H0l/399JQ/w/38AABgVD/BoNAAAlst9sAAA/3//f32wfSX/f4HafbAYFQAA/399sP9/AADm6pWRfSX/f4HalZH/f/9///+VkWg0AACWy5WRlssAAJbLlZH/f/9///+VkYHa/3+B2pWR/38AAObqlZHm6gAA/399sIHa/3+B2n2w////f/9/fbCWywAAlst9sJbLAABoNDfQ////f/9/N9CB2v9/fSU30ObqAAD/fzfQ/38AABgVD/CB2v9/fSUP8P9//38AAA/wlssAAGg0D/CEjBMChIwTAoSMEwKEjBMCxpC4BsaQuAbGkLgGxpC4BpKXIQ6SlyEOkpchDpKXIQ4mraklJq2pJSatqSUmraklqaXX0qml19KppdfSqaXX0iGOa+ghjmvoIY5r6CGOa+g4b0b5OG9G+ThvRvk4b0b5t4Y377eGN++3hjfvt4Y37xOCefMTgnnzE4J58xOCefN6c+v9enPr/Xpz6/16c+v9bGjd8Wxo3fFsaN3xbGjd8dhSVdrYUlXa2FJV2thSVdpVWictVVonLVVaJy1VWict3XGTF91xkxfdcZMX3XGTF0d5xxBHeccQR3nHEEd5xxDrfYUM632FDOt9hQzrfYUM")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_bhy8k")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n4xcq"]
-transparency = 1
-albedo_color = Color(1, 1, 1, 0.5058824)
-
 [sub_resource type="Animation" id="Animation_n4xcq"]
 length = 0.001
 tracks/0/type = "value"
@@ -317,10 +283,54 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mb44e"]
+resource_name = "aparecer_escudo"
+length = 0.23333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666669, 0.23333333),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.13, 1.13, 1.13), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_oua2g"]
+resource_name = "dañar_escudo"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.13333334, 0.2),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.965, 0.965, 0.965), Vector3(1.024, 1.024, 1.024), Vector3(1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_iw3ti"]
 resource_name = "escudo"
-length = 2.0
+length = 8.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -329,22 +339,198 @@ tracks/0/path = NodePath("Forma:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 6.2831855, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_aknpy"]
+resource_name = "romper_escudo"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5nsjc"]
 _data = {
 &"RESET": SubResource("Animation_n4xcq"),
-&"escudo": SubResource("Animation_iw3ti")
+&"aparecer_escudo": SubResource("Animation_mb44e"),
+&"dañar_escudo": SubResource("Animation_oua2g"),
+&"escudo": SubResource("Animation_iw3ti"),
+&"romper_escudo": SubResource("Animation_aknpy")
 }
 
-[node name="Jugador" type="CharacterBody3D" unique_id=1492616832 node_paths=PackedStringArray("hitbox", "daño_cd", "espada_cd", "punto_proyectil", "hitbox_espada", "agent", "animaciones", "hitbox_proyectil", "hitbox_espadas_cercanos", "nodo_torreta", "escudo_forma", "escudo_cd", "escudo_posicion") groups=["jugador"]]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wd4i0"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_scmwm"]
+_surfaces = [{
+"aabb": AABB(-1.4060898, -20.651768, -1.4060898, 2.8121796, 21.163883, 2.8121796),
+"format": 34896613377,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAgADAAQAAAAFAAEABgAFAAAABAADAAcABwADAAEABAAHAAgACQABAAUABwABAAkABgAKAAUACQAFAAoACwAKAAYACwAMAAoADQAMAAsADgAKAAwADQAOAAwADgAJAAoADwAOAA0AEAAHAAkAEAAJAA4ADwAQAA4ACAAHABAACAAQAA8A"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 17,
+"vertex_data": PackedByteArray("DiP///DcAAAOI9J//38AAAAA////fwAAwzPKf8MzAAAOI///DiMAAMMzyn87zAAA/3//////AAD/f9J/DiMAAP9///8AAAAA/38AAP9/AAD/f9J/8NwAAPDc///w3AAAO8zKfzvMAAD//////38AAPDc0n//fwAA8Nz//w4jAAA7zMp/wzMAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_gdqma"]
+resource_name = "SwordTrail_Cube"
+_surfaces = [{
+"aabb": AABB(-1.4060898, -20.651768, -1.4060898, 2.8121796, 21.163883, 2.8121796),
+"attribute_data": PackedByteArray("YSWL2Xcl6H4wA+d+uzU0yTAD5367NZw0YSVEJHcl6H5hJUQkB4BXJASAEwK7NZw0BIATAlPKnDSn2kQkB4BXJKfaRCSY2uh+2PznflPKnDTY/Od+U8o0yafai9mY2uh+p9qL2QeAedkEgLv7U8o0yQSAu/u7NTTJYSWL2QeAedlTypw0CYDofpja6H4HgFckB4BXJHcl6H4JgOh+uzWcNAmA6H67NTTJB4B52Xcl6H6Y2uh+B4B52VPKNMkJgOh+"),
+"format": 34896613399,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0A"),
+"material": SubResource("StandardMaterial3D_wd4i0"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("DiP///DcJDIOI9J//38IMgAA////fyUywzPKfzvMBjIAAP///3/0I8Mzyn/DM+QjDiP//w4j9CMOI9J//3/jIw4j//8OI/oI/3/Sfw4j+Qj/f///AAD6CMMzyn/DM/kI/3///wAAFQk7zMp/wzO6CPDc//8OIxoJ/3/Sfw4jswjw3P//DiPkI/Dc0n//f/cj//////9/4yM7zMp/wzP4I///////fw0yO8zKfzvMJDLw3P//8NwMMvDc0n//fyUy8Nz///Dc7kL/f9J/8NzwQv9//////+5CO8zKfzvM8EL/f//////gQcMzyn87zEtFDiP///DcrUH/f9J/8NyLRTvMyn/DM3oX/38AAP9/ehfw3NJ//3+yGP9/0n8OIzAW/3/Sfw4jPBgOI9J//388GP9/AAD/f7IYwzPKf8Mz1QX/fwAA/3/GQcMzyn87zMZB/3/Sf/DckEUOI9J//3/mPfDc0n//f2g//3/Sf/DcaD87zMp/O8ypX/9/AAD/f+Y9B1nmpfxYy6UIWeel/FjJpW1QQK5fUCeublBBrl5QJq5kQdm4Y0HYuGRB2bhjQdi4tDngPfE2PkDdObw9vTZqQCguny9GLo8vJi6gL0gujS/QJQAn5iX3Js8lASfoJfYmnQ4WEJ0OFhCdDhYQnQ4WEORvPo7yb3iP428sjvRvkI8xL2I7MS9iO9Ay/DibK8E9FEZosRRGaLECR9CyHiebgnxfzp18X86dC2DRoPdeAZsRHNUgERzVII9lLBMBGwgh")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_scmwm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bknw"]
+render_priority = 0
+shader = ExtResource("13_aknpy")
+shader_parameter/color = Vector3(0, 0, 0)
+shader_parameter/alpha = 0.5
+shader_parameter/emission = Color(1, 1, 1, 1)
+shader_parameter/spin_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_fr03m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 3.1415925, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:surface_material_override/0:shader_parameter/alpha")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+
+[sub_resource type="Animation" id="Animation_1bknw"]
+resource_name = "girar_espada"
+length = 0.96666664
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.33333325, 0.70239127, 0.96666664),
+"transitions": PackedFloat32Array(1, -0.5, -0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(3.595, -0.01, 3.595), Vector3(8, 0, 8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.33333325, 0.96666664),
+"transitions": PackedFloat32Array(1, -0.5),
+"update": 0,
+"values": [Vector3(0, 6.2831855, 0), Vector3(0, -6.2831855, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:surface_material_override/0:shader_parameter/alpha")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6333334, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.4, -5.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fr03m"]
+_data = {
+&"RESET": SubResource("Animation_fr03m"),
+&"girar_espada": SubResource("Animation_1bknw")
+}
+
+[sub_resource type="Curve" id="Curve_mb44e"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5345912, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jk04m"]
+curve = SubResource("Curve_mb44e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aknpy"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_jk04m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akxwv"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1bknw"]
+material = SubResource("StandardMaterial3D_akxwv")
+top_radius = 0.1
+bottom_radius = 0.0
+height = 0.3
+radial_segments = 4
+rings = 1
+
+[node name="Jugador" type="CharacterBody3D" unique_id=1492616832 node_paths=PackedStringArray("hitbox", "daño_cd", "espada_cd", "punto_proyectil", "hitbox_espada", "agent", "animaciones", "hitbox_proyectil", "hitbox_espadas_cercanos", "nodo_torreta", "escudo_forma", "escudo_cd", "escudo_posicion", "animacion_escudo", "espada_animacion") groups=["jugador"]]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_5ydob")
+velocidad = 4.0
 hitbox = NodePath("Hitbox")
 "daño_cd" = NodePath("DañoCD")
 espada_cd = NodePath("EspadaCD")
@@ -353,30 +539,35 @@ punto_proyectil = NodePath("PuntoProyectil")
 hitbox_espada = NodePath("HitboxEspada")
 puede_disparar = true
 puede_espadear = true
+puede_rayo = true
 agent = NodePath("Agente")
 animaciones = NodePath("AnimationTree")
 hitbox_proyectil = NodePath("HitboxProyectil")
 hitbox_espadas_cercanos = NodePath("HitboxEspadasCercanos")
 nodo_torreta = NodePath("PosicionTorreta")
+"daño_rayo" = 2.0
 escudo_forma = NodePath("Escudo/Forma")
 puede_escudo = true
 escudo_cd = NodePath("EscudoCD")
 rayo = ExtResource("3_n4xcq")
 escudo_posicion = NodePath("Escudo")
+animacion_escudo = NodePath("Escudo/AnimacionEscudo")
+espada_animacion = NodePath("SwordTrail/AnimationPlayer")
 
 [node name="playerGame" parent="." unique_id=1083809072 instance=ExtResource("3_tn1hq")]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
 
-[node name="EscudoAura_001" parent="playerGame/Idle" parent_id_path=PackedInt32Array(1083809072, 1894779117) index="0" unique_id=1898822413]
+[node name="EscudoAura_001" parent="playerGame/Idle" parent_id_path=PackedInt32Array(1083809072, 1878676365) index="0" unique_id=524065205]
+visible = false
 mesh = SubResource("ArrayMesh_x1a6r")
 
-[node name="Sword_001" parent="playerGame/Idle/Skeleton3D/Hand_r" parent_id_path=PackedInt32Array(1083809072, 1627432745) index="0" unique_id=816686700]
+[node name="Sword_001" parent="playerGame/Idle/Skeleton3D/Hand_r" parent_id_path=PackedInt32Array(1083809072, 839161291) index="0" unique_id=122073222]
 mesh = SubResource("ArrayMesh_aknpy")
 
-[node name="Cube_007" parent="playerGame/Idle/Skeleton3D" parent_id_path=PackedInt32Array(1083809072, 19818769) index="1" unique_id=1392198980]
+[node name="Cube_007" parent="playerGame/Idle/Skeleton3D" parent_id_path=PackedInt32Array(1083809072, 1449661787) index="1" unique_id=1740107964]
 mesh = SubResource("ArrayMesh_1bknw")
 
-[node name="Player_001" parent="playerGame/Idle/Skeleton3D" parent_id_path=PackedInt32Array(1083809072, 19818769) index="2" unique_id=1438239517]
+[node name="Player_001" parent="playerGame/Idle/Skeleton3D" parent_id_path=PackedInt32Array(1083809072, 1449661787) index="2" unique_id=545801482]
 mesh = SubResource("ArrayMesh_fr03m")
 
 [node name="Colision" type="CollisionShape3D" parent="." unique_id=938434462]
@@ -453,10 +644,9 @@ shape = SubResource("CylinderShape3D_a0p7g")
 
 [node name="Forma" type="MeshInstance3D" parent="Escudo" unique_id=1041145228]
 transform = Transform3D(0.895, 0, 0, 0, 0.517, 0, 0, 0, 0.895, 0, 1.146419, 0)
-mesh = SubResource("ArrayMesh_pam0n")
-surface_material_override/0 = SubResource("StandardMaterial3D_n4xcq")
+mesh = SubResource("ArrayMesh_x1a6r")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Escudo" unique_id=1053310276]
+[node name="AnimacionEscudo" type="AnimationPlayer" parent="Escudo" unique_id=1053310276]
 libraries/ = SubResource("AnimationLibrary_5nsjc")
 autoplay = &"escudo"
 
@@ -472,9 +662,29 @@ transform = Transform3D(0.9981726, -0.06042795, -8.119029e-09, 0.06042795, 0.998
 [node name="AnimationPlayer" parent="PosicionTorreta/playerShoot" index="1" unique_id=233760110]
 autoplay = &"IdleShoot"
 
+[node name="SwordTrail" type="MeshInstance3D" parent="." unique_id=1647912955]
+transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.0075321, 0)
+mesh = SubResource("ArrayMesh_gdqma")
+surface_material_override/0 = SubResource("ShaderMaterial_1bknw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SwordTrail" unique_id=1645637281]
+libraries/ = SubResource("AnimationLibrary_fr03m")
+
+[node name="ExplosionEscudo" type="GPUParticles3D" parent="." unique_id=1603860309]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+emitting = false
+amount = 6
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_aknpy")
+draw_pass_1 = SubResource("CylinderMesh_1bknw")
+
 [connection signal="timeout" from="ProyectilCD" to="." method="_on_proyectil_cd_timeout"]
 [connection signal="timeout" from="EscudoCD" to="." method="_on_escudo_cd_timeout"]
 [connection signal="timeout" from="RayoCD" to="." method="_on_rayo_cd_timeout"]
+[connection signal="animation_finished" from="Escudo/AnimacionEscudo" to="." method="_on_animacion_escudo_animation_finished"]
 
 [editable path="playerGame"]
 [editable path="PosicionTorreta/playerShoot"]

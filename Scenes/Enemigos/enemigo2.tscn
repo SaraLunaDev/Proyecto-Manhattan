@@ -85,6 +85,35 @@ states/Start/position = Vector2(199, 100)
 transitions = ["Idle", "Death", SubResource("AnimationNodeStateMachineTransition_owfuy"), "Start", "Spawn", SubResource("AnimationNodeStateMachineTransition_7e7yd"), "Spawn", "Idle", SubResource("AnimationNodeStateMachineTransition_thk1y"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_xjj3o"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_wbid1"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_phfxn"), "Attack", "Hit", SubResource("AnimationNodeStateMachineTransition_6alrs"), "Idle", "Hit", SubResource("AnimationNodeStateMachineTransition_ii4lk"), "Hit", "Idle", SubResource("AnimationNodeStateMachineTransition_0msl1")]
 graph_offset = Vector2(-48, 44)
 
+[sub_resource type="Curve" id="Curve_6alrs"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5345912, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ii4lk"]
+curve = SubResource("Curve_6alrs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0msl1"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 12.0
+initial_velocity_max = 14.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_ii4lk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dgts8"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_l1xrg"]
+material = SubResource("StandardMaterial3D_dgts8")
+top_radius = 0.1
+bottom_radius = 0.0
+height = 0.3
+radial_segments = 4
+rings = 1
+
 [node name="Enemigo" type="CharacterBody3D" unique_id=624671194 node_paths=PackedStringArray("hitbox", "punto_daño", "punto_daño_label", "animaciones") groups=["enemigo"]]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 collision_layer = 4
@@ -92,7 +121,7 @@ collision_mask = 15
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_6alrs")
-velocidad = 0.5
+velocidad = 1.0
 retroceso = 5.0
 color = 1
 hitbox = NodePath("Hitbox")
@@ -128,25 +157,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 transform = Transform3D(-0.28, 0, 2.4478378e-08, 0, 0.28, 0, -2.4478378e-08, 0, -0.28, 0, 1.2283049, 0)
 
 [node name="Skeleton3D" parent="AntMonster/Main" parent_id_path=PackedInt32Array(1852286762, 162891515) index="0" unique_id=1626785832]
-bones/0/rotation = Quaternion(-0.015796639, -1.1919444e-07, 1.8831103e-09, 0.99987525)
-bones/1/rotation = Quaternion(-0.29137295, 2.3661496e-14, 6.946874e-08, 0.95660955)
-bones/2/rotation = Quaternion(-0.00063549355, -8.382184e-15, 1.5150495e-10, 0.9999999)
-bones/3/rotation = Quaternion(-0.29599255, 7.105428e-15, 7.057012e-08, 0.95519036)
+bones/0/rotation = Quaternion(-0.07492919, -0.004397015, 0.05685569, 0.99555707)
+bones/1/rotation = Quaternion(-0.29044002, 0.02702893, -0.04255319, 0.9555644)
+bones/2/rotation = Quaternion(0.058697004, 2.2244354e-10, -1.4305443e-08, 0.9982759)
+bones/3/rotation = Quaternion(-0.2976993, -0.008335649, 0.03104451, 0.95411843)
 bones/4/rotation = Quaternion(-0.16501375, -0.11972032, 0.5486765, 0.8107969)
-bones/5/rotation = Quaternion(0.111890495, -0.1616378, 0.7974239, 0.57049876)
-bones/6/rotation = Quaternion(-0.009864243, 0.00052940723, 0.03252319, 0.99942225)
-bones/7/rotation = Quaternion(-0.18104672, 0.13028687, -0.54329455, 0.8093692)
-bones/8/rotation = Quaternion(0.13090119, 0.17159176, -0.77230996, 0.59746015)
-bones/9/rotation = Quaternion(-0.013142572, -0.015457138, -0.074359655, 0.99702513)
-bones/10/rotation = Quaternion(0.82977766, 0.12947106, 0.27471513, -0.4682284)
-bones/11/rotation = Quaternion(-0.49531075, -0.005181796, -0.05219607, 0.86713094)
-bones/12/rotation = Quaternion(0.83131444, -0.13056311, -0.27734908, -0.4636238)
-bones/13/rotation = Quaternion(-0.46642178, -0.0048631127, 0.03437292, 0.88388103)
-bones/14/rotation = Quaternion(-0.3111823, 0.4668765, 0.8164268, 0.13652545)
-bones/15/rotation = Quaternion(-0.46315062, -0.08620819, -0.047024753, 0.88082254)
-bones/16/rotation = Quaternion(0.34525925, 0.45883355, 0.8092325, -0.124140464)
-bones/17/rotation = Quaternion(-0.423238, 0.082978465, 0.07584967, 0.8990166)
-bones/18/rotation = Quaternion(1.1478549e-07, 0.8077474, 0.58952874, 1.5727419e-07)
+bones/5/rotation = Quaternion(-0.34690812, -0.41024664, 0.728113, 0.42568064)
+bones/6/rotation = Quaternion(-0.883613, 0.085864894, 0.12804796, 0.44210762)
+bones/7/rotation = Quaternion(-0.1810467, 0.13028687, -0.54329455, 0.8093692)
+bones/8/rotation = Quaternion(-0.36814, 0.43151087, -0.68381035, 0.4589932)
+bones/9/rotation = Quaternion(-0.9072765, -0.05617979, -0.12964232, 0.3960884)
+bones/10/rotation = Quaternion(0.69226766, 0.27293375, 0.5294828, -0.40733367)
+bones/11/rotation = Quaternion(-0.48284233, 1.555197e-08, -0.04277736, 0.87466186)
+bones/12/rotation = Quaternion(0.7977114, -0.15179808, -0.34030727, -0.47413602)
+bones/13/rotation = Quaternion(-0.4781511, -7.05176e-08, 0.04322937, 0.87721306)
+bones/14/rotation = Quaternion(-0.3854436, 0.45498934, 0.7844639, 0.17039528)
+bones/15/rotation = Quaternion(-0.4982271, -4.708195e-08, -0.01876721, 0.86684346)
+bones/16/rotation = Quaternion(0.5903566, 0.39965564, 0.6401144, -0.2863705)
+bones/17/rotation = Quaternion(-0.4773421, -1.0384613e-07, 0.057726406, 0.8768194)
+bones/18/rotation = Quaternion(1.1384362e-07, 0.7373916, 0.6754656, 1.5647491e-07)
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=468711249]
 root_node = NodePath("../AntMonster")
@@ -155,6 +184,17 @@ anim_player = NodePath("../AntMonster/AnimationPlayer")
 parameters/conditions/atacando = false
 parameters/conditions/golpeado = false
 parameters/conditions/muerto = false
+
+[node name="Daño" type="GPUParticles3D" parent="." unique_id=1803776647]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+emitting = false
+amount = 4
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_0msl1")
+draw_pass_1 = SubResource("CylinderMesh_l1xrg")
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 

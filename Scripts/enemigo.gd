@@ -28,18 +28,17 @@ var muriendo = false
 @export var numero_balas = 10.0
 @export var punto_bala: Node3D
 @export var punto_bala_marker: Marker3D
+@onready var daño_particula: GPUParticles3D = $Daño
 
 # Process
 # -----------------------------------------------
 func _physics_process(delta: float) -> void:
+	distancia_a_jugador = (jugador.global_position - global_position).length()
 	# Rotar el enemigo hacia donde va su direccion
-	if not muriendo:
-		look_at(jugador.global_position, Vector3.UP, true)
-	
-	if not activo:
+	if muriendo or jugador.get_muerto():
 		return
 	
-	distancia_a_jugador = (jugador.global_position - global_position).length()
+	look_at(jugador.global_position, Vector3.UP, true)
 	# Establecer direccion destino del NavAgent
 	agent.target_position = jugador.global_transform.origin
 	
@@ -48,7 +47,7 @@ func _physics_process(delta: float) -> void:
 	var posicion = global_transform.origin
 	var direccion
 	
-	if recibiendo_daño and not tipo_daño == 0:
+	if recibiendo_daño and  tipo_daño == 1:
 		direccion = (destino - posicion).normalized() * retroceso
 		direccion.y = 0
 		if activo:
@@ -87,6 +86,12 @@ func recibir_daño(daño_recibido, tipo: int) -> void:
 	vida -= daño_recibido
 	
 	if not tipo_daño == 0:
+		daño_particula.emitting = true
+		animaciones.set("parameters/conditions/golpeado", true)
+		await get_tree().create_timer(.2).timeout
+		animaciones.set("parameters/conditions/golpeado", false)
+	if tipo_daño == 2:
+		daño_particula.emitting = true
 		animaciones.set("parameters/conditions/golpeado", true)
 		await get_tree().create_timer(.2).timeout
 		animaciones.set("parameters/conditions/golpeado", false)
@@ -98,6 +103,9 @@ func recibir_daño(daño_recibido, tipo: int) -> void:
 		morir()
 
 func morir() -> void:
+	hitbox.monitorable = false
+	hitbox.monitoring = false
+	colision.disabled = true
 	muriendo = true
 	colision.disabled = false
 	animaciones.set("parameters/conditions/muerto", true)
@@ -119,6 +127,9 @@ func get_siendo_apuntado() -> bool:
 func get_vida() -> float:
 	return vida
 
+func get_muriendo() -> bool:
+	return muriendo
+
 func get_distancia_a_jugador() -> float:
 	return distancia_a_jugador
 
@@ -131,9 +142,12 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 
 func _on_disparo_cd_timeout() -> void:
 	if es_rango:
-		if bala and punto_bala and punto_bala_marker:
+		if bala and punto_bala and punto_bala_marker and not recibiendo_daño:
 			var paso = 360 / numero_balas
 			var pasos = paso
+			animaciones.set("parameters/conditions/atacando", true)
+			await get_tree().create_timer(.5).timeout
+			animaciones.set("parameters/conditions/atacando", false)
 			for numero_bala in numero_balas:
 				var nueva_bala = bala.instantiate()
 				nueva_bala.transform.origin = punto_bala_marker.global_position
