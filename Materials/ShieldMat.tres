@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b75barw2orci0"]
+
+[ext_resource type="Shader" uid="uid://b5asi8im4rbtx" path="res://Shaders/shieldShader.gdshader" id="1_8fy5a"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_liljq"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_8fy5a")
+shader_parameter/beam_color = Color(0.8650583, 0.37173635, 0.6329202, 1)
+shader_parameter/vertical_speed = 1.5830000751925
+shader_parameter/reverse_direction = false
+shader_parameter/rotation_speed = 0.0
+shader_parameter/density = 18.0290008088775
+shader_parameter/ray_sharpness = 0.118000005605
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_liljq")

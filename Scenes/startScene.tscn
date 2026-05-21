@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://gx5j5xd2wvao"]
 
 [ext_resource type="Shader" uid="uid://b2t2voetnqpyy" path="res://Shaders/retro.gdshader" id="1_dlh0t"]
+[ext_resource type="PackedScene" uid="uid://bs1f4anjmeg5l" path="res://Models/Player/StartingScreenPlayer.fbx" id="2_bsgrl"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bsgrl"]
 shader = ExtResource("1_dlh0t")
@@ -37,3 +38,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=661011383]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.176696, 8.353392)
+
+[node name="StartingScreenPlayer" parent="." unique_id=1162770814 instance=ExtResource("2_bsgrl")]
+transform = Transform3D(0.85293186, 0, -0.52202225, 0, 1, 0, 0.52202225, 0, 0.85293186, 3.9481757, 0, -0.43828392)
