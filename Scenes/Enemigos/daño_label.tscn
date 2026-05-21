@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dao5hbkm8wg3e"]
 
+[ext_resource type="FontFile" uid="uid://6sodm1yo1tjh" path="res://Fonts/Aurusenthial Gothic.ttf" id="1_07bac"]
 [ext_resource type="Script" uid="uid://bg41l7s8mhwc0" path="res://Scripts/daño_label.gd" id="1_apy31"]
 
 [sub_resource type="Animation" id="Animation_apy31"]
@@ -66,6 +67,7 @@ _data = {
 [node name="DañoLabel" type="Label3D" unique_id=1340029142 node_paths=PackedStringArray("tiempo_mostrado", "animacion")]
 modulate = Color(0.7397895, 1.9372628e-06, 9.62615e-07, 1)
 text = "0"
+font = ExtResource("1_07bac")
 font_size = 100
 outline_size = 0
 script = ExtResource("1_apy31")

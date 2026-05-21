@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://bts7bb5dcpiyy"]
+
+[ext_resource type="Script" uid="uid://bd58yaatotsbt" path="res://Scripts/enemigo.gd" id="1_vewvq"]
+[ext_resource type="PackedScene" uid="uid://dao5hbkm8wg3e" path="res://Scenes/Enemigos/daño_label.tscn" id="2_rmm34"]
+[ext_resource type="PackedScene" uid="uid://c5u80q2mak4ue" path="res://Models/Enemies/GiantEnemy/BigMonster.glb" id="3_vewvq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sdp0i"]
+radius = 0.609375
+height = 3.125
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_apwrj"]
+radius = 1.0014648
+height = 3.347168
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_owfuy"]
+animation = &"Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wbid1"]
+animation = &"Death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6alrs"]
+animation = &"Hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xjj3o"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_phfxn"]
+animation = &"Spawn"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_owfuy"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"muerto"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7e7yd"]
+xfade_time = 0.2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_thk1y"]
+xfade_time = 0.6
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xjj3o"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"atacando"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wbid1"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_phfxn"]
+xfade_time = 2.0
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"muerto"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6alrs"]
+xfade_time = 2.0
+advance_mode = 2
+advance_condition = &"golpeado"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ii4lk"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"golpeado"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0msl1"]
+xfade_time = 0.6
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vewvq"]
+states/Attack/node = SubResource("AnimationNodeAnimation_owfuy")
+states/Attack/position = Vector2(546, 242)
+states/Death/node = SubResource("AnimationNodeAnimation_wbid1")
+states/Death/position = Vector2(776, 100)
+states/Hit/node = SubResource("AnimationNodeAnimation_6alrs")
+states/Hit/position = Vector2(776, 242)
+states/Idle/node = SubResource("AnimationNodeAnimation_xjj3o")
+states/Idle/position = Vector2(546, 100)
+states/Spawn/node = SubResource("AnimationNodeAnimation_phfxn")
+states/Spawn/position = Vector2(358, 100)
+states/Start/position = Vector2(199, 100)
+transitions = ["Idle", "Death", SubResource("AnimationNodeStateMachineTransition_owfuy"), "Start", "Spawn", SubResource("AnimationNodeStateMachineTransition_7e7yd"), "Spawn", "Idle", SubResource("AnimationNodeStateMachineTransition_thk1y"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_xjj3o"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_wbid1"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_phfxn"), "Attack", "Hit", SubResource("AnimationNodeStateMachineTransition_6alrs"), "Idle", "Hit", SubResource("AnimationNodeStateMachineTransition_ii4lk"), "Hit", "Idle", SubResource("AnimationNodeStateMachineTransition_0msl1")]
+graph_offset = Vector2(-48, 44)
+
+[node name="Enemigo" type="CharacterBody3D" unique_id=624671194 node_paths=PackedStringArray("hitbox", "punto_daño", "punto_daño_label", "animaciones") groups=["enemigo"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+collision_layer = 4
+collision_mask = 15
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_vewvq")
+velocidad = 0.2
+retroceso = 2.0
+hitbox = NodePath("Hitbox")
+vida = 12.0
+"daño" = 4.0
+"punto_daño" = NodePath("PuntoDaño")
+"punto_daño_label" = NodePath("PuntoDañoLabel")
+"daño_label" = ExtResource("2_rmm34")
+animaciones = NodePath("AnimationTree")
+
+[node name="Colision" type="CollisionShape3D" parent="." unique_id=1011292639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5625, 0)
+shape = SubResource("CapsuleShape3D_sdp0i")
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=2146639920]
+collision_layer = 4
+collision_mask = 2
+
+[node name="Forma" type="CollisionShape3D" parent="Hitbox" unique_id=766747387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.420166, 0)
+shape = SubResource("CapsuleShape3D_apwrj")
+
+[node name="Agente" type="NavigationAgent3D" parent="." unique_id=314535809]
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="PuntoDaño" type="Marker3D" parent="." unique_id=150135517]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="PuntoDañoLabel" type="Marker3D" parent="." unique_id=622424540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+
+[node name="BigMonster" parent="." unique_id=1681758547 instance=ExtResource("3_vewvq")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="BigMonster/Main" parent_id_path=PackedInt32Array(1681758547, 1045319915) index="0" unique_id=676932964]
+bones/0/position = Vector3(-0.06330967, 0.014896504, -1.4590663e-09)
+bones/0/rotation = Quaternion(-0.024272397, 0.0009771743, 0.04020727, 0.99889606)
+bones/1/rotation = Quaternion(-0.039656587, 0.013946031, -0.17574696, 0.9835375)
+bones/2/rotation = Quaternion(0.07062467, 0.033266574, -0.34511626, 0.9353076)
+bones/3/rotation = Quaternion(-0.077616215, -0.09224483, -0.03810551, 0.9919751)
+bones/4/rotation = Quaternion(-0.8612436, 0.014363246, 0.01829715, 0.5076598)
+bones/5/rotation = Quaternion(-0.35193816, -0.0069367886, 0.37557364, 0.85734236)
+bones/6/rotation = Quaternion(-0.21231511, 0.011690666, -0.29594308, 0.9312375)
+bones/7/rotation = Quaternion(0.116709046, 3.0950265e-09, 0.015753804, 0.9930412)
+bones/8/rotation = Quaternion(0.75482076, 0.0860238, -0.26090163, 0.59563076)
+bones/9/rotation = Quaternion(0.3826757, 0.20995942, -0.28799668, 0.85236984)
+bones/10/rotation = Quaternion(-0.08364525, 0.12237147, -0.5186122, 0.842063)
+bones/11/rotation = Quaternion(-0.04871923, -0.0031824633, 0.0061323713, 0.9987886)
+bones/12/rotation = Quaternion(-0.6194413, -0.19840342, -0.18084118, 0.7377162)
+bones/13/rotation = Quaternion(-0.7964513, -0.2536562, -0.0021538427, 0.54892564)
+bones/14/rotation = Quaternion(0.11445975, -0.023668475, 0.284098, 0.9516444)
+bones/15/rotation = Quaternion(0.485798, -0.09618607, 0.35047323, 0.7949321)
+bones/16/rotation = Quaternion(0.7823023, -0.33911422, -0.40782872, 0.3266198)
+bones/17/rotation = Quaternion(0.26346815, 0.055297874, 0.37732992, 0.8860862)
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1914894850]
+root_node = NodePath("../BigMonster")
+tree_root = SubResource("AnimationNodeStateMachine_vewvq")
+anim_player = NodePath("../BigMonster/AnimationPlayer")
+parameters/conditions/atacando = false
+parameters/conditions/golpeado = false
+parameters/conditions/muerto = false
+
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+
+[editable path="BigMonster"]

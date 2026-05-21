@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dmivlxtf1daiv"]
+
+[ext_resource type="Script" uid="uid://b1agi3musnlpp" path="res://Scripts/bala.gd" id="1_4qq6s"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4qq6s"]
+radius = 0.10029223
+
+[sub_resource type="SphereMesh" id="SphereMesh_4qq6s"]
+radius = 0.1
+height = 0.2
+radial_segments = 6
+rings = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qq6s"]
+transparency = 1
+albedo_color = Color(0, 1, 0.42352942, 0.81960785)
+emission_enabled = true
+emission = Color(0, 1, 0.42352942, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_melus"]
+radius = 0.25
+
+[node name="Bala" type="CharacterBody3D" unique_id=642025836]
+transform = Transform3D(-0.00872653, 0, 0.9999619, 0, 1, 0, -0.9999619, 0, -0.00872653, 0, 0, 0)
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_4qq6s")
+
+[node name="Colision" type="CollisionShape3D" parent="." unique_id=606920003]
+shape = SubResource("SphereShape3D_4qq6s")
+disabled = true
+
+[node name="Forma" type="MeshInstance3D" parent="." unique_id=1233817830]
+mesh = SubResource("SphereMesh_4qq6s")
+surface_material_override/0 = SubResource("StandardMaterial3D_4qq6s")
+
+[node name="TiempoVida" type="Timer" parent="." unique_id=785130568]
+wait_time = 30.0
+one_shot = true
+autostart = true
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=783541941]
+collision_layer = 32
+collision_mask = 2
+
+[node name="Forma" type="CollisionShape3D" parent="Hitbox" unique_id=795357955]
+shape = SubResource("SphereShape3D_melus")
+
+[connection signal="timeout" from="TiempoVida" to="." method="_on_tiempo_vida_timeout"]

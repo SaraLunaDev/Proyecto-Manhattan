@@ -1,0 +1,256 @@
+[gd_scene format=4 uid="uid://dhfo0h8c5e80v"]
+
+[ext_resource type="Script" uid="uid://boekfmoai7vi4" path="res://Scripts/jugador.gd" id="1_5ydob"]
+[ext_resource type="PackedScene" uid="uid://3th2l2j0mfqf" path="res://Scenes/Enemigos/proyectil.tscn" id="2_c1mnh"]
+[ext_resource type="PackedScene" uid="uid://bicaj3xabikdp" path="res://Models/Player/playerGame.glb" id="3_tn1hq"]
+[ext_resource type="PackedScene" uid="uid://br8v1fh0tdmxr" path="res://Models/Player/playerShoot.glb" id="4_a0p7g"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_or7eb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ydob"]
+radius = 0.75
+height = 2.1875
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_c1mnh"]
+radius = 2.25
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n4xcq"]
+animation = &"Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5nsjc"]
+animation = &"Death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tn1hq"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a0p7g"]
+animation = &"Walk"
+use_custom_timeline = true
+timeline_length = 0.6
+stretch_time_scale = true
+start_offset = 0.0
+loop_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n4xcq"]
+advance_mode = 2
+advance_condition = &"quieto"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iw3ti"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"andando"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5nsjc"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"quieto"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6vc6x"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"atacando"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3cdix"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"atacando"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tn1hq"]
+xfade_time = 1.2
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"quieto"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a0p7g"]
+xfade_time = 1.2
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"andando"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yy7ku"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"muerto"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wu5nh"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"muerto"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y2gsv"]
+xfade_time = 2.0
+advance_mode = 2
+advance_condition = &"muerto"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_a0p7g"]
+states/Attack/node = SubResource("AnimationNodeAnimation_n4xcq")
+states/Attack/position = Vector2(665, 100)
+states/Death/node = SubResource("AnimationNodeAnimation_5nsjc")
+states/Death/position = Vector2(512, 6)
+states/Idle/node = SubResource("AnimationNodeAnimation_tn1hq")
+states/Idle/position = Vector2(364, 100)
+states/Start/position = Vector2(158, 100)
+states/Walk/node = SubResource("AnimationNodeAnimation_a0p7g")
+states/Walk/position = Vector2(364, -86)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_n4xcq"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_iw3ti"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_5nsjc"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_6vc6x"), "Walk", "Attack", SubResource("AnimationNodeStateMachineTransition_3cdix"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_tn1hq"), "Attack", "Walk", SubResource("AnimationNodeStateMachineTransition_a0p7g"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_yy7ku"), "Walk", "Death", SubResource("AnimationNodeStateMachineTransition_wu5nh"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_y2gsv")]
+graph_offset = Vector2(-203, -118)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_tn1hq"]
+radius = 6.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_a0p7g"]
+radius = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gsqqg"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_bhy8k"]
+_surfaces = [{
+"aabb": AABB(-1.1973503, -1, -1.1973503, 2.3947005, 2, 2.3947005),
+"format": 34896613377,
+"index_count": 96,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAwAEAAEABQAAAAIABgADAAAABwAGAAAABwAAAAUABgAIAAMACQAHAAUABQACAAoACQAFAAsACwAFAAoADAAJAAsACwAKAA0ADAALAA4ADgALAA0ADwAMAA4ADgANABAADwAOABEAEQAOABAAEgAPABEAEQAQABMAEgARABQAFAARABMAFQASABQAFAATABYAFQAUABcAFwAUABYACAAVABcAFwAWAAQACAAXAAMAAwAXAAQA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/3//fwAAAACWy///aDQAAP9///8YFQAAgdr/f30lAADm6v///38AAH0l/399JQAA/38AABgVAABoNAAAaDQAAJbLAABoNAAAGBUAAP9/AABoNP//aDQAAAAA/3//fwAAaDQAAJbLAAAYFf///38AAH0l/3+B2gAA/38AAObqAABoNP//lssAAP9//3///wAAlssAAJbLAAD/f///5uoAAIHa/3+B2gAA5uoAAP9/AACWy///lssAAP///3//fwAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_pam0n"]
+resource_name = "playerGame_Cylinder_001"
+_surfaces = [{
+"aabb": AABB(-1.1973503, -1, -1.1973503, 2.3947005, 2, 2.3947005),
+"attribute_data": PackedByteArray("////P//fAAD//wAA/9//P//f/z//vwAA/98AAP+//z//v/8//58AAP+/AAD/n/8//5//P/9/AAD/nwAA/3//P/9//z//XwAA/38AAP9f/z//X/8//z8AAP9fAAD/P/8//z//f/8f/z//P/8//x//f/8//z//HwAA/z8AAP8f/z//H/8/AAAAAP8fAAAAAP8//x//fwAA/z//H/8/AAD/f/9f/3//P/8//1//P/8//3//f/9//1//P/9//z//X/9//5//f/9//z//n/8//3//f/+//3//n/8//7//P/+f/3//3/9//7//P//f/z//v/9/////f//f/z////8//9//fw=="),
+"format": 34896613399,
+"index_count": 96,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0AMAAxADIAMAAzADEANAA1ADYANAA3ADUAOAA5ADoAOAA7ADkAPAA9AD4APAA/AD0A"),
+"material": SubResource("StandardMaterial3D_gsqqg"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 64,
+"vertex_data": PackedByteArray("/3//fwAAD/CWy///aDQP8P9///8YFQ/wgdr/f30lD/CB2v9/fSU30Obq////fzfQlsv//2g0N9D///9//3830P///3//f32wlsv//5bLfbDm6v///399sIHa/3+B2n2wgdr/f4HalZH/f///5uqVkZbL//+Wy5WR/3//f///lZH/f/9///+VkWg0//+Wy5WR/3///+bqlZF9Jf9/gdqVkX0l/3+B2n2wGBX///9/fbBoNP//lst9sAAA/3//f32wGBUAAP9/N9B9Jf9/fSU30AAA/3//fzfQaDQAAGg0N9AAAP9//3830Gg0//9oNDfQGBX///9/N9B9Jf9/fSU30H0l/399JQ/w/3///xgVD/BoNP//aDQP8P9//38AAA/waDQAAGg0D/D/f/9/AAAP8H0l/399JQ/w/38AABgVD/BoNAAAlst9sAAA/3//f32wfSX/f4HafbAYFQAA/399sP9/AADm6pWRfSX/f4HalZH/f/9///+VkWg0AACWy5WRlssAAJbLlZH/f/9///+VkYHa/3+B2pWR/38AAObqlZHm6gAA/399sIHa/3+B2n2w////f/9/fbCWywAAlst9sJbLAABoNDfQ////f/9/N9CB2v9/fSU30ObqAAD/fzfQ/38AABgVD/CB2v9/fSUP8P9//38AAA/wlssAAGg0D/CEjBMChIwTAoSMEwKEjBMCxpC4BsaQuAbGkLgGxpC4BpKXIQ6SlyEOkpchDpKXIQ4mraklJq2pJSatqSUmraklqaXX0qml19KppdfSqaXX0iGOa+ghjmvoIY5r6CGOa+g4b0b5OG9G+ThvRvk4b0b5t4Y377eGN++3hjfvt4Y37xOCefMTgnnzE4J58xOCefN6c+v9enPr/Xpz6/16c+v9bGjd8Wxo3fFsaN3xbGjd8dhSVdrYUlXa2FJV2thSVdpVWictVVonLVVaJy1VWict3XGTF91xkxfdcZMX3XGTF0d5xxBHeccQR3nHEEd5xxDrfYUM632FDOt9hQzrfYUM")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_bhy8k")
+
+[node name="Jugador" type="CharacterBody3D" unique_id=1492616832 node_paths=PackedStringArray("hitbox", "daño_cd", "espada_cd", "punto_proyectil", "hitbox_espada", "agent", "animaciones", "hitbox_proyectil", "hitbox_espadas_cercanos", "nodo_torreta", "escudo_forma", "escudo_cd") groups=["jugador"]]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_5ydob")
+proyectil = ExtResource("2_c1mnh")
+puede_disparar = true
+puede_espadear = true
+puede_rayo = true
+puede_escudo = true
+hitbox = NodePath("Hitbox")
+"daño_cd" = NodePath("DañoCD")
+espada_cd = NodePath("EspadaCD")
+punto_proyectil = NodePath("PuntoProyectil")
+hitbox_espada = NodePath("HitboxEspada")
+agent = NodePath("Agente")
+animaciones = NodePath("AnimationTree")
+hitbox_proyectil = NodePath("HitboxProyectil")
+hitbox_espadas_cercanos = NodePath("HitboxEspadasCercanos")
+nodo_torreta = NodePath("PosicionTorreta")
+escudo_forma = NodePath("Escudo/Forma")
+escudo_cd = NodePath("EscudoCD")
+
+[node name="playerGame" parent="." unique_id=1083809072 instance=ExtResource("3_tn1hq")]
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
+
+[node name="EscudoAura_001" parent="playerGame/Idle" parent_id_path=PackedInt32Array(1083809072, 1878676365) index="0" unique_id=524065205]
+visible = false
+
+[node name="Colision" type="CollisionShape3D" parent="." unique_id=938434462]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_or7eb")
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=1611399840]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Forma" type="CollisionShape3D" parent="Hitbox" unique_id=1129997483]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96875, 0)
+shape = SubResource("CapsuleShape3D_5ydob")
+
+[node name="PuntoProyectil" type="Marker3D" parent="." unique_id=1090116525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="DañoCD" type="Timer" parent="." unique_id=1857227122]
+wait_time = 2.0
+one_shot = true
+
+[node name="ProyectilCD" type="Timer" parent="." unique_id=444540685]
+wait_time = 0.6
+autostart = true
+
+[node name="EspadaCD" type="Timer" parent="." unique_id=1463576026]
+wait_time = 2.4
+one_shot = true
+
+[node name="EscudoCD" type="Timer" parent="." unique_id=615492639]
+wait_time = 4.0
+one_shot = true
+
+[node name="RayoCD" type="Timer" parent="." unique_id=1707304062]
+wait_time = 1.6
+autostart = true
+
+[node name="HitboxEspada" type="Area3D" parent="." unique_id=1454333423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 16
+collision_mask = 4
+
+[node name="Forma" type="CollisionShape3D" parent="HitboxEspada" unique_id=2072156737]
+shape = SubResource("CylinderShape3D_c1mnh")
+
+[node name="Agente" type="NavigationAgent3D" parent="." unique_id=2015025616]
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=5107744]
+root_node = NodePath("../playerGame")
+tree_root = SubResource("AnimationNodeStateMachine_a0p7g")
+anim_player = NodePath("../playerGame/AnimationPlayer")
+parameters/conditions/andando = false
+parameters/conditions/atacando = false
+parameters/conditions/muerto = false
+parameters/conditions/quieto = false
+
+[node name="HitboxProyectil" type="Area3D" parent="." unique_id=993958807]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Forma" type="CollisionShape3D" parent="HitboxProyectil" unique_id=603288207]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_tn1hq")
+
+[node name="HitboxEspadasCercanos" type="Area3D" parent="." unique_id=313252239]
+collision_layer = 2
+collision_mask = 4
+
+[node name="Forma" type="CollisionShape3D" parent="HitboxEspadasCercanos" unique_id=1785410298]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_a0p7g")
+
+[node name="Escudo" type="Node3D" parent="." unique_id=1982493486]
+
+[node name="Forma" type="MeshInstance3D" parent="Escudo" unique_id=1041145228]
+transform = Transform3D(0.895, 0, 0, 0, 0.517, 0, 0, 0, 0.895, 0, 1.146419, 0)
+mesh = SubResource("ArrayMesh_pam0n")
+
+[node name="PosicionTorreta" type="Node3D" parent="." unique_id=1258163016]
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
+
+[node name="playerShoot" parent="PosicionTorreta" unique_id=939623718 instance=ExtResource("4_a0p7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3127631, 1.3790345, 2.3947825)
+
+[node name="Shoot" parent="PosicionTorreta/playerShoot" index="0" unique_id=287310875]
+transform = Transform3D(0.9981726, -0.06042795, -8.119029e-09, 0.06042795, 0.9981726, -2.4553137e-10, 8.119029e-09, -2.455336e-10, 1, 0.3024956, 14.289502, -2.4211545)
+
+[node name="AnimationPlayer" parent="PosicionTorreta/playerShoot" index="1" unique_id=233760110]
+autoplay = &"IdleShoot"
+
+[connection signal="timeout" from="ProyectilCD" to="." method="_on_proyectil_cd_timeout"]
+[connection signal="timeout" from="EscudoCD" to="." method="_on_escudo_cd_timeout"]
+
+[editable path="playerGame"]
+[editable path="PosicionTorreta/playerShoot"]
