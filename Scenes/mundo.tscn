@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://b3myd05m4r2a0" path="res://Scripts/Managers/spawn_manager.gd" id="1_gqidu"]
 [ext_resource type="PackedScene" uid="uid://drb3hy16ggec2" path="res://Scenes/Enemigos/enemigo.tscn" id="2_uqtxj"]
 [ext_resource type="Script" path="res://Scripts/camara.gd" id="3_glouy"]
+[ext_resource type="PackedScene" uid="uid://dk2864y4tcefu" path="res://Scenes/Enemigos/enemigo2.tscn" id="3_yf8a8"]
+[ext_resource type="PackedScene" uid="uid://bts7bb5dcpiyy" path="res://Scenes/Enemigos/enemigo3.tscn" id="4_qxsm7"]
+[ext_resource type="PackedScene" uid="uid://cvwst2vo6d8bb" path="res://Scenes/Enemigos/enemigo4.tscn" id="5_i8avv"]
 
 [sub_resource type="Curve3D" id="Curve3D_qxsm7"]
 closed = true
@@ -24,9 +27,10 @@ albedo_color = Color(0.18359044, 0.18359044, 0.18359044, 1)
 
 [node name="SpawnManager" type="Node3D" parent="." unique_id=251638114 node_paths=PackedStringArray("temporizador_spawn", "punto_spawn")]
 script = ExtResource("1_gqidu")
-enemigos = Array[PackedScene]([ExtResource("2_uqtxj")])
+enemigos = Array[PackedScene]([ExtResource("4_qxsm7"), ExtResource("3_yf8a8"), ExtResource("5_i8avv"), ExtResource("2_uqtxj")])
 temporizador_spawn = NodePath("TemporizadorSpawn")
 punto_spawn = NodePath("BordeSpawn/PuntoSpawn")
+enemigos_spawn = Array[int]([2, 3, 1, 8])
 
 [node name="TemporizadorSpawn" type="Timer" parent="SpawnManager" unique_id=1286301521]
 autostart = true
@@ -43,7 +47,7 @@ light_color = Color(0.9222459, 0.91938186, 0.8812527, 1)
 light_energy = 6.0
 
 [node name="Camara" type="Camera3D" parent="." unique_id=268590377 node_paths=PackedStringArray("jugador")]
-transform = Transform3D(1, 0, 0, 0, 0.86602545, 0.49999997, 0, -0.49999997, 0.86602545, 0, 9, 14)
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 17.095158, -0.059267044)
 fov = 70.0
 size = 23.051
 script = ExtResource("3_glouy")

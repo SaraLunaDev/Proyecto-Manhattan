@@ -1,0 +1,169 @@
+[gd_scene format=3 uid="uid://cvwst2vo6d8bb"]
+
+[ext_resource type="Script" uid="uid://bd58yaatotsbt" path="res://Scripts/enemigo.gd" id="1_rofb0"]
+[ext_resource type="PackedScene" uid="uid://dao5hbkm8wg3e" path="res://Scenes/Enemigos/daño_label.tscn" id="2_jk04m"]
+[ext_resource type="PackedScene" uid="uid://dmivlxtf1daiv" path="res://Scenes/bala.tscn" id="3_jk04m"]
+[ext_resource type="PackedScene" uid="uid://2ljf0glk0pla" path="res://Models/Enemies/DistanceEnemy/DistanceMonster.glb" id="3_rofb0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sdp0i"]
+radius = 0.421875
+height = 2.125
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_apwrj"]
+radius = 0.8417969
+height = 2.984375
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_owfuy"]
+animation = &"Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wbid1"]
+animation = &"Death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6alrs"]
+animation = &"Hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xjj3o"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_phfxn"]
+animation = &"Spawn"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_owfuy"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"muerto"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7e7yd"]
+xfade_time = 0.2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_thk1y"]
+xfade_time = 0.6
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xjj3o"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"atacando"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wbid1"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_phfxn"]
+xfade_time = 2.0
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"muerto"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6alrs"]
+xfade_time = 2.0
+advance_mode = 2
+advance_condition = &"golpeado"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ii4lk"]
+xfade_time = 0.2
+advance_mode = 2
+advance_condition = &"golpeado"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0msl1"]
+xfade_time = 0.6
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rofb0"]
+states/Attack/node = SubResource("AnimationNodeAnimation_owfuy")
+states/Attack/position = Vector2(546, 242)
+states/Death/node = SubResource("AnimationNodeAnimation_wbid1")
+states/Death/position = Vector2(776, 100)
+states/Hit/node = SubResource("AnimationNodeAnimation_6alrs")
+states/Hit/position = Vector2(776, 242)
+states/Idle/node = SubResource("AnimationNodeAnimation_xjj3o")
+states/Idle/position = Vector2(546, 100)
+states/Spawn/node = SubResource("AnimationNodeAnimation_phfxn")
+states/Spawn/position = Vector2(358, 100)
+states/Start/position = Vector2(199, 100)
+transitions = ["Idle", "Death", SubResource("AnimationNodeStateMachineTransition_owfuy"), "Start", "Spawn", SubResource("AnimationNodeStateMachineTransition_7e7yd"), "Spawn", "Idle", SubResource("AnimationNodeStateMachineTransition_thk1y"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_xjj3o"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_wbid1"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_phfxn"), "Attack", "Hit", SubResource("AnimationNodeStateMachineTransition_6alrs"), "Idle", "Hit", SubResource("AnimationNodeStateMachineTransition_ii4lk"), "Hit", "Idle", SubResource("AnimationNodeStateMachineTransition_0msl1")]
+graph_offset = Vector2(-48, 44)
+
+[node name="Enemigo" type="CharacterBody3D" unique_id=624671194 node_paths=PackedStringArray("hitbox", "punto_daño", "punto_daño_label", "animaciones", "punto_bala", "punto_bala_marker") groups=["enemigo"]]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 0, 0, 0)
+collision_layer = 4
+collision_mask = 15
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_rofb0")
+color = 2
+hitbox = NodePath("Hitbox")
+"punto_daño" = NodePath("PuntoDaño")
+"punto_daño_label" = NodePath("PuntoDañoLabel")
+"daño_label" = ExtResource("2_jk04m")
+animaciones = NodePath("AnimationTree")
+es_rango = true
+bala = ExtResource("3_jk04m")
+numero_balas = 20.0
+punto_bala = NodePath("Node3D")
+punto_bala_marker = NodePath("Node3D/Marker3D")
+
+[node name="Colision" type="CollisionShape3D" parent="." unique_id=1011292639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0625, 0)
+shape = SubResource("CapsuleShape3D_sdp0i")
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=2146639920]
+collision_layer = 4
+collision_mask = 2
+
+[node name="Forma" type="CollisionShape3D" parent="Hitbox" unique_id=766747387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8515625, 0)
+shape = SubResource("CapsuleShape3D_apwrj")
+
+[node name="Agente" type="NavigationAgent3D" parent="." unique_id=314535809]
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="PuntoDaño" type="Marker3D" parent="." unique_id=150135517]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+
+[node name="PuntoDañoLabel" type="Marker3D" parent="." unique_id=622424540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="DistanceMonster" parent="." unique_id=1751464773 instance=ExtResource("3_rofb0")]
+transform = Transform3D(-1.46433194e-08, 0, -0.33500004, 0, 0.33500004, 0, 0.33500004, 0, -1.46433194e-08, 0, 0, 0)
+
+[node name="Skeleton3D" parent="DistanceMonster/Main" parent_id_path=PackedInt32Array(1751464773, 83396969) index="0" unique_id=1642156119]
+bones/0/position = Vector3(0.70234996, -1.5508478e-09, -2.925096e-10)
+bones/0/rotation = Quaternion(-5.15419e-08, -8.085535e-09, 0.057849407, 0.9983254)
+bones/1/rotation = Quaternion(-7.407131e-09, 1.0829483e-07, -0.41249028, 0.9109621)
+bones/2/rotation = Quaternion(3.3574743e-08, 7.9365705e-09, -0.06937287, 0.99759084)
+bones/3/rotation = Quaternion(-0.31200325, -0.05426947, -0.25513405, 0.9135729)
+bones/4/rotation = Quaternion(0.55690676, -0.08793233, 0.69316196, -0.4490539)
+bones/5/rotation = Quaternion(0.6795412, 0.09796338, -0.026079433, 0.7265995)
+bones/6/rotation = Quaternion(0.008789814, -0.6290649, -0.5973664, 0.49734652)
+bones/7/rotation = Quaternion(0.33031362, -0.020853445, -0.22752163, 0.9158013)
+bones/8/rotation = Quaternion(0.84521526, -5.7455726e-08, -0.2724988, 0.45973423)
+bones/9/rotation = Quaternion(-0.3411878, -0.29977158, -0.75543, 0.47228533)
+bones/10/rotation = Quaternion(-0.08038326, -0.04395988, 0.19922324, 0.975662)
+
+[node name="DisparoCD" type="Timer" parent="." unique_id=916165294]
+wait_time = 10.0
+autostart = true
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1200838291]
+root_node = NodePath("../DistanceMonster")
+tree_root = SubResource("AnimationNodeStateMachine_rofb0")
+anim_player = NodePath("../DistanceMonster/AnimationPlayer")
+parameters/conditions/atacando = false
+parameters/conditions/golpeado = false
+parameters/conditions/muerto = false
+
+[node name="Node3D" type="Node3D" parent="." unique_id=449855386]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Marker3D" type="Marker3D" parent="Node3D" unique_id=1940708391]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6391769e-07, 0, 1.25)
+
+[connection signal="timeout" from="DisparoCD" to="." method="_on_disparo_cd_timeout"]
+[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+
+[editable path="DistanceMonster"]
