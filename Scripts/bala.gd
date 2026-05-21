@@ -13,6 +13,7 @@ func _physics_process(delta: float) -> void:
 		var jugador = hitbox.get_overlapping_bodies()[0]
 		if jugador is Jugador:
 			jugador.recibir_daño(daño)
+			queue_free()
 
 func set_posicion(valor: Vector3) -> void:
 	posicion = valor

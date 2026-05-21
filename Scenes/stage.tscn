@@ -1,9 +1,24 @@
-[gd_scene format=3 uid="uid://b3w8y5287vpfw"]
+[gd_scene format=3 uid="uid://hf208faeks6q"]
 
-[ext_resource type="PackedScene" uid="uid://bhpda3uxh3quo" path="res://Shaders/Stage.tscn" id="1_84iix"]
-[ext_resource type="Material" uid="uid://dqnv3i1pqp7bf" path="res://Materials/SkyBoxMat.tres" id="1_plxqo"]
-[ext_resource type="Shader" uid="uid://b2t2voetnqpyy" path="res://Shaders/retro.gdshader" id="3_70rqm"]
-[ext_resource type="PackedScene" uid="uid://bwbks3v8dpk2t" path="res://Models/Stage/stage_decoration.tscn" id="4_xgxar"]
+[ext_resource type="PackedScene" path="res://Shaders/Stage.tscn" id="1_84iix"]
+[ext_resource type="Material" uid="uid://r56ga15gj7rd" path="res://Materials/SkyBoxMat.tres" id="1_plxqo"]
+[ext_resource type="Shader" path="res://Shaders/retro.gdshader" id="3_70rqm"]
+[ext_resource type="PackedScene" path="res://Models/Stage/stage_decoration.tscn" id="4_xgxar"]
+[ext_resource type="Script" uid="uid://b3myd05m4r2a0" path="res://Scripts/Managers/spawn_manager.gd" id="5_hyud0"]
+[ext_resource type="PackedScene" uid="uid://bts7bb5dcpiyy" path="res://Scenes/Enemigos/enemigo3.tscn" id="6_ohi65"]
+[ext_resource type="PackedScene" uid="uid://dk2864y4tcefu" path="res://Scenes/Enemigos/enemigo2.tscn" id="7_sr6x0"]
+[ext_resource type="PackedScene" uid="uid://cvwst2vo6d8bb" path="res://Scenes/Enemigos/enemigo4.tscn" id="8_p7ny2"]
+[ext_resource type="PackedScene" uid="uid://drb3hy16ggec2" path="res://Scenes/Enemigos/enemigo.tscn" id="9_462mf"]
+[ext_resource type="Script" uid="uid://duv0btj4gmwo3" path="res://Scripts/camara.gd" id="9_sr6x0"]
+[ext_resource type="PackedScene" uid="uid://dhfo0h8c5e80v" path="res://Scenes/jugador.tscn" id="10_ohi65"]
+
+[sub_resource type="Curve3D" id="Curve3D_83n1v"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.07784879, 0, -8.164318, 0, 0, 0, 0, 0, 0, -6.6810584, 0, -9.143369, 0, 0, 0, 0, 0, 0, -12.908051, 0, -7.6353126, 0, 0, 0, 0, 0, 0, -15.041183, 0, -3.9149985, 0, 0, 0, 0, 0, 0, -16.840435, 0, 0.060546875, 0, 0, 0, 0, 0, 0, -15.447928, 0, 3.8112683, 0, 0, 0, 0, 0, 0, -12, 0, 7, 0, 0, 0, 0, 0, 0, -6.998471, 0, 9.005026, 0, 0, 0, 0, 0, 0, 0.042245388, 0, 9.900275, 0, 0, 0, 0, 0, 0, 5.7215705, 0, 8.62052, 0, 0, 0, 0, 0, 0, 11.813272, 0, 6.637012, 0, 0, 0, 0, 0, 0, 15.687698, 0, 3.5666087, 0, 0, 0, 0, 0, 0, 17.23299, 0, 0.031374555, 0, 0, 0, 0, 0, 0, 14.439968, 0, -3.0172606, 0, 0, 0, 0, 0, 0, 12.366703, 0, -7.7680755, 0, 0, 0, 0, 0, 0, 6.6526084, 0, -9.155298, 0, 0, 0, 0, 0, 0, 0.31774688, 0, -5.8910775),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 17
 
 [sub_resource type="Sky" id="Sky_70rqm"]
 sky_material = ExtResource("1_plxqo")
@@ -11,12 +26,13 @@ sky_material = ExtResource("1_plxqo")
 [sub_resource type="Environment" id="Environment_xgxar"]
 background_mode = 2
 sky = SubResource("Sky_70rqm")
-tonemap_mode = 2
+tonemap_mode = 1
+tonemap_exposure = 0.89
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xgxar"]
 shader = ExtResource("3_70rqm")
 shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.070000003325
+shader_parameter/scanlines_opacity = 0.0370000017575
 shader_parameter/scanlines_width = 0.1570000074575
 shader_parameter/grille_opacity = 0.0
 shader_parameter/resolution = Vector2(640, 480)
@@ -25,28 +41,58 @@ shader_parameter/roll = true
 shader_parameter/roll_speed = 4.0
 shader_parameter/roll_size = 19.39600092131
 shader_parameter/roll_variation = 0.10000000149012
-shader_parameter/distort_intensity = 0.0090000004275
-shader_parameter/noise_opacity = 0.6190000294025
-shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.06000000285
+shader_parameter/distort_intensity = 0.00800000038
+shader_parameter/noise_opacity = 0.0530000025175
+shader_parameter/noise_speed = 9.79
+shader_parameter/static_noise_intensity = 0.082000003895
 shader_parameter/aberration = 0.01000004797499998
-shader_parameter/brightness = 0.6
+shader_parameter/brightness = 1.0
 shader_parameter/discolor = false
-shader_parameter/warp_amount = 1.110000052725
+shader_parameter/warp_amount = 0.0
 shader_parameter/clip_warp = false
-shader_parameter/vignette_intensity = 0.65
-shader_parameter/vignette_opacity = 0.5550000263625
+shader_parameter/vignette_intensity = 0.855
+shader_parameter/vignette_opacity = 0.514000024415
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_sr6x0"]
+vertices = PackedVector3Array(15.75, 0.5, 4.2, 16.25, 0.5, 4.2, 17.5, 0.5, 0.6999998, 16.25, 0.5, -4.05, 12.75, 0.5, -7.3, 7.25, 0.5, -9.55, -17.5, 0.5, -0.5500002, -16.25, 0.5, 4.2, -15.75, 0.5, 4.2, -12.75, 0.5, -7.3, -16.25, 0.5, -4.05, -6.25, 0.5, -9.8, 2, 0.5, -10.3, -12.5, 0.5, 7.45, -6.75, 0.5, 9.7, -2.75, 0.5, 10.2, 6.75, 0.5, 9.7, 12.5, 0.5, 7.45)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 4), PackedInt32Array(4, 0, 5), PackedInt32Array(8, 7, 6), PackedInt32Array(10, 9, 6), PackedInt32Array(6, 9, 11), PackedInt32Array(5, 11, 12), PackedInt32Array(8, 6, 13), PackedInt32Array(13, 6, 14), PackedInt32Array(14, 6, 15), PackedInt32Array(16, 15, 0), PackedInt32Array(0, 15, 5), PackedInt32Array(5, 15, 11), PackedInt32Array(11, 15, 6), PackedInt32Array(0, 17, 16)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p7ny2"]
+albedo_color = Color(0.18359044, 0.18359044, 0.18359044, 1)
 
 [node name="Stage" type="Node3D" unique_id=1863811624]
+
+[node name="SpawnManager" type="Node3D" parent="." unique_id=1935255188 node_paths=PackedStringArray("temporizador_spawn", "punto_spawn")]
+script = ExtResource("5_hyud0")
+enemigos = Array[PackedScene]([ExtResource("6_ohi65"), ExtResource("7_sr6x0"), ExtResource("8_p7ny2"), ExtResource("9_462mf")])
+temporizador_spawn = NodePath("TemporizadorSpawn")
+punto_spawn = NodePath("BordeSpawn/PuntoSpawn")
+enemigos_spawn = Array[int]([2, 3, 1, 8])
+
+[node name="TemporizadorSpawn" type="Timer" parent="SpawnManager" unique_id=289856742]
+wait_time = 0.5
+autostart = true
+
+[node name="BordeSpawn" type="Path3D" parent="SpawnManager" unique_id=1522300225]
+curve = SubResource("Curve3D_83n1v")
+
+[node name="PuntoSpawn" type="PathFollow3D" parent="SpawnManager/BordeSpawn" unique_id=1747225010]
+transform = Transform3D(0.1433559, 0, 0.9896624, 0, 1, 0, -0.9896624, 0, 0.1433559, 0.07784879, 0, -8.164318)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=100321400]
 environment = SubResource("Environment_xgxar")
 
 [node name="Stage" parent="." unique_id=596665793 instance=ExtResource("1_84iix")]
+transform = Transform3D(-2.6999998, 0, 2.3604149e-07, 0, 2.6999998, 0, -2.3604149e-07, 0, -2.6999998, -4.543545, 3.2398543, -15.444905)
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=217934577]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.810257, 0.88191986, -16.06239)
+[node name="StageDecoration" parent="Stage" unique_id=1196195918 instance=ExtResource("4_xgxar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06090212, 0, 0.059319973)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=217934577 node_paths=PackedStringArray("jugador")]
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 8.527344, 19.488049)
 current = true
+script = ExtResource("9_sr6x0")
+jugador = NodePath("../NavigationRegion3D/Jugador")
 
 [node name="Shaders" type="CanvasLayer" parent="." unique_id=1224625367]
 
@@ -58,8 +104,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StageDecoration" parent="." unique_id=1196195918 instance=ExtResource("4_xgxar")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06090212, 0, 0.059319973)
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1228142997]
+navigation_mesh = SubResource("NavigationMesh_sr6x0")
+
+[node name="Jugador" parent="NavigationRegion3D" unique_id=1492616832 instance=ExtResource("10_ohi65")]
+
+[node name="CSGSuelo" type="CSGCylinder3D" parent="NavigationRegion3D" unique_id=1722008594]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.6, 0, -0.5, 0)
+visible = false
+use_collision = true
+collision_mask = 6
+radius = 18.0
+height = 1.0
+sides = 16
+material = SubResource("StandardMaterial3D_p7ny2")
+
+[connection signal="timeout" from="SpawnManager/TemporizadorSpawn" to="SpawnManager" method="_on_temporizador_spawn_timeout"]
 
 [editable path="Stage"]
 [editable path="Stage/Stage2"]

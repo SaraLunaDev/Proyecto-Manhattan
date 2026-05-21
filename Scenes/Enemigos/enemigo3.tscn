@@ -87,6 +87,36 @@ states/Start/position = Vector2(199, 100)
 transitions = ["Idle", "Death", SubResource("AnimationNodeStateMachineTransition_owfuy"), "Start", "Spawn", SubResource("AnimationNodeStateMachineTransition_7e7yd"), "Spawn", "Idle", SubResource("AnimationNodeStateMachineTransition_thk1y"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_xjj3o"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_wbid1"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_phfxn"), "Attack", "Hit", SubResource("AnimationNodeStateMachineTransition_6alrs"), "Idle", "Hit", SubResource("AnimationNodeStateMachineTransition_ii4lk"), "Hit", "Idle", SubResource("AnimationNodeStateMachineTransition_0msl1")]
 graph_offset = Vector2(-48, 44)
 
+[sub_resource type="Curve" id="Curve_vewvq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5345912, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jk04m"]
+curve = SubResource("Curve_vewvq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rmm34"]
+particle_flag_align_y = true
+spread = 180.0
+initial_velocity_min = 4.0
+initial_velocity_max = 6.0
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_jk04m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akxwv"]
+albedo_color = Color(0.8011548, 0.7944595, 1.92523e-06, 1)
+emission_enabled = true
+emission = Color(0.8, 0.79607844, 0, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_d0fai"]
+material = SubResource("StandardMaterial3D_akxwv")
+top_radius = 0.1
+bottom_radius = 0.0
+height = 0.3
+radial_segments = 4
+rings = 1
+
 [node name="Enemigo" type="CharacterBody3D" unique_id=624671194 node_paths=PackedStringArray("hitbox", "punto_daño", "punto_daño_label", "animaciones") groups=["enemigo"]]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 collision_layer = 4
@@ -94,7 +124,7 @@ collision_mask = 15
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_vewvq")
-velocidad = 0.2
+velocidad = 0.4
 retroceso = 2.0
 hitbox = NodePath("Hitbox")
 vida = 12.0
@@ -130,24 +160,24 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 
 [node name="Skeleton3D" parent="BigMonster/Main" parent_id_path=PackedInt32Array(1681758547, 1045319915) index="0" unique_id=676932964]
 bones/0/position = Vector3(-0.06330967, 0.014896504, -1.4590663e-09)
-bones/0/rotation = Quaternion(-0.024272397, 0.0009771743, 0.04020727, 0.99889606)
-bones/1/rotation = Quaternion(-0.039656587, 0.013946031, -0.17574696, 0.9835375)
-bones/2/rotation = Quaternion(0.07062467, 0.033266574, -0.34511626, 0.9353076)
-bones/3/rotation = Quaternion(-0.077616215, -0.09224483, -0.03810551, 0.9919751)
-bones/4/rotation = Quaternion(-0.8612436, 0.014363246, 0.01829715, 0.5076598)
-bones/5/rotation = Quaternion(-0.35193816, -0.0069367886, 0.37557364, 0.85734236)
-bones/6/rotation = Quaternion(-0.21231511, 0.011690666, -0.29594308, 0.9312375)
+bones/0/rotation = Quaternion(0.0065435898, -0.00026321693, 0.04021825, 0.9991695)
+bones/1/rotation = Quaternion(0.052858714, -0.0074285427, -0.105452724, 0.99299073)
+bones/2/rotation = Quaternion(-0.038687754, -0.020113578, -0.31594962, 0.94777346)
+bones/3/rotation = Quaternion(0.084875904, 0.030044788, -0.34394678, 0.9346625)
+bones/4/rotation = Quaternion(-0.84644085, -0.0507781, -0.045779977, 0.5280754)
+bones/5/rotation = Quaternion(-0.41935197, -0.22500679, -0.0019840226, 0.87949526)
+bones/6/rotation = Quaternion(-0.20647492, -0.012310371, -0.3877907, 0.89824)
 bones/7/rotation = Quaternion(0.116709046, 3.0950265e-09, 0.015753804, 0.9930412)
-bones/8/rotation = Quaternion(0.75482076, 0.0860238, -0.26090163, 0.59563076)
-bones/9/rotation = Quaternion(0.3826757, 0.20995942, -0.28799668, 0.85236984)
-bones/10/rotation = Quaternion(-0.08364525, 0.12237147, -0.5186122, 0.842063)
+bones/8/rotation = Quaternion(0.8132773, 0.027536046, -0.09200587, 0.5738961)
+bones/9/rotation = Quaternion(0.46340466, 0.045031782, 0.101452224, 0.8791676)
+bones/10/rotation = Quaternion(-0.06912924, 0.12149283, -0.6255004, 0.76760024)
 bones/11/rotation = Quaternion(-0.04871923, -0.0031824633, 0.0061323713, 0.9987886)
-bones/12/rotation = Quaternion(-0.6194413, -0.19840342, -0.18084118, 0.7377162)
-bones/13/rotation = Quaternion(-0.7964513, -0.2536562, -0.0021538427, 0.54892564)
-bones/14/rotation = Quaternion(0.11445975, -0.023668475, 0.284098, 0.9516444)
-bones/15/rotation = Quaternion(0.485798, -0.09618607, 0.35047323, 0.7949321)
-bones/16/rotation = Quaternion(0.7823023, -0.33911422, -0.40782872, 0.3266198)
-bones/17/rotation = Quaternion(0.26346815, 0.055297874, 0.37732992, 0.8860862)
+bones/12/rotation = Quaternion(-0.6133097, 0.13311528, 0.08706613, 0.77366084)
+bones/13/rotation = Quaternion(-0.84828526, 0.10860544, -0.032901976, 0.51723725)
+bones/14/rotation = Quaternion(0.09362512, 0.13816904, 0.02693355, 0.9856056)
+bones/15/rotation = Quaternion(0.525335, 0.5335663, 0.33779392, 0.5702853)
+bones/16/rotation = Quaternion(0.8163654, -0.17619972, -0.09930315, 0.54096216)
+bones/17/rotation = Quaternion(0.33104357, 0.23619619, 0.61031187, 0.67980945)
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1914894850]
 root_node = NodePath("../BigMonster")
@@ -156,6 +186,17 @@ anim_player = NodePath("../BigMonster/AnimationPlayer")
 parameters/conditions/atacando = false
 parameters/conditions/golpeado = false
 parameters/conditions/muerto = false
+
+[node name="Daño" type="GPUParticles3D" parent="." unique_id=1171278960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+emitting = false
+amount = 4
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.31
+fixed_fps = 8
+process_material = SubResource("ParticleProcessMaterial_rmm34")
+draw_pass_1 = SubResource("CylinderMesh_d0fai")
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 

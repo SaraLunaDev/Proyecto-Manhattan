@@ -65,7 +65,8 @@ _data = {
 }
 
 [node name="DañoLabel" type="Label3D" unique_id=1340029142 node_paths=PackedStringArray("tiempo_mostrado", "animacion")]
-modulate = Color(0.7397895, 1.9372628e-06, 9.62615e-07, 1)
+modulate = Color(0.9999991, 0.9591426, 0.9524515, 1)
+outline_modulate = Color(0.39211476, 0.22147375, 0.1816256, 1)
 text = "0"
 font = ExtResource("1_07bac")
 font_size = 100
