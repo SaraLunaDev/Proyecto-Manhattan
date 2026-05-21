@@ -32,6 +32,9 @@ var cam: Camera3D
 @export var escudo_forma: MeshInstance3D
 @export var puede_escudo: bool = false
 @export var escudo_cd: Timer
+@export var rayo: PackedScene
+@export var daño_explosion = 4.0
+@export var escudo_posicion: Node3D
 
 func _ready() -> void:
 	cam = get_viewport().get_camera_3d()
@@ -90,16 +93,22 @@ func _physics_process(delta: float) -> void:
 	else:
 		if cam:
 			nodo_torreta.look_at(Vector3(cam.global_position.x, 0, cam.global_position.z), Vector3.UP, false)
+	
+	if cam:
+		escudo_posicion.look_at(Vector3(cam.global_position.x, 0, cam.global_position.z), Vector3.UP, false)
 
 # Gestion de daño recibido
 # -----------------------------------------------
 func recibir_daño(daño_recibido) -> void:
+	if vida == 0.0:
+		return
 	# Si el daño_recibido esta en CD no hacer nada
 	if daño_cd.time_left > 0:
 		return
 	
 	if escudo > 0 and puede_escudo:
 		escudo -= daño_recibido
+		print(escudo)
 		if escudo <= 0:
 			escudo = 0.0
 			explotar_escudo()
@@ -158,7 +167,6 @@ func _on_proyectil_cd_timeout() -> void:
 				
 				if not daño_total >= vida_enemigo:
 					disparar_proyectil()
-					disparar_proyectil()
 			else:
 				disparar_proyectil()
 
@@ -183,10 +191,18 @@ func _on_rayo_cd_timeout() -> void:
 			var enemigo_rayo = hitbox_proyectil.get_overlapping_bodies().pick_random()
 			if enemigo_rayo is Enemigo:
 				enemigo_rayo.recibir_daño(daño_rayo, 0)
+				var nuevo_rayo = rayo.instantiate()
+				nuevo_rayo.transform.origin = enemigo_rayo.global_position
+				get_tree().root.add_child(nuevo_rayo)
 
 func explotar_escudo() -> void:
 	if puede_escudo:
 		escudo_forma.hide()
+		var enemigos_escudo = hitbox_proyectil.get_overlapping_bodies()
+		if enemigos_escudo.size() > 0:
+			for enemigo_escudo in enemigos_escudo:
+				if enemigo_escudo is Enemigo:
+					enemigo_escudo.recibir_daño(daño_explosion, 1)
 		escudo_cd.start()
 
 func _on_escudo_cd_timeout() -> void:

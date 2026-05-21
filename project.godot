@@ -70,6 +70,7 @@ derecha={
 3d_physics/layer_3="enemigo"
 3d_physics/layer_4="proyectil"
 3d_physics/layer_5="espada"
+3d_physics/layer_6="proyectil"
 
 [physics]
 

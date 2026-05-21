@@ -21,15 +21,20 @@ var recibiendo_daño = false
 var tipo_daño = 0
 @export var animaciones: AnimationTree
 var activo = false
+var muriendo = false
+@export var es_rango: bool = false
+@onready var colision: CollisionShape3D = $Colision
+@export var bala: PackedScene
+@export var numero_balas = 10.0
+@export var punto_bala: Node3D
+@export var punto_bala_marker: Marker3D
 
 # Process
 # -----------------------------------------------
 func _physics_process(delta: float) -> void:
 	# Rotar el enemigo hacia donde va su direccion
-	look_at(jugador.global_position, Vector3.UP, true)
-	
-	if not activo:
-		return
+	if not muriendo:
+		look_at(jugador.global_position, Vector3.UP, true)
 	
 	distancia_a_jugador = (jugador.global_position - global_position).length()
 	# Establecer direccion destino del NavAgent
@@ -43,13 +48,15 @@ func _physics_process(delta: float) -> void:
 	if recibiendo_daño and not tipo_daño == 0:
 		direccion = (destino - posicion).normalized() * retroceso
 		direccion.y = 0
-		# Movimiento hacia direccion con aceleracion
-		velocity = velocity.move_toward(direccion * -1, aceleracion * delta)
+		if activo:
+			# Movimiento hacia direccion con aceleracion
+			velocity = velocity.move_toward(direccion * -1, aceleracion * delta)
 	else:
 		direccion = (destino - posicion).normalized() * velocidad
 		direccion.y = 0
-		# Movimiento hacia direccion con aceleracion
-		velocity = velocity.move_toward(direccion, aceleracion * delta)
+		if activo:
+			# Movimiento hacia direccion con aceleracion
+			velocity = velocity.move_toward(direccion, aceleracion * delta)
 	
 	move_and_slide()
 	
@@ -66,6 +73,8 @@ func _physics_process(delta: float) -> void:
 # Recibir daño
 # -----------------------------------------------
 func recibir_daño(daño_recibido, tipo: int) -> void:
+	if vida == 0.0:
+		return
 	tipo_daño = tipo
 	recibiendo_daño = true
 	var nuevo_daño_label = daño_label.instantiate()
@@ -75,7 +84,9 @@ func recibir_daño(daño_recibido, tipo: int) -> void:
 	vida -= daño_recibido
 	
 	if not tipo_daño == 0:
+		animaciones.set("parameters/conditions/golpeado", true)
 		await get_tree().create_timer(.2).timeout
+		animaciones.set("parameters/conditions/golpeado", false)
 	
 	recibiendo_daño = false
 	
@@ -84,6 +95,8 @@ func recibir_daño(daño_recibido, tipo: int) -> void:
 		morir()
 
 func morir() -> void:
+	muriendo = true
+	colision.disabled = false
 	animaciones.set("parameters/conditions/muerto", true)
 
 # Getters y Setters
@@ -106,10 +119,25 @@ func get_vida() -> float:
 func get_distancia_a_jugador() -> float:
 	return distancia_a_jugador
 
-
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	match anim_name:
 		"Death":
 			queue_free()
 		"Spawn":
 			activo = true
+
+func _on_disparo_cd_timeout() -> void:
+	if es_rango:
+		if bala and punto_bala and punto_bala_marker:
+			var paso = 360 / numero_balas
+			var pasos = paso
+			for numero_bala in numero_balas:
+				var nueva_bala = bala.instantiate()
+				nueva_bala.transform.origin = punto_bala_marker.global_position
+				get_tree().root.add_child(nueva_bala)
+				punto_bala.global_rotate(Vector3.UP, deg_to_rad(pasos))
+				nueva_bala.set_posicion(global_position)
+				pasos += paso
+
+func get_color() -> int:
+	return color
