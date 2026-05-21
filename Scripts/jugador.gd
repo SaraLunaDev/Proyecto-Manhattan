@@ -35,7 +35,10 @@ var cam: Camera3D
 
 func _ready() -> void:
 	cam = get_viewport().get_camera_3d()
-	escudo_forma.show()
+	if puede_escudo:
+		escudo_forma.show()
+	else:
+		escudo_forma.hide()
 	escudo = escudo_max
 
 # Process
@@ -65,12 +68,6 @@ func _physics_process(delta: float) -> void:
 	if not esta_muriendose:
 		move_and_slide()
 	
-	# Detectar colision con enemigo
-	var enemigos = hitbox.get_overlapping_bodies()
-	if enemigos.size() > 0:
-		if enemigos[0] is Enemigo:
-			recibir_daño(enemigos[0].get_daño())
-	
 	if puede_espadear:
 		# Detectar enemigos en hitbox espada
 		var enemigos_rango_espada = hitbox_espada.get_overlapping_bodies()
@@ -87,12 +84,12 @@ func _physics_process(delta: float) -> void:
 				
 				await get_tree().create_timer(.6).timeout
 				esta_espadeando = false
-		
-		if enemigo_objetivo:
-			nodo_torreta.look_at(enemigo_objetivo.global_position, Vector3.UP, true)
-		else:
-			if cam:
-				nodo_torreta.look_at(Vector3(cam.global_position.x, 0, cam.global_position.z), Vector3.UP, false)
+	
+	if enemigo_objetivo:
+		nodo_torreta.look_at(enemigo_objetivo.global_position, Vector3.UP, true)
+	else:
+		if cam:
+			nodo_torreta.look_at(Vector3(cam.global_position.x, 0, cam.global_position.z), Vector3.UP, false)
 
 # Gestion de daño recibido
 # -----------------------------------------------
@@ -101,7 +98,7 @@ func recibir_daño(daño_recibido) -> void:
 	if daño_cd.time_left > 0:
 		return
 	
-	if escudo > 0:
+	if escudo > 0 and puede_escudo:
 		escudo -= daño_recibido
 		if escudo <= 0:
 			escudo = 0.0
@@ -109,6 +106,7 @@ func recibir_daño(daño_recibido) -> void:
 	else:
 		# Restar vida al Jugador
 		vida -= daño_recibido
+		print(vida)
 		espada_cd.stop()
 		espada_cd.start()
 		if vida <= 0:
@@ -194,3 +192,6 @@ func explotar_escudo() -> void:
 func _on_escudo_cd_timeout() -> void:
 	escudo_forma.show()
 	escudo = escudo_max
+
+func get_daño_cd_timer() -> float:
+	return daño_cd.time_left
