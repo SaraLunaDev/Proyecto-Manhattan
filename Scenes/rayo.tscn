@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://desbwxyggbp3n"]
+
+[ext_resource type="PackedScene" uid="uid://lgrmqywxakui" path="res://Models/Player/thunder.glb" id="1_v4gok"]
+
+[node name="rayo" type="Node3D" unique_id=35319894]
+
+[node name="thunder" parent="." unique_id=1855868498 instance=ExtResource("1_v4gok")]
+
+[node name="Skeleton3D" parent="thunder/Thunder" parent_id_path=PackedInt32Array(1855868498, 2046743579) index="0" unique_id=1011343761]
+bones/0/position = Vector3(0, 18.606567, 0)
+bones/1/rotation = Quaternion(-4.595566e-16, 3.456487e-08, -0.25725785, 0.9663428)
+bones/2/rotation = Quaternion(-2.2170408e-15, -8.0394734e-08, 0.59835815, 0.80122876)
+bones/3/rotation = Quaternion(-1.4063735e-14, 8.7660275e-08, -0.65243393, 0.75784564)
+bones/4/rotation = Quaternion(4.793914e-15, -5.0604676e-08, 0.37663823, 0.9263604)
+
+[node name="AnimationPlayer" parent="thunder" index="1" unique_id=792005344]
+autoplay = &"ArmatureAction"
+
+[editable path="thunder"]
