@@ -1,3 +1,39 @@
 [gd_scene format=3 uid="uid://gx5j5xd2wvao"]
 
+[ext_resource type="Shader" uid="uid://b2t2voetnqpyy" path="res://Shaders/retro.gdshader" id="1_dlh0t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bsgrl"]
+shader = ExtResource("1_dlh0t")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.070000003325
+shader_parameter/scanlines_width = 0.1570000074575
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 4.0
+shader_parameter/roll_size = 19.39600092131
+shader_parameter/roll_variation = 0.10000000149012
+shader_parameter/distort_intensity = 0.0090000004275
+shader_parameter/noise_opacity = 0.6190000294025
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06000000285
+shader_parameter/aberration = 0.01000004797499998
+shader_parameter/brightness = 0.6
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 1.110000052725
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.65
+shader_parameter/vignette_opacity = 0.5550000263625
+
 [node name="StartScene" type="Node3D" unique_id=106906962]
+
+[node name="Shaders" type="CanvasLayer" parent="." unique_id=922637592]
+
+[node name="VHSShader" type="ColorRect" parent="Shaders" unique_id=1510594949]
+material = SubResource("ShaderMaterial_bsgrl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
