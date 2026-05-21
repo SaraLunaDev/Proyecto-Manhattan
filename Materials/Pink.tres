@@ -6,5 +6,5 @@
 render_priority = 0
 shader = ExtResource("1_mkiob")
 shader_parameter/metal_color = Vector3(1, 0.702, 0.796)
-shader_parameter/roughness = 1.0
-shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.70000003325
+shader_parameter/metallic = 1.0
