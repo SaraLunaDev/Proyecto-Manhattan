@@ -6,5 +6,5 @@
 render_priority = 0
 shader = ExtResource("1_7wp37")
 shader_parameter/metal_color = Vector3(0.455, 0.337, 0.608)
-shader_parameter/roughness = 1.0
-shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.50000002375
+shader_parameter/metallic = 1.0

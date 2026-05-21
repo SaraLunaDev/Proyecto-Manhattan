@@ -5,6 +5,7 @@ uniform vec3 water_color : source_color = vec3(0.1, 0.4, 0.5);
 uniform vec2 water_direction = vec2(1.0, 0.5);
 uniform float speed1 = 0.03;
 uniform float speed2 = 0.01;
+uniform float metalicValue = 0.5;
 
 void fragment()
 {
@@ -32,5 +33,6 @@ void fragment()
     float highlights = smoothstep(0.4, 0.8, waterPattern.r);
     finalColor += highlights * 0.25;
 	
+	METALLIC = metalicValue;
     ALBEDO = finalColor;
 }
