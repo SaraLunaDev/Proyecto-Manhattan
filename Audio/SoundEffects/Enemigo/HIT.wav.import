@@ -3,17 +3,17 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bmx17ytc7h4t5"
-path="res://.godot/imported/Hit1FIXED.wav-0678f7de55c8a5095265b6d3446697c0.sample"
+path="res://.godot/imported/HIT.wav-64f793511976915cd6373dacc0f040b8.sample"
 
 [deps]
 
-source_file="res://Audio/SoundEffects/Enemies/Hit1FIXED.wav"
-dest_files=["res://.godot/imported/Hit1FIXED.wav-0678f7de55c8a5095265b6d3446697c0.sample"]
+source_file="res://Audio/SoundEffects/Enemigo/HIT.wav"
+dest_files=["res://.godot/imported/HIT.wav-64f793511976915cd6373dacc0f040b8.sample"]
 
 [params]
 
 force/8_bit=false
-force/mono=false
+force/mono=true
 force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false

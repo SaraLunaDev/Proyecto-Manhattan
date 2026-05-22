@@ -15,6 +15,7 @@ var enemigo_objetivo: Enemigo
 var ultima_animacion: StringName
 var cam: Camera3D
 @onready var daño_particula: GPUParticles3D = $ExplosionEscudo
+var inmovil = false
 # -----------------------------------------------
 @export_category("Espada")
 @export var puede_espadear: bool = false
@@ -62,7 +63,7 @@ func _ready() -> void:
 	material_escudo.set_shader_parameter("vertical_speed", 1.5)
 	#Obtener camara
 	cam = get_viewport().get_camera_3d()
-	if puede_escudo:
+	if puede_escudo and not inmovil:
 		# Enseñar el escudo si lo tiene
 		escudo_forma.show()
 	else:
@@ -75,7 +76,7 @@ func _ready() -> void:
 # -----------------------------------------------
 func _physics_process(delta: float) -> void:
 	# No hacer nada mientras muere
-	if esta_muriendose:
+	if esta_muriendose or inmovil:
 		return
 	# Obtener el Input de direccion
 	var input = Input.get_vector("izquierda", "derecha", "arriba", "abajo")
@@ -125,7 +126,7 @@ func girar_torreta():
 # Gestionar habilidad con espada
 # -----------------------------------------------
 func espadear():
-	if puede_espadear:
+	if puede_espadear and not inmovil:
 		# Detectar enemigos en hitbox espada
 		var enemigos_rango_espada = hitbox_espada.get_overlapping_bodies()
 		# Detectar enemigos en hitbox del rango de daño de la espada
@@ -136,6 +137,7 @@ func espadear():
 			if espada_cd.time_left <= 0:
 				# Empezar a espadear
 				esta_espadeando = true
+				AudioManager.reproducir_sfx("SWORD", -8, 1.4)
 				espada_animacion.play("girar_espada")
 				espada_cd.start()
 				ejecutar_animacion("atacando")
@@ -152,6 +154,8 @@ func espadear():
 # Gestion de daño recibido
 # -----------------------------------------------
 func recibir_daño(daño_recibido) -> void:
+	if inmovil:
+		return
 	# Si no tiene vida no recibir daño
 	if vida <= 0.0:
 		return
@@ -160,8 +164,9 @@ func recibir_daño(daño_recibido) -> void:
 		return
 	# Emitir particula de daño
 	daño_particula.emitting = true
+	AudioManager.reproducir_sfx("HIT")
 	# Si al escudo le queda vida y tiene la habilidad
-	if escudo > 0 and puede_escudo:
+	if escudo > 0 and puede_escudo and not inmovil:
 		# Gestionar el daño en el escudo
 		escudo -= daño_recibido
 		animacion_escudo.stop()
@@ -190,6 +195,7 @@ func recibir_daño(daño_recibido) -> void:
 # -----------------------------------------------
 func morir() -> void:
 	esta_muriendose = true
+	AudioManager.reproducir_sfx("DEATH")
 	# Daño en area cuando muera
 	explotar_escudo()
 	ejecutar_animacion("muerto")
@@ -200,7 +206,8 @@ func morir() -> void:
 # Gestion de disparo de proyectil
 # -----------------------------------------------
 func disparar_proyectil() -> void:
-	if puede_disparar:
+	if puede_disparar and not inmovil:
+		AudioManager.reproducir_sfx("PROJECTILE", -5, 6)
 		var nuevo_proyectil = proyectil.instantiate()
 		nuevo_proyectil.transform.origin = punto_proyectil.global_position
 		get_tree().root.add_child(nuevo_proyectil)
@@ -254,8 +261,9 @@ func ejecutar_animacion(animacion: StringName):
 func _on_rayo_cd_timeout() -> void:
 	if esta_muriendose:
 		return
-	if puede_rayo:
+	if puede_rayo and not inmovil:
 		if hitbox_proyectil.get_overlapping_bodies().size() > 0:
+			AudioManager.reproducir_sfx("THUNDER", -8.0)
 			var enemigo_rayo = hitbox_proyectil.get_overlapping_bodies().pick_random()
 			if enemigo_rayo is Enemigo:
 				if not enemigo_rayo.get_muriendo():
@@ -267,10 +275,11 @@ func _on_rayo_cd_timeout() -> void:
 # Gestion de la explosion del escudo
 # -----------------------------------------------
 func explotar_escudo() -> void:
-	if puede_escudo:
+	if puede_escudo and not inmovil:
 		if cam is Camara:
 			cam.aplicar_temblor()
 		animacion_escudo.play("romper_escudo")
+		AudioManager.reproducir_sfx("SHIELD")
 		explosion_escudo.emitting = true
 		explosion_escudo_2.emitting = true
 		explosion_escudo_3.emitting = true
@@ -305,3 +314,6 @@ func get_daño_cd_timer() -> float:
 
 func get_muerto() -> bool:
 	return esta_muriendose
+
+func set_inmovil(value: bool) -> void:
+	inmovil = value

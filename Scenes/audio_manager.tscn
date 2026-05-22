@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cjoa61mnstruh"]
+
+[ext_resource type="Script" uid="uid://dr16g66me6yvm" path="res://Scripts/audio_manager.gd" id="1_sm2tf"]
+
+[node name="AudioManager" type="Node3D" unique_id=1658456376]
+script = ExtResource("1_sm2tf")
+
+[node name="SFX" type="Node3D" parent="." unique_id=1345745991]
+
+[node name="Musica" type="AudioStreamPlayer" parent="." unique_id=1588610196]
+
+[connection signal="finished" from="Musica" to="." method="_on_musica_finished"]

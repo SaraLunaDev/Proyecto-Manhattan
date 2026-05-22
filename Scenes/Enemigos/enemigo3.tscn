@@ -117,7 +117,7 @@ height = 0.3
 radial_segments = 4
 rings = 1
 
-[node name="Enemigo" type="CharacterBody3D" unique_id=624671194 node_paths=PackedStringArray("hitbox", "punto_daño", "punto_daño_label", "animaciones") groups=["enemigo"]]
+[node name="Enemigo" type="CharacterBody3D" unique_id=624671194 node_paths=PackedStringArray("hitbox", "punto_daño", "punto_daño_label", "animaciones", "animacion_local") groups=["enemigo"]]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 collision_layer = 4
 collision_mask = 15
@@ -133,6 +133,7 @@ vida = 12.0
 "punto_daño_label" = NodePath("PuntoDañoLabel")
 "daño_label" = ExtResource("2_rmm34")
 animaciones = NodePath("AnimationTree")
+animacion_local = NodePath("BigMonster/AnimationPlayer")
 
 [node name="Colision" type="CollisionShape3D" parent="." unique_id=1011292639]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5625, 0)
@@ -160,24 +161,24 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 
 [node name="Skeleton3D" parent="BigMonster/Main" parent_id_path=PackedInt32Array(1681758547, 1045319915) index="0" unique_id=676932964]
 bones/0/position = Vector3(-0.06330967, 0.014896504, -1.4590663e-09)
-bones/0/rotation = Quaternion(0.0065435898, -0.00026321693, 0.04021825, 0.9991695)
-bones/1/rotation = Quaternion(0.052858714, -0.0074285427, -0.105452724, 0.99299073)
-bones/2/rotation = Quaternion(-0.038687754, -0.020113578, -0.31594962, 0.94777346)
-bones/3/rotation = Quaternion(0.084875904, 0.030044788, -0.34394678, 0.9346625)
-bones/4/rotation = Quaternion(-0.84644085, -0.0507781, -0.045779977, 0.5280754)
-bones/5/rotation = Quaternion(-0.41935197, -0.22500679, -0.0019840226, 0.87949526)
-bones/6/rotation = Quaternion(-0.20647492, -0.012310371, -0.3877907, 0.89824)
+bones/0/rotation = Quaternion(0.02507369, -0.0010090824, 0.040206466, 0.9988762)
+bones/1/rotation = Quaternion(0.09109962, -0.014092476, -0.16792959, 0.9814795)
+bones/2/rotation = Quaternion(-0.10351763, -0.055174775, -0.39189243, 0.9125021)
+bones/3/rotation = Quaternion(-0.032948393, -0.14435434, 0.061130535, 0.9870863)
+bones/4/rotation = Quaternion(-0.8380727, -0.07765756, -0.07223129, 0.5351506)
+bones/5/rotation = Quaternion(-0.42362693, -0.30171743, -0.1563368, 0.839682)
+bones/6/rotation = Quaternion(-0.20343994, -0.02222584, -0.4247232, 0.8818891)
 bones/7/rotation = Quaternion(0.116709046, 3.0950265e-09, 0.015753804, 0.9930412)
-bones/8/rotation = Quaternion(0.8132773, 0.027536046, -0.09200587, 0.5738961)
-bones/9/rotation = Quaternion(0.46340466, 0.045031782, 0.101452224, 0.8791676)
-bones/10/rotation = Quaternion(-0.06912924, 0.12149283, -0.6255004, 0.76760024)
+bones/8/rotation = Quaternion(0.82896155, 0.003042765, -0.021145752, 0.5588975)
+bones/9/rotation = Quaternion(0.4718578, -0.024874762, 0.25549653, 0.84347683)
+bones/10/rotation = Quaternion(-0.062765606, 0.120517544, -0.6666514, 0.7328793)
 bones/11/rotation = Quaternion(-0.04871923, -0.0031824633, 0.0061323713, 0.9987886)
-bones/12/rotation = Quaternion(-0.6133097, 0.13311528, 0.08706613, 0.77366084)
-bones/13/rotation = Quaternion(-0.84828526, 0.10860544, -0.032901976, 0.51723725)
-bones/14/rotation = Quaternion(0.09362512, 0.13816904, 0.02693355, 0.9856056)
-bones/15/rotation = Quaternion(0.525335, 0.5335663, 0.33779392, 0.5702853)
-bones/16/rotation = Quaternion(0.8163654, -0.17619972, -0.09930315, 0.54096216)
-bones/17/rotation = Quaternion(0.33104357, 0.23619619, 0.61031187, 0.67980945)
+bones/12/rotation = Quaternion(-0.5787748, 0.2619081, 0.19221711, 0.7479816)
+bones/13/rotation = Quaternion(-0.8313298, -0.03229776, -0.30402353, 0.4641307)
+bones/14/rotation = Quaternion(0.02165525, 0.08501753, 0.6675581, 0.73937094)
+bones/15/rotation = Quaternion(0.6511119, 0.42599344, -0.08477089, 0.62241215)
+bones/16/rotation = Quaternion(0.78460526, -0.13617505, 0.051459447, 0.60266316)
+bones/17/rotation = Quaternion(-0.06474044, 0.21363503, 0.08062731, 0.9714258)
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1914894850]
 root_node = NodePath("../BigMonster")
