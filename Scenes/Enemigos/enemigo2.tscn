@@ -95,22 +95,22 @@ curve = SubResource("Curve_6alrs")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0msl1"]
 particle_flag_align_y = true
 spread = 180.0
-initial_velocity_min = 12.0
-initial_velocity_max = 14.0
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
 scale_min = 0.5
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_ii4lk")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dgts8"]
 emission_enabled = true
-emission = Color(1, 1, 1, 1)
+emission = Color(0.7019608, 0, 0.9372549, 1)
 emission_energy_multiplier = 2.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_l1xrg"]
 material = SubResource("StandardMaterial3D_dgts8")
-top_radius = 0.1
+top_radius = 0.038
 bottom_radius = 0.0
-height = 0.3
+height = 0.237
 radial_segments = 4
 rings = 1
 
@@ -123,7 +123,8 @@ axis_lock_angular_z = true
 script = ExtResource("1_6alrs")
 velocidad = 1.0
 retroceso = 5.0
-color = 1
+color = 3
+color_string = "Violeta"
 hitbox = NodePath("Hitbox")
 vida = 6.0
 "daño" = 2.0
@@ -158,25 +159,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 transform = Transform3D(-0.28, 0, 2.4478378e-08, 0, 0.28, 0, -2.4478378e-08, 0, -0.28, 0, 1.2283049, 0)
 
 [node name="Skeleton3D" parent="AntMonster/Main" parent_id_path=PackedInt32Array(1852286762, 162891515) index="0" unique_id=1626785832]
-bones/0/rotation = Quaternion(-0.041825842, -0.0015475393, 0.0005344323, 0.9991236)
-bones/1/rotation = Quaternion(-0.29111627, 0.0029909892, 0.007487734, 0.9566537)
+bones/0/rotation = Quaternion(-0.075985976, -0.0044881273, 0.05865873, 0.9953719)
+bones/1/rotation = Quaternion(-0.29040352, 0.027799182, -0.044157356, 0.9554807)
 bones/2/rotation = Quaternion(0.058697004, 2.2244354e-10, -1.4305443e-08, 0.9982759)
-bones/3/rotation = Quaternion(-0.13637413, 0.04749305, 0.096781746, 0.98477405)
+bones/3/rotation = Quaternion(-0.3081305, -0.0007092201, 0.0026710795, 0.9513401)
 bones/4/rotation = Quaternion(-0.16501375, -0.11972032, 0.5486765, 0.8107969)
-bones/5/rotation = Quaternion(-0.37999716, -0.4866575, 0.6578828, 0.4312273)
+bones/5/rotation = Quaternion(-0.34578145, -0.40772164, 0.73021674, 0.42541972)
 bones/6/rotation = Quaternion(-0.883613, 0.085864894, 0.12804796, 0.44210762)
 bones/7/rotation = Quaternion(-0.1810467, 0.13028687, -0.54329455, 0.8093692)
-bones/8/rotation = Quaternion(-0.3588733, 0.50845844, -0.6253291, 0.47079048)
+bones/8/rotation = Quaternion(-0.36837855, 0.42897883, -0.68557465, 0.45854306)
 bones/9/rotation = Quaternion(-0.9072765, -0.05617979, -0.12964232, 0.3960884)
-bones/10/rotation = Quaternion(0.6511264, 0.40074793, 0.3801393, -0.52050906)
+bones/10/rotation = Quaternion(0.6894425, 0.27623108, 0.53212523, -0.4064583)
 bones/11/rotation = Quaternion(-0.48284233, 1.555197e-08, -0.04277736, 0.87466186)
-bones/12/rotation = Quaternion(0.7538205, -0.22530797, -0.43983713, -0.4330523)
+bones/12/rotation = Quaternion(0.8066236, -0.1580793, -0.33256394, -0.4623534)
 bones/13/rotation = Quaternion(-0.4781511, -7.05176e-08, 0.04322937, 0.87721306)
-bones/14/rotation = Quaternion(-0.36888254, 0.504437, 0.6996417, 0.34636763)
+bones/14/rotation = Quaternion(-0.37604874, 0.4545731, 0.78868306, 0.173002)
 bones/15/rotation = Quaternion(-0.4982271, -4.708195e-08, -0.01876721, 0.86684346)
-bones/16/rotation = Quaternion(0.4653, 0.4238684, 0.7541403, -0.18736015)
+bones/16/rotation = Quaternion(0.6024068, 0.38874167, 0.640191, -0.27593747)
 bones/17/rotation = Quaternion(-0.4773421, -1.0384613e-07, 0.057726406, 0.8768194)
-bones/18/rotation = Quaternion(1.2038625e-07, 0.78147435, 0.62393737, 1.5296067e-07)
+bones/18/rotation = Quaternion(1.2259493e-07, 0.7372923, 0.6755739, 1.5008386e-07)
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=468711249]
 root_node = NodePath("../AntMonster")
@@ -189,11 +190,11 @@ parameters/conditions/muerto = false
 [node name="Daño" type="GPUParticles3D" parent="." unique_id=1803776647]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 emitting = false
-amount = 4
+amount = 10
 lifetime = 0.3
 one_shot = true
 explosiveness = 1.0
-fixed_fps = 60
+fixed_fps = 24
 process_material = SubResource("ParticleProcessMaterial_0msl1")
 draw_pass_1 = SubResource("CylinderMesh_l1xrg")
 

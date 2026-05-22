@@ -7,7 +7,7 @@
 render_priority = 0
 shader = ExtResource("1_7u5yi")
 shader_parameter/iChannel0 = ExtResource("2_1eskk")
-shader_parameter/water_color = Color(0.84705883, 0.7490196, 0.84705883, 1)
+shader_parameter/water_color = Color(0.88553435, 1.1351439, 0.88553435, 1)
 shader_parameter/water_direction = Vector2(1, 0.5)
 shader_parameter/speed1 = 0.05
 shader_parameter/speed2 = 0.01

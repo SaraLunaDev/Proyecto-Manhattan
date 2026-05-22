@@ -26,3 +26,11 @@ shape = SubResource("SphereShape3D_ikltb")
 
 [node name="playerProyectile" parent="." unique_id=537742341 instance=ExtResource("2_xr767")]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0.122074276)
+
+[node name="Proyectile" parent="playerProyectile" index="0" unique_id=254421831]
+transform = Transform3D(0.9981726, -0.06042795, -8.119029e-09, 0.06042795, 0.9981726, -2.4553137e-10, 8.119029e-09, -2.455336e-10, 1, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="playerProyectile" index="1" unique_id=351999584]
+autoplay = &"ProyectileIdle"
+
+[editable path="playerProyectile"]

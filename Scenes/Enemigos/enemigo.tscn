@@ -101,16 +101,16 @@ curve = SubResource("Curve_xjj3o")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_owfuy"]
 particle_flag_align_y = true
 spread = 180.0
-initial_velocity_min = 12.0
-initial_velocity_max = 14.0
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
 scale_min = 0.5
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_wbid1")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_phfxn"]
+albedo_color = Color(1, 0.6039216, 0.6784314, 1)
 emission_enabled = true
-emission = Color(1, 1, 1, 1)
-emission_energy_multiplier = 2.0
+emission = Color(1, 0.6039216, 0.6784314, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_7e7yd"]
 material = SubResource("StandardMaterial3D_phfxn")
@@ -128,7 +128,8 @@ axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_apwrj")
 velocidad = 1.5
-color = 3
+color = 1
+color_string = "Rosa"
 hitbox = NodePath("Hitbox")
 "punto_daño" = NodePath("PuntoDaño")
 "punto_daño_label" = NodePath("PuntoDañoLabel")
@@ -161,14 +162,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 transform = Transform3D(-6.534852e-08, 0, -1.495, 0, 1.495, 0, 1.495, 0, -6.534852e-08, 0, 0, 0)
 
 [node name="Skeleton3D" parent="FlyingMonsterV2/Main" parent_id_path=PackedInt32Array(1466029249, 1635809223) index="0" unique_id=183710764]
-bones/0/position = Vector3(-0.646833, 0.09311523, -8.265732e-09)
-bones/0/rotation = Quaternion(1.7000679e-09, 3.510699e-08, -0.14719309, 0.9891078)
-bones/1/rotation = Quaternion(-0.69110733, -0.005838199, 0.16898002, 0.7026965)
-bones/2/rotation = Quaternion(-0.2225551, -0.041333888, -0.2737597, 0.9347815)
-bones/3/rotation = Quaternion(0.7309482, -0.0096480725, -0.023839345, 0.68194824)
-bones/4/rotation = Quaternion(0.111510456, 0.05444423, -0.076196074, 0.98934096)
-bones/6/rotation = Quaternion(-1.111485e-07, 1.2393424e-07, 0.29724482, 0.9548013)
-bones/7/rotation = Quaternion(0.62026614, 0.3395143, 0.6202662, -0.3395141)
+bones/0/position = Vector3(-0.646833, 0.08894126, -8.3593275e-09)
+bones/0/rotation = Quaternion(1.7428643e-09, 3.5097518e-08, -0.14579616, 0.9893147)
+bones/1/rotation = Quaternion(-0.68919456, -0.0057957238, 0.16943106, 0.7044647)
+bones/2/rotation = Quaternion(-0.18553472, -0.0359257, -0.2705159, 0.94398487)
+bones/3/rotation = Quaternion(0.7301362, -0.009892984, -0.023595914, 0.6828225)
+bones/4/rotation = Quaternion(0.0779687, 0.05654785, -0.06350545, 0.99332285)
+bones/6/rotation = Quaternion(-1.1136121e-07, 1.2377248e-07, 0.2956147, 0.95530725)
+bones/7/rotation = Quaternion(0.62255776, 0.33529356, 0.62255794, -0.3352935)
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1596442643]
 root_node = NodePath("../FlyingMonsterV2")
@@ -185,7 +186,7 @@ amount = 4
 lifetime = 0.3
 one_shot = true
 explosiveness = 1.0
-fixed_fps = 60
+fixed_fps = 24
 process_material = SubResource("ParticleProcessMaterial_owfuy")
 draw_pass_1 = SubResource("CylinderMesh_7e7yd")
 
