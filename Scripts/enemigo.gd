@@ -7,6 +7,7 @@ class_name Enemigo
 @export var aceleracion = 160.0
 @export var retroceso = 6.0
 @export_enum("Amarillo", "Rosa", "Verde", "Violeta") var color: int
+@export_enum("Amarillo", "Rosa", "Verde", "Violeta") var color_string: String
 @onready var jugador = get_tree().get_first_node_in_group("jugador")
 @export var hitbox: Area3D
 @onready var agent: NavigationAgent3D = $Agente
@@ -172,3 +173,6 @@ func get_color() -> int:
 
 func set_inmovil(value: bool) -> void:
 	inmovil = value
+
+func get_color_nombre() -> String:
+	return color_string

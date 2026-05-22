@@ -16,6 +16,8 @@ var ultima_animacion: StringName
 var cam: Camera3D
 @onready var daño_particula: GPUParticles3D = $ExplosionEscudo
 var inmovil = false
+@onready var desajuste_camara: Marker3D = $DesajusteCamara
+
 # -----------------------------------------------
 @export_category("Espada")
 @export var puede_espadear: bool = false
@@ -58,12 +60,13 @@ const material_escudo = preload("uid://b75barw2orci0")
 # Ready
 # -----------------------------------------------
 func _ready() -> void:
+	ejecutar_animacion("quieto")
 	# Resetear escudo
 	material_escudo.set_shader_parameter("ray_sharpness", 0.1)
 	material_escudo.set_shader_parameter("vertical_speed", 1.5)
 	#Obtener camara
 	cam = get_viewport().get_camera_3d()
-	if puede_escudo and not inmovil:
+	if puede_escudo:
 		# Enseñar el escudo si lo tiene
 		escudo_forma.show()
 	else:
@@ -75,8 +78,11 @@ func _ready() -> void:
 # Process
 # -----------------------------------------------
 func _physics_process(delta: float) -> void:
+	if inmovil:
+		ejecutar_animacion("quieto")
+		return
 	# No hacer nada mientras muere
-	if esta_muriendose or inmovil:
+	if esta_muriendose:
 		return
 	# Obtener el Input de direccion
 	var input = Input.get_vector("izquierda", "derecha", "arriba", "abajo")
@@ -307,6 +313,9 @@ func _on_animacion_escudo_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "romper_escudo":
 		escudo_forma.hide()
 
+func devolver_desajuste_camara():
+	get_tree().create_tween().tween_property(desajuste_camara, "position", Vector3(0,0,0), 1).set_ease(Tween.EASE_IN_OUT)
+
 # Getters y Setters
 # -----------------------------------------------
 func get_daño_cd_timer() -> float:
@@ -317,3 +326,19 @@ func get_muerto() -> bool:
 
 func set_inmovil(value: bool) -> void:
 	inmovil = value
+
+func get_desajuste_camara() -> Vector3:
+	return desajuste_camara.global_position
+
+func eliminar_color(color: String) -> void:
+	match color:
+		"Amarillo":
+			puede_espadear = false
+		"Rosa":
+			puede_escudo = false
+			escudo_forma.hide()
+		"Violeta":
+			puede_rayo = false
+		"Verde":
+			puede_disparar = false
+			nodo_torreta.hide()

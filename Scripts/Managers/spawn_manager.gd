@@ -8,10 +8,14 @@ class_name SpawnManager
 @export var enemigos_maximos = 10
 @export var punto_spawn: PathFollow3D
 @export var enemigos_spawn: Array[int] = [2,2,1,5]
+@export var game_manager: GameManager
+var puede_spawnear = false
 
 # Spawn de Enemigos
 # -----------------------------------------------
 func spawnear_enemigo() -> void:
+	if not puede_spawnear:
+		return
 	# No spawnear si ya se llegó al maximo
 	var numero_enemigos = get_tree().get_nodes_in_group("enemigo")
 	# Obtener el numero de enemigos
@@ -42,16 +46,29 @@ func spawnear_enemigo() -> void:
 		if cantidad < enemigos_spawn.get(i):
 			enemigos_validos.append(i)
 	# Elegir un enemigo random de la lista de enemigos
-	var enemigo_rng = randf_range(0, enemigos_validos.size())
-	var enemigo = enemigos.get(enemigos_validos[enemigo_rng]).instantiate()
-	# Obtener una posicion random en el tablero
-	punto_spawn.progress_ratio = randf()
-	var posicion_spawn = punto_spawn.transform.origin
-	# Instanciar el enemigo
-	enemigo.transform.origin = posicion_spawn
-	add_child(enemigo)
+	var enemigo
+	if game_manager.get_colores_activos().size() > 0:
+		var enemigo_color = game_manager.get_colores_activos().pick_random()
+		for enemigo_objetivo in enemigos:
+			var enemigo_instanciado = enemigo_objetivo.instantiate()
+			if enemigo_instanciado is Enemigo:
+				if enemigo_instanciado.get_color_nombre() == enemigo_color and enemigos_validos.find(enemigo_instanciado.get_color()) != -1:
+					enemigo = enemigo_instanciado
+					break
+		if enemigo:
+			# Obtener una posicion random en el tablero
+			punto_spawn.progress_ratio = randf()
+			var posicion_spawn = punto_spawn.transform.origin
+			# Instanciar el enemigo
+			enemigo.transform.origin = posicion_spawn
+			if puede_spawnear:
+				add_child(enemigo)
 
 # Se ejecuta cuando termina el temporizador
 # -----------------------------------------------
 func _on_temporizador_spawn_timeout() -> void:
 	spawnear_enemigo()
+
+
+func set_puede_spawnear(value: bool) -> void:
+	puede_spawnear = value

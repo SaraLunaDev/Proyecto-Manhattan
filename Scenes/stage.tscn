@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://drb3hy16ggec2" path="res://Scenes/Enemigos/enemigo.tscn" id="9_462mf"]
 [ext_resource type="Script" uid="uid://duv0btj4gmwo3" path="res://Scripts/camara.gd" id="9_sr6x0"]
 [ext_resource type="PackedScene" uid="uid://dhfo0h8c5e80v" path="res://Scenes/jugador.tscn" id="10_ohi65"]
+[ext_resource type="VideoStream" path="res://Movies/opening.ogv" id="12_462mf"]
+[ext_resource type="VideoStream" path="res://Movies/ending.ogv" id="13_83n1v"]
 
 [sub_resource type="Curve3D" id="Curve3D_83n1v"]
 closed = true
@@ -27,8 +29,8 @@ sky_material = ExtResource("1_plxqo")
 [sub_resource type="Environment" id="Environment_xgxar"]
 background_mode = 2
 sky = SubResource("Sky_70rqm")
-tonemap_mode = 1
-tonemap_exposure = 0.89
+tonemap_mode = 3
+tonemap_exposure = 0.48
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_p7ny2"]
 
@@ -66,7 +68,59 @@ shader_parameter/discolor = false
 shader_parameter/warp_amount = 0.0
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.855
-shader_parameter/vignette_opacity = 0.514000024415
+shader_parameter/vignette_opacity = 0.7200000342
+
+[sub_resource type="Animation" id="Animation_oeyup"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Negro:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_83n1v"]
+resource_name = "mostrar"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Negro:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e51s2"]
+resource_name = "ocultar"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Negro:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oeyup"]
+_data = {
+&"RESET": SubResource("Animation_oeyup"),
+&"mostrar": SubResource("Animation_83n1v"),
+&"ocultar": SubResource("Animation_e51s2")
+}
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_sr6x0"]
 vertices = PackedVector3Array(15.75, 0.5, 4.2, 16.25, 0.5, 4.2, 17.5, 0.5, 0.6999998, 16.25, 0.5, -4.05, 12.75, 0.5, -7.3, 7.25, 0.5, -9.55, -17.5, 0.5, -0.5500002, -16.25, 0.5, 4.2, -15.75, 0.5, 4.2, -12.75, 0.5, -7.3, -16.25, 0.5, -4.05, -6.25, 0.5, -9.8, 2, 0.5, -10.3, -12.5, 0.5, 7.45, -6.75, 0.5, 9.7, -2.75, 0.5, 10.2, 6.75, 0.5, 9.7, 12.5, 0.5, 7.45)
@@ -81,12 +135,13 @@ albedo_color = Color(0.18359044, 0.18359044, 0.18359044, 1)
 script = ExtResource("1_p7ny2")
 jugador = NodePath("../NavigationRegion3D/Jugador")
 
-[node name="SpawnManager" type="Node3D" parent="." unique_id=1935255188 node_paths=PackedStringArray("temporizador_spawn", "punto_spawn")]
+[node name="SpawnManager" type="Node3D" parent="." unique_id=1935255188 node_paths=PackedStringArray("temporizador_spawn", "punto_spawn", "game_manager")]
 script = ExtResource("5_hyud0")
 enemigos = Array[PackedScene]([ExtResource("6_ohi65"), ExtResource("7_sr6x0"), ExtResource("8_p7ny2"), ExtResource("9_462mf")])
 temporizador_spawn = NodePath("TemporizadorSpawn")
 punto_spawn = NodePath("BordeSpawn/PuntoSpawn")
 enemigos_spawn = Array[int]([2, 3, 1, 6])
+game_manager = NodePath("../GameManager")
 
 [node name="TemporizadorSpawn" type="Timer" parent="SpawnManager" unique_id=289856742]
 wait_time = 0.5
@@ -183,12 +238,37 @@ transform = Transform3D(-0.499986, 0, 0.8659836, 0, 0.9999559, 0, -0.8659836, 0,
 shape = SubResource("BoxShape3D_83n1v")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=217934577 node_paths=PackedStringArray("jugador")]
-transform = Transform3D(1, 0, 0, 0, 0.86602545, -0.5, 0, 0.50000006, 0.86602557, 0, 0.52734375, 7.2380486)
+transform = Transform3D(1, 0, 0, 0, 0.8077944, -0.5894643, 0, 0.5894643, 0.80779445, 0, 0.14428711, 9.552074)
 current = true
 script = ExtResource("9_sr6x0")
 jugador = NodePath("../NavigationRegion3D/Jugador")
 
 [node name="Shaders" type="CanvasLayer" parent="." unique_id=1224625367]
+
+[node name="Opening" type="VideoStreamPlayer" parent="Shaders" unique_id=1884803066]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("12_462mf")
+autoplay = true
+
+[node name="Ending" type="VideoStreamPlayer" parent="Shaders" unique_id=845943008]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("13_83n1v")
+
+[node name="Negro" type="ColorRect" parent="Shaders" unique_id=1079176343]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="VHSShader" type="ColorRect" parent="Shaders" unique_id=1845410398]
 material = SubResource("ShaderMaterial_xgxar")
@@ -197,6 +277,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Animaciones" type="AnimationPlayer" parent="Shaders" unique_id=1322284779]
+libraries/ = SubResource("AnimationLibrary_oeyup")
+autoplay = &"mostrar"
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1228142997]
 navigation_mesh = SubResource("NavigationMesh_sr6x0")
@@ -214,6 +298,8 @@ sides = 16
 material = SubResource("StandardMaterial3D_p7ny2")
 
 [connection signal="timeout" from="SpawnManager/TemporizadorSpawn" to="SpawnManager" method="_on_temporizador_spawn_timeout"]
+[connection signal="finished" from="Shaders/Opening" to="GameManager" method="_on_opening_finished"]
+[connection signal="animation_finished" from="Shaders/Animaciones" to="GameManager" method="_on_animaciones_animation_finished"]
 
 [editable path="Stage"]
 [editable path="Stage/Stage2"]

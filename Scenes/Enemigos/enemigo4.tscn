@@ -127,6 +127,7 @@ axis_lock_angular_z = true
 script = ExtResource("1_rofb0")
 velocidad = 1.5
 color = 2
+color_string = "Verde"
 hitbox = NodePath("Hitbox")
 "punto_daño" = NodePath("PuntoDaño")
 "punto_daño_label" = NodePath("PuntoDañoLabel")
@@ -164,18 +165,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 transform = Transform3D(-1.46433194e-08, 0, -0.33500004, 0, 0.33500004, 0, 0.33500004, 0, -1.46433194e-08, 0, 0, 0)
 
 [node name="Skeleton3D" parent="DistanceMonster/Main" parent_id_path=PackedInt32Array(1751464773, 83396969) index="0" unique_id=1642156119]
-bones/0/position = Vector3(0.7138208, -1.13421966e-10, -9.0238504e-11)
+bones/0/position = Vector3(0.7035102, -1.3772198e-09, -2.720503e-10)
 bones/0/rotation = Quaternion(-5.15419e-08, -8.085535e-09, 0.057849407, 0.9983254)
-bones/1/rotation = Quaternion(-7.613812e-09, 1.0823191e-07, -0.41498226, 0.90982956)
-bones/2/rotation = Quaternion(3.3475093e-08, 8.198111e-09, -0.07719276, 0.99701625)
-bones/3/rotation = Quaternion(-0.3154884, -0.031598628, -0.24771725, 0.9154806)
-bones/4/rotation = Quaternion(0.55607885, -0.08820893, 0.69391936, -0.44885576)
-bones/5/rotation = Quaternion(0.68216926, 0.12033905, -0.046921015, 0.7196958)
-bones/6/rotation = Quaternion(-0.005468335, -0.6280177, -0.5837912, 0.5145404)
-bones/7/rotation = Quaternion(0.33229008, -0.036602546, -0.2219269, 0.915965)
+bones/1/rotation = Quaternion(-7.428037e-09, 1.08288475e-07, -0.41274247, 0.91084784)
+bones/2/rotation = Quaternion(3.3565772e-08, 7.9603755e-09, -0.070084125, 0.9975412)
+bones/3/rotation = Quaternion(-0.31232888, -0.052201837, -0.2544634, 0.9137692)
+bones/4/rotation = Quaternion(0.55683124, -0.087957606, 0.69323105, -0.44903588)
+bones/5/rotation = Quaternion(0.67980886, 0.10000892, -0.027982077, 0.7259994)
+bones/6/rotation = Quaternion(0.0074888896, -0.62898713, -0.59614456, 0.49892962)
+bones/7/rotation = Quaternion(0.3304979, -0.0222912, -0.22701366, 0.9158271)
 bones/8/rotation = Quaternion(0.84521526, -5.7455726e-08, -0.2724988, 0.45973423)
-bones/9/rotation = Quaternion(-0.3372821, -0.30322784, -0.7576525, 0.46931472)
-bones/10/rotation = Quaternion(-0.07082494, -0.040206857, 0.17960018, 0.9803628)
+bones/9/rotation = Quaternion(-0.34083188, -0.30008763, -0.75563425, 0.47201493)
+bones/10/rotation = Quaternion(-0.07951263, -0.043618288, 0.1974366, 0.9761117)
 
 [node name="DisparoCD" type="Timer" parent="." unique_id=916165294]
 wait_time = 10.0

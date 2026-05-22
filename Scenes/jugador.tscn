@@ -778,6 +778,9 @@ fixed_fps = 18
 process_material = SubResource("ParticleProcessMaterial_1bknw")
 draw_pass_1 = SubResource("SphereMesh_aknpy")
 
+[node name="DesajusteCamara" type="Marker3D" parent="." unique_id=1517118434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+
 [connection signal="timeout" from="ProyectilCD" to="." method="_on_proyectil_cd_timeout"]
 [connection signal="timeout" from="EscudoCD" to="." method="_on_escudo_cd_timeout"]
 [connection signal="timeout" from="RayoCD" to="." method="_on_rayo_cd_timeout"]
