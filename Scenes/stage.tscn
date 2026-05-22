@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://hf208faeks6q"]
 
 [ext_resource type="PackedScene" path="res://Shaders/Stage.tscn" id="1_84iix"]
+[ext_resource type="Script" uid="uid://de3m2npq8i0sd" path="res://Scripts/game_manager.gd" id="1_p7ny2"]
 [ext_resource type="Material" uid="uid://r56ga15gj7rd" path="res://Materials/SkyBoxMat.tres" id="1_plxqo"]
 [ext_resource type="Shader" path="res://Shaders/retro.gdshader" id="3_70rqm"]
 [ext_resource type="PackedScene" path="res://Models/Stage/stage_decoration.tscn" id="4_xgxar"]
@@ -28,6 +29,20 @@ background_mode = 2
 sky = SubResource("Sky_70rqm")
 tonemap_mode = 1
 tonemap_exposure = 0.89
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_p7ny2"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_462mf"]
+radius = 0.8076172
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p7ny2"]
+size = Vector3(8.46875, 2.0039063, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_462mf"]
+size = Vector3(4, 2.0039063, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_83n1v"]
+size = Vector3(2.395752, 2.0039063, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xgxar"]
 shader = ExtResource("3_70rqm")
@@ -62,12 +77,16 @@ albedo_color = Color(0.18359044, 0.18359044, 0.18359044, 1)
 
 [node name="Stage" type="Node3D" unique_id=1863811624]
 
+[node name="GameManager" type="Node3D" parent="." unique_id=626804624 node_paths=PackedStringArray("jugador") groups=["gamemanager"]]
+script = ExtResource("1_p7ny2")
+jugador = NodePath("../NavigationRegion3D/Jugador")
+
 [node name="SpawnManager" type="Node3D" parent="." unique_id=1935255188 node_paths=PackedStringArray("temporizador_spawn", "punto_spawn")]
 script = ExtResource("5_hyud0")
 enemigos = Array[PackedScene]([ExtResource("6_ohi65"), ExtResource("7_sr6x0"), ExtResource("8_p7ny2"), ExtResource("9_462mf")])
 temporizador_spawn = NodePath("TemporizadorSpawn")
 punto_spawn = NodePath("BordeSpawn/PuntoSpawn")
-enemigos_spawn = Array[int]([2, 3, 1, 8])
+enemigos_spawn = Array[int]([2, 3, 1, 6])
 
 [node name="TemporizadorSpawn" type="Timer" parent="SpawnManager" unique_id=289856742]
 wait_time = 0.5
@@ -87,6 +106,81 @@ transform = Transform3D(-2.6999998, 0, 2.3604149e-07, 0, 2.6999998, 0, -2.360414
 
 [node name="StageDecoration" parent="Stage" unique_id=1196195918 instance=ExtResource("4_xgxar")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06090212, 0, 0.059319973)
+
+[node name="Colisiones" type="StaticBody3D" parent="Stage" unique_id=1073918212]
+collision_mask = 2
+
+[node name="Arboles" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=1214841993]
+transform = Transform3D(0.9999869, 0, 6.039613e-13, 0, 0.9999869, 0, -6.039613e-13, 0, 0.9999869, 2.0514975, -0.4999988, -8.856695)
+shape = SubResource("CylinderShape3D_p7ny2")
+
+[node name="Arboles2" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=1283332428]
+transform = Transform3D(0.9999868, 0, 6.181722e-13, 0, 0.9999868, 0, -6.181722e-13, 0, 0.9999868, 3.022206, -0.4999988, -8.756621)
+shape = SubResource("CylinderShape3D_p7ny2")
+
+[node name="Arboles3" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=952150895]
+transform = Transform3D(0.99998677, 0, 6.252776e-13, 0, 0.99998677, 0, -6.252776e-13, 0, 0.99998677, 3.7629468, -0.4999988, -8.293657)
+shape = SubResource("CylinderShape3D_p7ny2")
+
+[node name="Arboles4" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=355082914]
+transform = Transform3D(0.99998665, 0, 6.3238303e-13, 0, 0.99998665, 0, -6.3238303e-13, 0, 0.99998665, 3.8029754, -0.4999988, -7.8533354)
+shape = SubResource("CylinderShape3D_p7ny2")
+
+[node name="Arboles5" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=1945642684]
+transform = Transform3D(0.9999866, 0, 6.3238303e-13, 0, 0.9999866, 0, -6.3238303e-13, 0, 0.9999866, 5.099272, -0.4999988, -5.2607427)
+shape = SubResource("CylinderShape3D_p7ny2")
+
+[node name="Arboles6" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=1682253515]
+transform = Transform3D(0.9999777, 0, 1.0444978e-12, 0, 0.9999777, 0, -1.0444978e-12, 0, 0.9999777, -4.6229544, -0.4999988, -9.149628)
+shape = SubResource("CylinderShape3D_462mf")
+
+[node name="Arboles7" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=1246370857]
+transform = Transform3D(0.99997765, 0, 1.0516032e-12, 0, 0.99997765, 0, -1.0516032e-12, 0, 0.99997765, -5.8266573, -0.4999988, -9.24222)
+shape = SubResource("CylinderShape3D_462mf")
+
+[node name="Arboles8" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=902145319]
+transform = Transform3D(0.9999775, 0, 1.0587087e-12, 0, 0.9999775, 0, -1.0587087e-12, 0, 0.9999775, -7.771101, -0.4999988, -4.7977753)
+shape = SubResource("CylinderShape3D_462mf")
+
+[node name="Arboles9" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=8731776]
+transform = Transform3D(0.99997747, 0, 1.0658141e-12, 0, 0.99997747, 0, -1.0658141e-12, 0, 0.99997747, -7.4933224, -0.4999988, -3.408886)
+shape = SubResource("CylinderShape3D_462mf")
+
+[node name="Arboles10" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=34070039]
+transform = Transform3D(0.99997735, 0, 1.0658141e-12, 0, 0.99997735, 0, -1.0658141e-12, 0, 0.99997735, -6.7525816, -0.4999988, -2.2977748)
+shape = SubResource("CylinderShape3D_462mf")
+
+[node name="Arboles11" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=1430190348]
+transform = Transform3D(0.9999771, 0, 1.0658141e-12, 0, 0.9999771, 0, -1.0658141e-12, 0, 0.9999771, 2.8519666, -0.4999988, -1.914599)
+shape = SubResource("CylinderShape3D_462mf")
+
+[node name="Arboles12" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=975512625]
+transform = Transform3D(0.99997693, 0, 1.0658141e-12, 0, 0.99997693, 0, -1.0658141e-12, 0, 0.99997693, 3.8631294, -0.4999988, -2.421696)
+shape = SubResource("CylinderShape3D_462mf")
+
+[node name="Arboles13" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=96617521]
+transform = Transform3D(0.9999769, 0, 1.0658141e-12, 0, 0.9999769, 0, -1.0658141e-12, 0, 0.9999769, 4.3191805, -0.4999988, -3.414712)
+shape = SubResource("CylinderShape3D_462mf")
+
+[node name="Arboles14" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=1944577084]
+transform = Transform3D(0.99997675, 0, 1.0658141e-12, 0, 0.99997675, 0, -1.0658141e-12, 0, 0.99997675, 4.5986958, -0.4999988, -4.6945987)
+shape = SubResource("CylinderShape3D_462mf")
+
+[node name="Bordes" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=40894213]
+transform = Transform3D(0.99997413, 0, 1.2079227e-12, 0, 0.99997413, 0, -1.2079227e-12, 0, 0.99997413, -1.7899287, -0.5019433, -2.1304169)
+shape = SubResource("BoxShape3D_p7ny2")
+
+[node name="Bordes2" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=49510513]
+transform = Transform3D(0.99997395, 0, 1.2150281e-12, 0, 0.99997395, 0, -1.2150281e-12, 0, 0.99997395, -1.4195586, -0.5019433, -9.44523)
+shape = SubResource("BoxShape3D_p7ny2")
+
+[node name="Bordes3" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=510736828]
+transform = Transform3D(0.49998158, 0, 0.8660028, 0, 0.9999637, 0, -0.8660028, 0, 0.49998158, -7.4829025, -0.5019433, -7.2693915)
+shape = SubResource("BoxShape3D_462mf")
+
+[node name="Bordes4" type="CollisionShape3D" parent="Stage/Colisiones" unique_id=1098763094]
+transform = Transform3D(-0.499986, 0, 0.8659836, 0, 0.9999559, 0, -0.8659836, 0, -0.499986, 4.64275, -0.5019433, -6.6777463)
+shape = SubResource("BoxShape3D_83n1v")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=217934577 node_paths=PackedStringArray("jugador")]
 transform = Transform3D(1, 0, 0, 0, 0.86602545, -0.5, 0, 0.50000006, 0.86602557, 0, 0.52734375, 7.2380486)

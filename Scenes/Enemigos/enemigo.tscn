@@ -120,7 +120,7 @@ height = 0.3
 radial_segments = 4
 rings = 1
 
-[node name="Enemigo" type="CharacterBody3D" unique_id=624671194 node_paths=PackedStringArray("hitbox", "punto_daño", "punto_daño_label", "animaciones") groups=["enemigo"]]
+[node name="Enemigo" type="CharacterBody3D" unique_id=624671194 node_paths=PackedStringArray("hitbox", "punto_daño", "punto_daño_label", "animaciones", "animacion_local") groups=["enemigo"]]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 collision_layer = 4
 collision_mask = 15
@@ -134,6 +134,7 @@ hitbox = NodePath("Hitbox")
 "punto_daño_label" = NodePath("PuntoDañoLabel")
 "daño_label" = ExtResource("2_04ect")
 animaciones = NodePath("AnimationTree")
+animacion_local = NodePath("FlyingMonsterV2/AnimationPlayer")
 
 [node name="Colision" type="CollisionShape3D" parent="." unique_id=1011292639]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
@@ -160,14 +161,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 transform = Transform3D(-6.534852e-08, 0, -1.495, 0, 1.495, 0, 1.495, 0, -6.534852e-08, 0, 0, 0)
 
 [node name="Skeleton3D" parent="FlyingMonsterV2/Main" parent_id_path=PackedInt32Array(1466029249, 1635809223) index="0" unique_id=183710764]
-bones/0/position = Vector3(-0.646833, 0.08629614, -4.030463e-09)
-bones/0/rotation = Quaternion(-4.9315024e-10, 2.6305393e-08, -0.14491102, 0.9894447)
-bones/1/rotation = Quaternion(-0.6879811, -0.0057688258, 0.16971603, 0.7055814)
-bones/2/rotation = Quaternion(-0.25509843, -0.042750962, -0.28121617, 0.9241292)
-bones/3/rotation = Quaternion(0.7296212, -0.010048146, -0.02344167, 0.68337584)
-bones/4/rotation = Quaternion(0.14423163, 0.04929956, -0.087262265, 0.9844552)
-bones/6/rotation = Quaternion(-9.501603e-08, 1.2473646e-07, 0.29458162, 0.9556263)
-bones/7/rotation = Quaternion(0.62398523, 0.3326296, 0.6239853, -0.3326296)
+bones/0/position = Vector3(-0.646833, 0.09311523, -8.265732e-09)
+bones/0/rotation = Quaternion(1.7000679e-09, 3.510699e-08, -0.14719309, 0.9891078)
+bones/1/rotation = Quaternion(-0.69110733, -0.005838199, 0.16898002, 0.7026965)
+bones/2/rotation = Quaternion(-0.2225551, -0.041333888, -0.2737597, 0.9347815)
+bones/3/rotation = Quaternion(0.7309482, -0.0096480725, -0.023839345, 0.68194824)
+bones/4/rotation = Quaternion(0.111510456, 0.05444423, -0.076196074, 0.98934096)
+bones/6/rotation = Quaternion(-1.111485e-07, 1.2393424e-07, 0.29724482, 0.9548013)
+bones/7/rotation = Quaternion(0.62026614, 0.3395143, 0.6202662, -0.3395141)
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1596442643]
 root_node = NodePath("../FlyingMonsterV2")

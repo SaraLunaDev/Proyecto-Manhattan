@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://desbwxyggbp3n"]
 
+[ext_resource type="Script" uid="uid://djj7q1vk8piws" path="res://Scripts/rayo.gd" id="1_ucucl"]
 [ext_resource type="PackedScene" uid="uid://48bpcmwaynr4" path="res://Models/Player/thunderV2.glb" id="1_v4gok"]
 [ext_resource type="Shader" uid="uid://b5asi8im4rbtx" path="res://Shaders/shieldShader.gdshader" id="2_bg51o"]
 
@@ -14,25 +15,26 @@ shader_parameter/density = 20.0
 shader_parameter/ray_sharpness = 0.5
 
 [node name="rayo" type="Node3D" unique_id=35319894]
+script = ExtResource("1_ucucl")
 
 [node name="thunderV2" parent="." unique_id=423337995 instance=ExtResource("1_v4gok")]
-transform = Transform3D(1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="thunderV2/Thunder" parent_id_path=PackedInt32Array(423337995, 431615786) index="0" unique_id=716370292]
-bones/0/position = Vector3(0, -1.2750034, 0)
-bones/1/rotation = Quaternion(-3.1388904e-08, 3.273501e-08, -0.2462483, 0.96920687)
-bones/2/rotation = Quaternion(3.1212693e-08, -1.0704758e-07, 0.51860696, 0.85501283)
-bones/3/rotation = Quaternion(2.432794e-08, 1.10359146e-07, -0.74737316, 0.6644045)
-bones/4/rotation = Quaternion(-3.048424e-08, -9.901682e-08, 0.4147287, 0.9099452)
+bones/0/position = Vector3(0, 18.606567, 0)
+bones/1/rotation = Quaternion(-4.595566e-16, 3.456487e-08, -0.25725785, 0.9663428)
+bones/2/rotation = Quaternion(-2.2170408e-15, -8.0394734e-08, 0.59835815, 0.80122876)
+bones/3/rotation = Quaternion(-1.4063735e-14, 8.7660275e-08, -0.65243393, 0.75784564)
+bones/4/rotation = Quaternion(5.7526963e-15, -5.0604676e-08, 0.3766382, 0.9263604)
 bones/4/scale = Vector3(1.2683043, 1.2683043, 1.2683046)
-bones/5/position = Vector3(-0.018014403, 0.9225352, -2.6142004e-07)
-bones/5/rotation = Quaternion(0, -0.5981641, 0, 0.80137366)
-bones/5/scale = Vector3(1, 1.8806487, 1)
+bones/5/position = Vector3(-0.018014403, -1.0227871, -2.6142004e-07)
+bones/5/scale = Vector3(0.05307752, 0.05307752, 0.05307752)
 
 [node name="Cylinder" parent="thunderV2/Thunder/Skeleton3D" index="0" unique_id=127008357]
 surface_material_override/0 = SubResource("ShaderMaterial_ucucl")
 
 [node name="AnimationPlayer" parent="thunderV2" index="1" unique_id=2022588027]
 autoplay = &"ArmatureAction"
+
+[connection signal="animation_finished" from="thunderV2/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 
 [editable path="thunderV2"]

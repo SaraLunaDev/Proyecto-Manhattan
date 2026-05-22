@@ -29,11 +29,17 @@ var muriendo = false
 @export var punto_bala: Node3D
 @export var punto_bala_marker: Marker3D
 @onready var daño_particula: GPUParticles3D = $Daño
+var inmovil = false
+@export var animacion_local: AnimationPlayer
 
 # Process
 # -----------------------------------------------
 func _physics_process(delta: float) -> void:
 	distancia_a_jugador = (jugador.global_position - global_position).length()
+	if inmovil:
+		animacion_local.stop()
+		return
+	animacion_local.play("Idle")
 	# Rotar el enemigo hacia donde va su direccion
 	if muriendo or jugador.get_muerto():
 		return
@@ -72,6 +78,8 @@ func _physics_process(delta: float) -> void:
 # Recibir daño
 # -----------------------------------------------
 func recibir_daño(daño_recibido, tipo: int) -> void:
+	if inmovil:
+		return
 	if vida == 0.0:
 		return
 	tipo_daño = tipo
@@ -120,7 +128,7 @@ func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 # Si es rango gestionar disparo
 # -----------------------------------------------
 func _on_disparo_cd_timeout() -> void:
-	if es_rango:
+	if es_rango and not inmovil:
 		if bala and punto_bala and punto_bala_marker and not recibiendo_daño:
 			var paso = 360 / numero_balas
 			var pasos = paso
@@ -161,3 +169,6 @@ func get_distancia_a_jugador() -> float:
 
 func get_color() -> int:
 	return color
+
+func set_inmovil(value: bool) -> void:
+	inmovil = value

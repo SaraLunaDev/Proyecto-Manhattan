@@ -118,7 +118,7 @@ height = 0.3
 radial_segments = 4
 rings = 1
 
-[node name="Enemigo" type="CharacterBody3D" unique_id=624671194 node_paths=PackedStringArray("hitbox", "punto_daño", "punto_daño_label", "animaciones", "punto_bala", "punto_bala_marker") groups=["enemigo"]]
+[node name="Enemigo" type="CharacterBody3D" unique_id=624671194 node_paths=PackedStringArray("hitbox", "punto_daño", "punto_daño_label", "animaciones", "punto_bala", "punto_bala_marker", "animacion_local") groups=["enemigo"]]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 0, 0, 0)
 collision_layer = 4
 collision_mask = 15
@@ -137,6 +137,7 @@ bala = ExtResource("3_jk04m")
 numero_balas = 20.0
 punto_bala = NodePath("Node3D")
 punto_bala_marker = NodePath("Node3D/Marker3D")
+animacion_local = NodePath("DistanceMonster/AnimationPlayer")
 
 [node name="Colision" type="CollisionShape3D" parent="." unique_id=1011292639]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0625, 0)
@@ -163,18 +164,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 transform = Transform3D(-1.46433194e-08, 0, -0.33500004, 0, 0.33500004, 0, 0.33500004, 0, -1.46433194e-08, 0, 0, 0)
 
 [node name="Skeleton3D" parent="DistanceMonster/Main" parent_id_path=PackedInt32Array(1751464773, 83396969) index="0" unique_id=1642156119]
-bones/0/position = Vector3(0.62129927, -2.9777683e-09, -1.7217162e-09)
+bones/0/position = Vector3(0.7138208, -1.13421966e-10, -9.0238504e-11)
 bones/0/rotation = Quaternion(-5.15419e-08, -8.085535e-09, 0.057849407, 0.9983254)
-bones/1/rotation = Quaternion(-5.9427387e-09, 1.087167e-07, -0.39476517, 0.9187821)
-bones/2/rotation = Quaternion(3.3764476e-08, 7.421349e-09, -0.053998407, 0.99854106)
-bones/3/rotation = Quaternion(-0.30385306, -0.10312709, -0.270644, 0.9076288)
-bones/4/rotation = Quaternion(0.55867845, -0.087339066, 0.69153523, -0.44947663)
-bones/5/rotation = Quaternion(0.6716254, 0.049596086, 0.018753909, 0.7389912)
-bones/6/rotation = Quaternion(0.03951947, -0.6298575, -0.6252518, 0.4591057)
-bones/7/rotation = Quaternion(0.32570374, 0.013335085, -0.23943797, 0.9145538)
+bones/1/rotation = Quaternion(-7.613812e-09, 1.0823191e-07, -0.41498226, 0.90982956)
+bones/2/rotation = Quaternion(3.3475093e-08, 8.198111e-09, -0.07719276, 0.99701625)
+bones/3/rotation = Quaternion(-0.3154884, -0.031598628, -0.24771725, 0.9154806)
+bones/4/rotation = Quaternion(0.55607885, -0.08820893, 0.69391936, -0.44885576)
+bones/5/rotation = Quaternion(0.68216926, 0.12033905, -0.046921015, 0.7196958)
+bones/6/rotation = Quaternion(-0.005468335, -0.6280177, -0.5837912, 0.5145404)
+bones/7/rotation = Quaternion(0.33229008, -0.036602546, -0.2219269, 0.915965)
 bones/8/rotation = Quaternion(0.84521526, -5.7455726e-08, -0.2724988, 0.45973423)
-bones/9/rotation = Quaternion(-0.34964374, -0.29220366, -0.7504836, 0.4786866)
-bones/10/rotation = Quaternion(-0.10090913, -0.051997513, 0.24130246, 0.96378773)
+bones/9/rotation = Quaternion(-0.3372821, -0.30322784, -0.7576525, 0.46931472)
+bones/10/rotation = Quaternion(-0.07082494, -0.040206857, 0.17960018, 0.9803628)
 
 [node name="DisparoCD" type="Timer" parent="." unique_id=916165294]
 wait_time = 10.0

@@ -605,7 +605,7 @@ rings = 2
 
 [node name="Jugador" type="CharacterBody3D" unique_id=1492616832 node_paths=PackedStringArray("hitbox", "daño_cd", "espada_cd", "hitbox_espada", "hitbox_espadas_cercanos", "espada_animacion", "animaciones", "escudo_forma", "escudo_cd", "escudo_posicion", "animacion_escudo", "punto_proyectil", "hitbox_proyectil", "nodo_torreta") groups=["jugador"]]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 5
 script = ExtResource("1_5ydob")
 velocidad = 4.0
 hitbox = NodePath("Hitbox")
