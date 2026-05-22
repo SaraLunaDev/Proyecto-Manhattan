@@ -14,42 +14,39 @@ class_name SpawnManager
 func spawnear_enemigo() -> void:
 	# No spawnear si ya se llegó al maximo
 	var numero_enemigos = get_tree().get_nodes_in_group("enemigo")
-	
+	# Obtener el numero de enemigos
 	var suma = 0
 	for i in enemigos_spawn.size():
 		suma += enemigos_spawn.get(i)
-	
+	# Ver si supera el maximo para no spawnear mas
 	if numero_enemigos.size() >= suma:
 		return
-	
+	# Obtener cuantos de cada tipo hay
 	var enemigo_diccionario = {}
 	for enemigo in numero_enemigos:
 		if enemigo is Enemigo:
 			var color = enemigo.get_color()
 			var cantidad = enemigo_diccionario.get(color, 0)
 			enemigo_diccionario.set(color, cantidad + 1)
-	
+	# Establecer a 0 los que no han sido detectados
 	for i in enemigos_spawn.size():
 		var hay_enemigo = enemigo_diccionario.get(i)
 		if not hay_enemigo:
 			enemigo_diccionario.set(i, 0)
-	
+	# Ordenarlos
 	enemigo_diccionario.sort()
-	
+	# Ver cuales no superan su propio maximo
 	var enemigos_validos = []
 	for i in enemigo_diccionario.size():
 		var cantidad = enemigo_diccionario.get(i)
 		if cantidad < enemigos_spawn.get(i):
 			enemigos_validos.append(i)
-	
 	# Elegir un enemigo random de la lista de enemigos
 	var enemigo_rng = randf_range(0, enemigos_validos.size())
 	var enemigo = enemigos.get(enemigos_validos[enemigo_rng]).instantiate()
-	
 	# Obtener una posicion random en el tablero
 	punto_spawn.progress_ratio = randf()
 	var posicion_spawn = punto_spawn.transform.origin
-	
 	# Instanciar el enemigo
 	enemigo.transform.origin = posicion_spawn
 	add_child(enemigo)
