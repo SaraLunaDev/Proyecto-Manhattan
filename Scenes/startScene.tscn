@@ -2,6 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://b2t2voetnqpyy" path="res://Shaders/retro.gdshader" id="1_dlh0t"]
 [ext_resource type="PackedScene" uid="uid://bs1f4anjmeg5l" path="res://Models/Player/StartingScreenPlayer.fbx" id="2_bsgrl"]
+[ext_resource type="Texture2D" uid="uid://cfvh6kk18yjcp" path="res://Textures/UI/LogoJuego.png" id="2_hfcnf"]
 [ext_resource type="Script" uid="uid://buo1vql71v6on" path="res://Scripts/UI/modelStartScreen.gd" id="3_ypcqp"]
 [ext_resource type="Material" uid="uid://dqnv3i1pqp7bf" path="res://Materials/SkyBoxMat.tres" id="4_hesrg"]
 [ext_resource type="Material" uid="uid://3hvgrqv00cq3" path="res://Materials/Green.tres" id="5_ut3hf"]
@@ -22,18 +23,18 @@ shader_parameter/pixelate = true
 shader_parameter/roll = true
 shader_parameter/roll_speed = 4.0
 shader_parameter/roll_size = 19.39600092131
-shader_parameter/roll_variation = 0.10000000149012
-shader_parameter/distort_intensity = 0.0090000004275
-shader_parameter/noise_opacity = 0.6190000294025
-shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.06000000285
-shader_parameter/aberration = 0.01000004797499998
-shader_parameter/brightness = 0.6
+shader_parameter/roll_variation = 5.0
+shader_parameter/distort_intensity = 0.01600000076
+shader_parameter/noise_opacity = 0.04800000228
+shader_parameter/noise_speed = 0.1
+shader_parameter/static_noise_intensity = 0.027000001282499998
+shader_parameter/aberration = 0.02000004845000003
+shader_parameter/brightness = 0.83
 shader_parameter/discolor = false
-shader_parameter/warp_amount = 1.110000052725
+shader_parameter/warp_amount = 0.7250000344375
 shader_parameter/clip_warp = false
-shader_parameter/vignette_intensity = 0.65
-shader_parameter/vignette_opacity = 0.5550000263625
+shader_parameter/vignette_intensity = 0.735
+shader_parameter/vignette_opacity = 0.6810000323475
 
 [sub_resource type="Sky" id="Sky_hesrg"]
 sky_material = ExtResource("4_hesrg")
@@ -178,6 +179,85 @@ bind/12/bone = -1
 bind/12/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 1.4490412, -3.9506578, 1.8515751)
 
 [node name="StartScene" type="Node3D" unique_id=106906962]
+
+[node name="OptionsLayer" type="CanvasLayer" parent="." unique_id=1632437641]
+visible = false
+
+[node name="SoundSlider" type="HSlider" parent="OptionsLayer" unique_id=1643229363]
+custom_minimum_size = Vector2(250, 50)
+offset_left = 258.0
+offset_top = 457.0
+offset_right = 508.0
+offset_bottom = 507.0
+scale = Vector2(2.3157725, 2.0256467)
+metadata/_edit_use_anchors_ = true
+
+[node name="MusicSlider" type="HSlider" parent="OptionsLayer" unique_id=1180800504]
+custom_minimum_size = Vector2(250, 50)
+offset_left = 258.0
+offset_top = 340.0
+offset_right = 508.0
+offset_bottom = 390.0
+scale = Vector2(2.3157725, 2.0256467)
+metadata/_edit_use_anchors_ = true
+
+[node name="LanguagesOptions" type="OptionButton" parent="OptionsLayer" unique_id=383104879]
+custom_minimum_size = Vector2(400, 75)
+offset_left = 266.0
+offset_top = 614.0
+offset_right = 666.0
+offset_bottom = 689.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="OptionsLayer" unique_id=1128535771]
+custom_minimum_size = Vector2(300, 75)
+offset_left = 587.0
+offset_top = 762.0
+offset_right = 887.0
+offset_bottom = 837.0
+theme_override_font_sizes/font_size = 48
+text = "RETURN"
+metadata/_edit_use_anchors_ = true
+
+[node name="ButtonsLayer" type="CanvasLayer" parent="." unique_id=217594656]
+
+[node name="StartButton" type="Button" parent="ButtonsLayer" unique_id=1147295776]
+offset_left = 351.0
+offset_top = 593.0
+offset_right = 771.0
+offset_bottom = 684.0
+theme_override_font_sizes/font_size = 60
+text = "START"
+
+[node name="OptionsButton" type="Button" parent="ButtonsLayer" unique_id=1310128256]
+offset_left = 352.0
+offset_top = 702.0
+offset_right = 772.0
+offset_bottom = 793.0
+theme_override_font_sizes/font_size = 60
+text = "OPTIONS"
+
+[node name="CreditsButton" type="Button" parent="ButtonsLayer" unique_id=1028314999]
+offset_left = 352.0
+offset_top = 808.0
+offset_right = 772.0
+offset_bottom = 899.0
+theme_override_font_sizes/font_size = 60
+text = "CREDITS"
+
+[node name="ExitButton" type="Button" parent="ButtonsLayer" unique_id=613089642]
+offset_left = 424.99997
+offset_top = 915.0
+offset_right = 845.0
+offset_bottom = 1006.0
+scale = Vector2(0.6400024, 0.72)
+theme_override_font_sizes/font_size = 60
+text = "EXIT"
+
+[node name="LogoJuego" type="Sprite2D" parent="ButtonsLayer" unique_id=1332065663]
+position = Vector2(549, 325)
+scale = Vector2(1.228, 1.228)
+texture = ExtResource("2_hfcnf")
 
 [node name="Shaders" type="CanvasLayer" parent="." unique_id=922637592]
 
