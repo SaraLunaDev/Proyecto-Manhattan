@@ -89,7 +89,7 @@ transform = Transform3D(-2.6999998, 0, 2.3604149e-07, 0, 2.6999998, 0, -2.360414
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06090212, 0, 0.059319973)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=217934577 node_paths=PackedStringArray("jugador")]
-transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 8.527344, 19.488049)
+transform = Transform3D(1, 0, 0, 0, 0.86602545, -0.5, 0, 0.50000006, 0.86602557, 0, 0.52734375, 7.2380486)
 current = true
 script = ExtResource("9_sr6x0")
 jugador = NodePath("../NavigationRegion3D/Jugador")

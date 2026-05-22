@@ -3,68 +3,87 @@ class_name Jugador
 
 # Variables
 # -----------------------------------------------
+@export_category("Stats")
+@export var vida = 10.0
 @export var velocidad = 2.0
 @export var aceleracion = 40.0
-@export var vida = 10.0
-@export var escudo = 4.0
-@export var escudo_max = 4.0
 @export var hitbox: Area3D
 @export var daño_cd: Timer
-@export var espada_cd: Timer
-@export var proyectil: PackedScene
-@export var punto_proyectil: Marker3D
-@export var hitbox_espada: Area3D
-@export var daño_espada = 2.0
-@export var puede_disparar: bool = false
-@export var puede_espadear: bool = false
-@export var puede_rayo: bool = false
 @export var agent: NavigationAgent3D
-var esta_espadeando: bool = false
-@export var animaciones: AnimationTree
 var esta_muriendose: bool = false
-@export var hitbox_proyectil: Area3D
-@export var hitbox_espadas_cercanos: Area3D
-var ultima_animacion: StringName
-@export var nodo_torreta: Node3D
 var enemigo_objetivo: Enemigo
+var ultima_animacion: StringName
 var cam: Camera3D
-@export var daño_rayo = 1.0
-@export var escudo_forma: MeshInstance3D
+@onready var daño_particula: GPUParticles3D = $ExplosionEscudo
+# -----------------------------------------------
+@export_category("Espada")
+@export var puede_espadear: bool = false
+@export var daño_espada = 2.0
+@export var espada_cd: Timer
+@export var hitbox_espada: Area3D
+@export var hitbox_espadas_cercanos: Area3D
+@export var espada_animacion: AnimationPlayer
+@export var animaciones: AnimationTree
+var esta_espadeando: bool = false
+# -----------------------------------------------
+@export_category("Escudo")
 @export var puede_escudo: bool = false
+var escudo = 4.0
+@export var escudo_max = 4.0
+@export var escudo_forma: MeshInstance3D
 @export var escudo_cd: Timer
-@export var rayo: PackedScene
 @export var daño_explosion = 4.0
 @export var escudo_posicion: Node3D
 const material_escudo = preload("uid://b75barw2orci0")
 @export var animacion_escudo: AnimationPlayer
-@export var espada_animacion: AnimationPlayer
-@onready var daño_particula: GPUParticles3D = $ExplosionEscudo
+# -----------------------------------------------
+@export_category("Proyectil")
+@export var puede_disparar: bool = false
+@export var proyectil: PackedScene
+@export var punto_proyectil: Marker3D
+@export var hitbox_proyectil: Area3D
+@export var nodo_torreta: Node3D
+# -----------------------------------------------
+@export_category("Rayo")
+@export var puede_rayo: bool = false
+@export var daño_rayo = 1.0
+@export var rayo: PackedScene
+# -----------------------------------------------
+@onready var explosion_escudo: GPUParticles3D = $ExplosionEscudo
+@onready var explosion_escudo_2: GPUParticles3D = $ExplosionEscudo2
+@onready var explosion_escudo_3: GPUParticles3D = $ExplosionEscudo3
 
+
+# Ready
+# -----------------------------------------------
 func _ready() -> void:
+	# Resetear escudo
 	material_escudo.set_shader_parameter("ray_sharpness", 0.1)
 	material_escudo.set_shader_parameter("vertical_speed", 1.5)
-	
+	#Obtener camara
 	cam = get_viewport().get_camera_3d()
 	if puede_escudo:
+		# Enseñar el escudo si lo tiene
 		escudo_forma.show()
 	else:
+		# Ocultarlo si no
 		escudo_forma.hide()
+	# Reset vida de escudo
 	escudo = escudo_max
 
 # Process
 # -----------------------------------------------
 func _physics_process(delta: float) -> void:
+	# No hacer nada mientras muere
 	if esta_muriendose:
 		return
-	
 	# Obtener el Input de direccion
 	var input = Input.get_vector("izquierda", "derecha", "arriba", "abajo")
 	var direccion = (Vector3(input.x, 0, input.y)).normalized()
-	
-	
+	# Controlar accion por direccion
 	if direccion:
-		# Movimiento hacia direccion con aceleracion
 		ejecutar_animacion("andando")
+		# Movimiento hacia direccion con aceleracion
 		velocity.x = move_toward(velocity.x, direccion.x * velocidad, aceleracion * delta)
 		velocity.z = move_toward(velocity.z, direccion.z * velocidad, aceleracion * delta)
 	else:
@@ -72,72 +91,98 @@ func _physics_process(delta: float) -> void:
 		# Pausar movimiento con deceleracion
 		velocity.x = move_toward(velocity.x, 0, aceleracion * delta)
 		velocity.z = move_toward(velocity.z, 0, aceleracion * delta)
-	
 	# Rotar el jugador hacia donde va su direccion
 	if direccion.length() > 0:
-		if not esta_espadeando and not esta_muriendose:
+		# Solo si no esta espadeando
+		if not esta_espadeando:
 			look_at(global_position + direccion, Vector3.UP, true)
-	
-	if not esta_muriendose:
-		move_and_slide()
-	
+	# Aplicar el movimiento
+	move_and_slide()
+	# Espadear
+	espadear()
+	# Gestion de giro de torreta
+	girar_torreta()
+	# Gestion de giro de escudo
+	girar_escudo()
+
+# Girar escudo hacia camara
+# -----------------------------------------------
+func girar_escudo():
+	if cam:
+		escudo_posicion.look_at(Vector3(cam.global_position.x, 0, cam.global_position.z), Vector3.UP, false)
+
+# Girar torreta hacia enemigo
+# -----------------------------------------------
+func girar_torreta():
+	if enemigo_objetivo:
+		# Si hay enemigo apuntarle a el
+		nodo_torreta.look_at(enemigo_objetivo.global_position, Vector3.UP, true)
+	else:
+		# Si no, a la camara
+		if cam:
+			nodo_torreta.look_at(Vector3(cam.global_position.x, 0, cam.global_position.z), Vector3.UP, false)
+
+# Gestionar habilidad con espada
+# -----------------------------------------------
+func espadear():
 	if puede_espadear:
 		# Detectar enemigos en hitbox espada
 		var enemigos_rango_espada = hitbox_espada.get_overlapping_bodies()
+		# Detectar enemigos en hitbox del rango de daño de la espada
 		var enemigos_rango_espada_cercanos = hitbox_espadas_cercanos.get_overlapping_bodies()
+		# Si hay enemigos en rango
 		if enemigos_rango_espada.size() > 0:
+			# Y el CD esta apagao
 			if espada_cd.time_left <= 0:
+				# Empezar a espadear
 				esta_espadeando = true
 				espada_animacion.play("girar_espada")
 				espada_cd.start()
 				ejecutar_animacion("atacando")
+				# Pequeña pausa para que la animacion enlace con el daño
 				await get_tree().create_timer(.5).timeout
 				for enemigo_rango_espada in enemigos_rango_espada_cercanos:
 					if enemigo_rango_espada:
+						# Aplicar el daño a todos los enemigos
 						enemigo_rango_espada.recibir_daño(daño_espada, 1)
-				
 				await get_tree().create_timer(.6).timeout
+				# Parar de espadear
 				esta_espadeando = false
-	
-	if enemigo_objetivo:
-		nodo_torreta.look_at(enemigo_objetivo.global_position, Vector3.UP, true)
-	else:
-		if cam:
-			nodo_torreta.look_at(Vector3(cam.global_position.x, 0, cam.global_position.z), Vector3.UP, false)
-	
-	if cam:
-		escudo_posicion.look_at(Vector3(cam.global_position.x, 0, cam.global_position.z), Vector3.UP, false)
 
 # Gestion de daño recibido
 # -----------------------------------------------
 func recibir_daño(daño_recibido) -> void:
-	if vida == 0.0:
+	# Si no tiene vida no recibir daño
+	if vida <= 0.0:
 		return
 	# Si el daño_recibido esta en CD no hacer nada
 	if daño_cd.time_left > 0:
 		return
-		
+	# Emitir particula de daño
 	daño_particula.emitting = true
-	
+	# Si al escudo le queda vida y tiene la habilidad
 	if escudo > 0 and puede_escudo:
+		# Gestionar el daño en el escudo
 		escudo -= daño_recibido
 		animacion_escudo.stop()
+		# Visualizar la vida del escudo restante con shader
 		animacion_escudo.play("dañar_escudo")
 		material_escudo.set_shader_parameter("ray_sharpness", 0.175 * ((escudo_max - escudo)))
 		material_escudo.set_shader_parameter("vertical_speed", 1.25 * ((escudo_max - escudo)))
-		print(escudo)
+		# Si me quedo sin escudo
 		if escudo <= 0:
 			escudo = 0.0
+			# Aplicar daño del escudo
 			explotar_escudo()
 	else:
-		# Restar vida al Jugador
+		# Si no tiene escudo, restar la vida al Jugador
 		vida -= daño_recibido
 		espada_cd.stop()
 		espada_cd.start()
+		# Si se queda sin vida, morir
 		if vida <= 0:
 			vida = 0.0
 			morir()
-	
 	# Comenzar el CD
 	daño_cd.start()
 
@@ -145,9 +190,11 @@ func recibir_daño(daño_recibido) -> void:
 # -----------------------------------------------
 func morir() -> void:
 	esta_muriendose = true
+	# Daño en area cuando muera
 	explotar_escudo()
 	ejecutar_animacion("muerto")
 	await get_tree().create_timer(6).timeout
+	# Tras un tiempo resetear la escena
 	get_tree().reload_current_scene()
 
 # Gestion de disparo de proyectil
@@ -169,12 +216,10 @@ func _on_proyectil_cd_timeout() -> void:
 				enemigo_cercano = enemigo_proyectil
 			if enemigo_cercano.get_distancia_a_jugador() > enemigo_proyectil.get_distancia_a_jugador():
 				enemigo_cercano = enemigo_proyectil
-		
 		var es_apuntado = false
 		if not enemigo_cercano.get_siendo_apuntado():
 			es_apuntado = true
 			enemigo_objetivo = enemigo_cercano
-			
 			if es_apuntado:
 				var vida_enemigo = enemigo_objetivo.get_vida()
 				var proyectiles = get_tree().get_nodes_in_group("proyectil")
@@ -182,12 +227,13 @@ func _on_proyectil_cd_timeout() -> void:
 				for proyectil_activo in proyectiles:
 					var daño_proyectil = proyectil_activo.get_daño()
 					daño_total += daño_proyectil
-				
 				if not daño_total >= vida_enemigo:
 					disparar_proyectil()
 			else:
 				disparar_proyectil()
 
+# Gestion de animaciones
+# -----------------------------------------------
 func ejecutar_animacion(animacion: StringName):
 	match animacion:
 		"andando":
@@ -203,6 +249,8 @@ func ejecutar_animacion(animacion: StringName):
 		"muerto":
 			animaciones.set("parameters/conditions/muerto", true)
 
+# Gestion del Rayo
+# -----------------------------------------------
 func _on_rayo_cd_timeout() -> void:
 	if esta_muriendose:
 		return
@@ -216,9 +264,16 @@ func _on_rayo_cd_timeout() -> void:
 					nuevo_rayo.transform.origin = enemigo_rayo.global_position
 					get_tree().root.add_child(nuevo_rayo)
 
+# Gestion de la explosion del escudo
+# -----------------------------------------------
 func explotar_escudo() -> void:
 	if puede_escudo:
+		if cam is Camara:
+			cam.aplicar_temblor()
 		animacion_escudo.play("romper_escudo")
+		explosion_escudo.emitting = true
+		explosion_escudo_2.emitting = true
+		explosion_escudo_3.emitting = true
 		var enemigos_escudo = hitbox_proyectil.get_overlapping_bodies()
 		if enemigos_escudo.size() > 0:
 			for enemigo_escudo in enemigos_escudo:
@@ -226,6 +281,8 @@ func explotar_escudo() -> void:
 					enemigo_escudo.recibir_daño(daño_explosion, 1)
 		escudo_cd.start()
 
+# Gestion de aparicion del escudo
+# -----------------------------------------------
 func _on_escudo_cd_timeout() -> void:
 	if esta_muriendose:
 		return
@@ -235,13 +292,16 @@ func _on_escudo_cd_timeout() -> void:
 	material_escudo.set_shader_parameter("ray_sharpness", 0.1)
 	material_escudo.set_shader_parameter("vertical_speed", 1.5)
 
-func get_daño_cd_timer() -> float:
-	return daño_cd.time_left
-
-
+# Esconder el escudo tras explotarlo
+# -----------------------------------------------
 func _on_animacion_escudo_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "romper_escudo":
 		escudo_forma.hide()
+
+# Getters y Setters
+# -----------------------------------------------
+func get_daño_cd_timer() -> float:
+	return daño_cd.time_left
 
 func get_muerto() -> bool:
 	return esta_muriendose

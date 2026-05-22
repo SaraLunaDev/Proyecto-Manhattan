@@ -507,8 +507,9 @@ curve = SubResource("Curve_mb44e")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aknpy"]
 particle_flag_align_y = true
 spread = 180.0
-initial_velocity_min = 2.0
-initial_velocity_max = 4.0
+initial_velocity_min = 4.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, -4.33, 0)
 scale_min = 0.5
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_jk04m")
@@ -526,33 +527,108 @@ height = 0.3
 radial_segments = 4
 rings = 1
 
-[node name="Jugador" type="CharacterBody3D" unique_id=1492616832 node_paths=PackedStringArray("hitbox", "daño_cd", "espada_cd", "punto_proyectil", "hitbox_espada", "agent", "animaciones", "hitbox_proyectil", "hitbox_espadas_cercanos", "nodo_torreta", "escudo_forma", "escudo_cd", "escudo_posicion", "animacion_escudo", "espada_animacion") groups=["jugador"]]
+[sub_resource type="Gradient" id="Gradient_mb44e"]
+colors = PackedColorArray(0.74509805, 0.45490196, 0.5803922, 1, 1, 0.9607843, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aknpy"]
+gradient = SubResource("Gradient_mb44e")
+
+[sub_resource type="Curve" id="Curve_1bknw"]
+_data = [Vector2(0, 0.8852458), 0.0, 0.0, 0, 0, Vector2(1, 0.2950819), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fr03m"]
+curve = SubResource("Curve_1bknw")
+
+[sub_resource type="Curve" id="Curve_aknpy"]
+_data = [Vector2(0, 0.090163946), 0.0, 0.0, 0, 0, Vector2(0.31132075, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1bknw"]
+curve = SubResource("Curve_aknpy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mb44e"]
+particle_flag_align_y = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 6.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, -10.72, 0)
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_1bknw")
+color_ramp = SubResource("GradientTexture1D_aknpy")
+emission_curve = SubResource("CurveTexture_fr03m")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aknpy"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.6117647)
+emission_enabled = true
+emission = Color(0.8472476, 0.21194315, 0.4945287, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_mb44e"]
+material = SubResource("StandardMaterial3D_aknpy")
+size = Vector3(0.19, 0.91, 0.06)
+
+[sub_resource type="Curve" id="Curve_fr03m"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5849057, 0.1311475), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_yy7ku"]
+curve = SubResource("Curve_fr03m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1bknw"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, -3.495, 0)
+scale_min = 3.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_1bknw")
+color = Color(0.8751937, 0.41450813, 0.33885664, 1)
+alpha_curve = SubResource("CurveTexture_yy7ku")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mb44e"]
+transparency = 1
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_aknpy"]
+material = SubResource("StandardMaterial3D_mb44e")
+radial_segments = 4
+rings = 2
+
+[node name="Jugador" type="CharacterBody3D" unique_id=1492616832 node_paths=PackedStringArray("hitbox", "daño_cd", "espada_cd", "hitbox_espada", "hitbox_espadas_cercanos", "espada_animacion", "animaciones", "escudo_forma", "escudo_cd", "escudo_posicion", "animacion_escudo", "punto_proyectil", "hitbox_proyectil", "nodo_torreta") groups=["jugador"]]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_5ydob")
 velocidad = 4.0
 hitbox = NodePath("Hitbox")
 "daño_cd" = NodePath("DañoCD")
-espada_cd = NodePath("EspadaCD")
-proyectil = ExtResource("2_c1mnh")
-punto_proyectil = NodePath("PuntoProyectil")
-hitbox_espada = NodePath("HitboxEspada")
-puede_disparar = true
 puede_espadear = true
-puede_rayo = true
-agent = NodePath("Agente")
-animaciones = NodePath("AnimationTree")
-hitbox_proyectil = NodePath("HitboxProyectil")
+espada_cd = NodePath("EspadaCD")
+hitbox_espada = NodePath("HitboxEspada")
 hitbox_espadas_cercanos = NodePath("HitboxEspadasCercanos")
-nodo_torreta = NodePath("PosicionTorreta")
-"daño_rayo" = 2.0
-escudo_forma = NodePath("Escudo/Forma")
+espada_animacion = NodePath("SwordTrail/AnimationPlayer")
+animaciones = NodePath("AnimationTree")
 puede_escudo = true
+escudo_forma = NodePath("Escudo/Forma")
 escudo_cd = NodePath("EscudoCD")
-rayo = ExtResource("3_n4xcq")
 escudo_posicion = NodePath("Escudo")
 animacion_escudo = NodePath("Escudo/AnimacionEscudo")
-espada_animacion = NodePath("SwordTrail/AnimationPlayer")
+puede_disparar = true
+proyectil = ExtResource("2_c1mnh")
+punto_proyectil = NodePath("PuntoProyectil")
+hitbox_proyectil = NodePath("HitboxProyectil")
+nodo_torreta = NodePath("PosicionTorreta")
+puede_rayo = true
+"daño_rayo" = 2.0
+rayo = ExtResource("3_n4xcq")
 
 [node name="playerGame" parent="." unique_id=1083809072 instance=ExtResource("3_tn1hq")]
 transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, 0, 0)
@@ -677,9 +753,30 @@ amount = 6
 one_shot = true
 explosiveness = 1.0
 randomness = 1.0
-fixed_fps = 60
+fixed_fps = 8
 process_material = SubResource("ParticleProcessMaterial_aknpy")
 draw_pass_1 = SubResource("CylinderMesh_1bknw")
+
+[node name="ExplosionEscudo2" type="GPUParticles3D" parent="." unique_id=386913431]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+emitting = false
+amount = 24
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 18
+process_material = SubResource("ParticleProcessMaterial_mb44e")
+draw_pass_1 = SubResource("PrismMesh_mb44e")
+
+[node name="ExplosionEscudo3" type="GPUParticles3D" parent="." unique_id=1613016137]
+transform = Transform3D(1.7, 0, 0, 0, 1, 0, 0, 0, 1.7, 0, 1.25, 0)
+emitting = false
+amount = 24
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 18
+process_material = SubResource("ParticleProcessMaterial_1bknw")
+draw_pass_1 = SubResource("SphereMesh_aknpy")
 
 [connection signal="timeout" from="ProyectilCD" to="." method="_on_proyectil_cd_timeout"]
 [connection signal="timeout" from="EscudoCD" to="." method="_on_escudo_cd_timeout"]
