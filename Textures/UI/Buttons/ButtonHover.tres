@@ -1,0 +1,7 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://4j4in1v5hbqx"]
+
+[ext_resource type="Texture2D" uid="uid://d2ykbo1ml0q3t" path="res://Textures/UI/Buttons/ButtonHover.png" id="1_7jrh6"]
+
+[resource]
+texture = ExtResource("1_7jrh6")
+region_rect = Rect2(0, 141.511, 576.02, 200.582)

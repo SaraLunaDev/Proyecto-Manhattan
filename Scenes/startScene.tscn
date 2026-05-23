@@ -1,8 +1,12 @@
 [gd_scene format=4 uid="uid://gx5j5xd2wvao"]
 
+[ext_resource type="FontFile" uid="uid://6sodm1yo1tjh" path="res://Fonts/Aurusenthial Gothic.ttf" id="1_c7dfy"]
 [ext_resource type="Shader" uid="uid://b2t2voetnqpyy" path="res://Shaders/retro.gdshader" id="1_dlh0t"]
+[ext_resource type="StyleBox" uid="uid://cju0mr07m5i2i" path="res://Textures/UI/Buttons/ButtonNormal.tres" id="1_mpvma"]
 [ext_resource type="PackedScene" uid="uid://bs1f4anjmeg5l" path="res://Models/Player/StartingScreenPlayer.fbx" id="2_bsgrl"]
+[ext_resource type="StyleBox" uid="uid://djsumsh7qhhi1" path="res://Textures/UI/Buttons/ButtonPressed.tres" id="2_c7dfy"]
 [ext_resource type="Texture2D" uid="uid://cfvh6kk18yjcp" path="res://Textures/UI/LogoJuego.png" id="2_hfcnf"]
+[ext_resource type="StyleBox" uid="uid://4j4in1v5hbqx" path="res://Textures/UI/Buttons/ButtonHover.tres" id="3_kakcx"]
 [ext_resource type="Script" uid="uid://buo1vql71v6on" path="res://Scripts/UI/modelStartScreen.gd" id="3_ypcqp"]
 [ext_resource type="Material" uid="uid://dqnv3i1pqp7bf" path="res://Materials/SkyBoxMat.tres" id="4_hesrg"]
 [ext_resource type="Material" uid="uid://3hvgrqv00cq3" path="res://Materials/Green.tres" id="5_ut3hf"]
@@ -183,80 +187,140 @@ bind/12/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 1.4490412, -3.9506578, 1.
 [node name="OptionsLayer" type="CanvasLayer" parent="." unique_id=1632437641]
 visible = false
 
-[node name="SoundSlider" type="HSlider" parent="OptionsLayer" unique_id=1643229363]
+[node name="Control" type="Control" parent="OptionsLayer" unique_id=763275864]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsLayer/Control" unique_id=452552575]
+layout_mode = 0
+offset_left = 224.175
+offset_top = 127.8
+offset_right = 1010.169
+offset_bottom = 949.8
+theme_override_constants/separation = 6
+
+[node name="Sounds" type="Label" parent="OptionsLayer/Control/VBoxContainer" unique_id=1530351593]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_c7dfy")
+theme_override_font_sizes/font_size = 120
+text = "SOUNDS"
+
+[node name="SoundSlider" type="HSlider" parent="OptionsLayer/Control/VBoxContainer" unique_id=1643229363]
 custom_minimum_size = Vector2(250, 50)
-offset_left = 258.0
-offset_top = 457.0
-offset_right = 508.0
-offset_bottom = 507.0
-scale = Vector2(2.3157725, 2.0256467)
+layout_mode = 2
+min_value = -50.0
+max_value = 50.0
 metadata/_edit_use_anchors_ = true
 
-[node name="MusicSlider" type="HSlider" parent="OptionsLayer" unique_id=1180800504]
+[node name="Music" type="Label" parent="OptionsLayer/Control/VBoxContainer" unique_id=128113547]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_c7dfy")
+theme_override_font_sizes/font_size = 120
+text = "MUSIC"
+
+[node name="MusicSlider" type="HSlider" parent="OptionsLayer/Control/VBoxContainer" unique_id=1180800504]
 custom_minimum_size = Vector2(250, 50)
-offset_left = 258.0
-offset_top = 340.0
-offset_right = 508.0
-offset_bottom = 390.0
-scale = Vector2(2.3157725, 2.0256467)
+layout_mode = 2
+min_value = -50.0
+max_value = 50.0
 metadata/_edit_use_anchors_ = true
 
-[node name="LanguagesOptions" type="OptionButton" parent="OptionsLayer" unique_id=383104879]
-custom_minimum_size = Vector2(400, 75)
-offset_left = 266.0
-offset_top = 614.0
-offset_right = 666.0
-offset_bottom = 689.0
+[node name="Narration" type="Label" parent="OptionsLayer/Control/VBoxContainer" unique_id=192813606]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_c7dfy")
+theme_override_font_sizes/font_size = 120
+text = "NARRATION"
+
+[node name="NarrationSlider" type="HSlider" parent="OptionsLayer/Control/VBoxContainer" unique_id=641100927]
+custom_minimum_size = Vector2(250, 50)
+layout_mode = 2
+min_value = -50.0
+max_value = 50.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Button" type="Button" parent="OptionsLayer" unique_id=1128535771]
+[node name="LanguageButton" type="Button" parent="OptionsLayer/Control/VBoxContainer" unique_id=1460211234]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_constants/h_separation = 4
+theme_override_fonts/font = ExtResource("1_c7dfy")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = ExtResource("1_mpvma")
+theme_override_styles/pressed = ExtResource("2_c7dfy")
+theme_override_styles/hover = ExtResource("3_kakcx")
+text = "LANGUAGE"
+
+[node name="ReturnButton" type="Button" parent="OptionsLayer/Control/VBoxContainer" unique_id=1128535771]
 custom_minimum_size = Vector2(300, 75)
-offset_left = 587.0
-offset_top = 762.0
-offset_right = 887.0
-offset_bottom = 837.0
-theme_override_font_sizes/font_size = 48
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_c7dfy")
+theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = ExtResource("1_mpvma")
+theme_override_styles/pressed = ExtResource("2_c7dfy")
+theme_override_styles/hover = ExtResource("3_kakcx")
 text = "RETURN"
 metadata/_edit_use_anchors_ = true
 
 [node name="ButtonsLayer" type="CanvasLayer" parent="." unique_id=217594656]
 
-[node name="StartButton" type="Button" parent="ButtonsLayer" unique_id=1147295776]
-offset_left = 351.0
-offset_top = 593.0
-offset_right = 771.0
-offset_bottom = 684.0
-theme_override_font_sizes/font_size = 60
+[node name="Control" type="Control" parent="ButtonsLayer" unique_id=575443446]
+layout_mode = 3
+anchor_left = 0.133
+anchor_top = 0.544
+anchor_right = 0.478
+anchor_bottom = 1.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ButtonsLayer/Control" unique_id=146669365]
+layout_mode = 0
+offset_left = 14.005
+offset_top = -65.17
+offset_right = 614.005
+offset_bottom = 414.35004
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="StartButton" type="Button" parent="ButtonsLayer/Control/VBoxContainer" unique_id=1147295776]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_c7dfy")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = ExtResource("1_mpvma")
+theme_override_styles/pressed = ExtResource("2_c7dfy")
+theme_override_styles/hover = ExtResource("3_kakcx")
 text = "START"
 
-[node name="OptionsButton" type="Button" parent="ButtonsLayer" unique_id=1310128256]
-offset_left = 352.0
-offset_top = 702.0
-offset_right = 772.0
-offset_bottom = 793.0
-theme_override_font_sizes/font_size = 60
+[node name="ArcadeButton" type="Button" parent="ButtonsLayer/Control/VBoxContainer" unique_id=1310128256]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_c7dfy")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = ExtResource("1_mpvma")
+theme_override_styles/pressed = ExtResource("2_c7dfy")
+theme_override_styles/hover = ExtResource("3_kakcx")
+text = "ARCADE"
+
+[node name="Options" type="Button" parent="ButtonsLayer/Control/VBoxContainer" unique_id=1028314999]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_c7dfy")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = ExtResource("1_mpvma")
+theme_override_styles/pressed = ExtResource("2_c7dfy")
+theme_override_styles/hover = ExtResource("3_kakcx")
 text = "OPTIONS"
 
-[node name="CreditsButton" type="Button" parent="ButtonsLayer" unique_id=1028314999]
-offset_left = 352.0
-offset_top = 808.0
-offset_right = 772.0
-offset_bottom = 899.0
-theme_override_font_sizes/font_size = 60
-text = "CREDITS"
-
-[node name="ExitButton" type="Button" parent="ButtonsLayer" unique_id=613089642]
-offset_left = 424.99997
-offset_top = 915.0
-offset_right = 845.0
-offset_bottom = 1006.0
-scale = Vector2(0.6400024, 0.72)
-theme_override_font_sizes/font_size = 60
+[node name="ExitButton" type="Button" parent="ButtonsLayer/Control/VBoxContainer" unique_id=613089642]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_c7dfy")
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = ExtResource("1_mpvma")
+theme_override_styles/pressed = ExtResource("2_c7dfy")
+theme_override_styles/hover = ExtResource("3_kakcx")
 text = "EXIT"
 
 [node name="LogoJuego" type="Sprite2D" parent="ButtonsLayer" unique_id=1332065663]
-position = Vector2(549, 325)
-scale = Vector2(1.228, 1.228)
+position = Vector2(549, 314.15)
+scale = Vector2(1.113, 1.113)
 texture = ExtResource("2_hfcnf")
 
 [node name="Shaders" type="CanvasLayer" parent="." unique_id=922637592]
@@ -268,6 +332,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=661011383]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.176696, 8.353392)
