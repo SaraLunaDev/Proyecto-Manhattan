@@ -1,14 +1,15 @@
 [gd_scene format=4 uid="uid://gx5j5xd2wvao"]
 
-[ext_resource type="FontFile" uid="uid://6sodm1yo1tjh" path="res://Fonts/Aurusenthial Gothic.ttf" id="1_c7dfy"]
 [ext_resource type="Shader" uid="uid://b2t2voetnqpyy" path="res://Shaders/retro.gdshader" id="1_dlh0t"]
+[ext_resource type="Script" uid="uid://cowfpmw1iakrg" path="res://Scripts/UI/start_scene.gd" id="1_kakcx"]
 [ext_resource type="StyleBox" uid="uid://cju0mr07m5i2i" path="res://Textures/UI/Buttons/ButtonNormal.tres" id="1_mpvma"]
 [ext_resource type="PackedScene" uid="uid://bs1f4anjmeg5l" path="res://Models/Player/StartingScreenPlayer.fbx" id="2_bsgrl"]
 [ext_resource type="StyleBox" uid="uid://djsumsh7qhhi1" path="res://Textures/UI/Buttons/ButtonPressed.tres" id="2_c7dfy"]
 [ext_resource type="Texture2D" uid="uid://cfvh6kk18yjcp" path="res://Textures/UI/LogoJuego.png" id="2_hfcnf"]
+[ext_resource type="FontFile" uid="uid://236eli2bxj5c" path="res://Fonts/OldeTome.ttf" id="3_8lbci"]
 [ext_resource type="StyleBox" uid="uid://4j4in1v5hbqx" path="res://Textures/UI/Buttons/ButtonHover.tres" id="3_kakcx"]
 [ext_resource type="Script" uid="uid://buo1vql71v6on" path="res://Scripts/UI/modelStartScreen.gd" id="3_ypcqp"]
-[ext_resource type="Material" uid="uid://dqnv3i1pqp7bf" path="res://Materials/SkyBoxMat.tres" id="4_hesrg"]
+[ext_resource type="Material" uid="uid://r56ga15gj7rd" path="res://Materials/SkyBoxMat.tres" id="4_hesrg"]
 [ext_resource type="Material" uid="uid://3hvgrqv00cq3" path="res://Materials/Green.tres" id="5_ut3hf"]
 [ext_resource type="Material" uid="uid://ctaqk57hbgkrs" path="res://Materials/Pink.tres" id="6_hfcnf"]
 [ext_resource type="Material" uid="uid://c1ar0spnk5ljl" path="res://Materials/Purple.tres" id="7_mmkrm"]
@@ -25,20 +26,20 @@ shader_parameter/grille_opacity = 0.0
 shader_parameter/resolution = Vector2(640, 480)
 shader_parameter/pixelate = true
 shader_parameter/roll = true
-shader_parameter/roll_speed = 4.0
+shader_parameter/roll_speed = 1.27
 shader_parameter/roll_size = 19.39600092131
 shader_parameter/roll_variation = 5.0
-shader_parameter/distort_intensity = 0.01600000076
-shader_parameter/noise_opacity = 0.04800000228
+shader_parameter/distort_intensity = 0.0010000000475
+shader_parameter/noise_opacity = 0.00400000019
 shader_parameter/noise_speed = 0.1
 shader_parameter/static_noise_intensity = 0.02700000128249999
-shader_parameter/aberration = 0.02000004845000003
+shader_parameter/aberration = 0.01100004802250009
 shader_parameter/brightness = 0.83
 shader_parameter/discolor = false
-shader_parameter/warp_amount = 0.7250000344375
+shader_parameter/warp_amount = 0.0
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.735
-shader_parameter/vignette_opacity = 0.6810000323475
+shader_parameter/vignette_opacity = 0.7200000342
 
 [sub_resource type="Sky" id="Sky_hesrg"]
 sky_material = ExtResource("4_hesrg")
@@ -183,6 +184,7 @@ bind/12/bone = -1
 bind/12/pose = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 1.4490412, -3.9506578, 1.8515751)
 
 [node name="StartScene" type="Node3D" unique_id=106906962]
+script = ExtResource("1_kakcx")
 
 [node name="OptionsLayer" type="CanvasLayer" parent="." unique_id=1632437641]
 visible = false
@@ -203,7 +205,7 @@ theme_override_constants/separation = 6
 
 [node name="Sounds" type="Label" parent="OptionsLayer/Control/VBoxContainer" unique_id=1530351593]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_c7dfy")
+theme_override_fonts/font = ExtResource("3_8lbci")
 theme_override_font_sizes/font_size = 120
 text = "SOUNDS"
 
@@ -211,12 +213,13 @@ text = "SOUNDS"
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 min_value = -50.0
-max_value = 50.0
+max_value = 0.0
+step = 4.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Music" type="Label" parent="OptionsLayer/Control/VBoxContainer" unique_id=128113547]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_c7dfy")
+theme_override_fonts/font = ExtResource("3_8lbci")
 theme_override_font_sizes/font_size = 120
 text = "MUSIC"
 
@@ -224,12 +227,14 @@ text = "MUSIC"
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 min_value = -50.0
-max_value = 50.0
+max_value = 0.0
+step = 4.0
+value = -8.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Narration" type="Label" parent="OptionsLayer/Control/VBoxContainer" unique_id=192813606]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_c7dfy")
+theme_override_fonts/font = ExtResource("3_8lbci")
 theme_override_font_sizes/font_size = 120
 text = "NARRATION"
 
@@ -237,15 +242,19 @@ text = "NARRATION"
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 min_value = -50.0
-max_value = 50.0
+max_value = 0.0
+step = 4.0
+value = -4.0
 metadata/_edit_use_anchors_ = true
 
 [node name="LanguageButton" type="Button" parent="OptionsLayer/Control/VBoxContainer" unique_id=1460211234]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.5529558, 0.5529555, 0.55295557, 1)
+theme_override_constants/outline_size = 20
 theme_override_constants/h_separation = 4
-theme_override_fonts/font = ExtResource("1_c7dfy")
-theme_override_font_sizes/font_size = 90
+theme_override_fonts/font = ExtResource("3_8lbci")
+theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = ExtResource("1_mpvma")
 theme_override_styles/pressed = ExtResource("2_c7dfy")
 theme_override_styles/hover = ExtResource("3_kakcx")
@@ -254,8 +263,10 @@ text = "LANGUAGE"
 [node name="ReturnButton" type="Button" parent="OptionsLayer/Control/VBoxContainer" unique_id=1128535771]
 custom_minimum_size = Vector2(300, 75)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_c7dfy")
-theme_override_font_sizes/font_size = 90
+theme_override_colors/font_outline_color = Color(0.5529558, 0.5529555, 0.55295557, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_8lbci")
+theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = ExtResource("1_mpvma")
 theme_override_styles/pressed = ExtResource("2_c7dfy")
 theme_override_styles/hover = ExtResource("3_kakcx")
@@ -284,8 +295,10 @@ alignment = 1
 
 [node name="StartButton" type="Button" parent="ButtonsLayer/Control/VBoxContainer" unique_id=1147295776]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_c7dfy")
-theme_override_font_sizes/font_size = 100
+theme_override_colors/font_outline_color = Color(0.5529558, 0.5529555, 0.55295557, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_8lbci")
+theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = ExtResource("1_mpvma")
 theme_override_styles/pressed = ExtResource("2_c7dfy")
 theme_override_styles/hover = ExtResource("3_kakcx")
@@ -293,8 +306,10 @@ text = "START"
 
 [node name="ArcadeButton" type="Button" parent="ButtonsLayer/Control/VBoxContainer" unique_id=1310128256]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_c7dfy")
-theme_override_font_sizes/font_size = 100
+theme_override_colors/font_outline_color = Color(0.5529558, 0.5529555, 0.55295557, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_8lbci")
+theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = ExtResource("1_mpvma")
 theme_override_styles/pressed = ExtResource("2_c7dfy")
 theme_override_styles/hover = ExtResource("3_kakcx")
@@ -302,21 +317,14 @@ text = "ARCADE"
 
 [node name="Options" type="Button" parent="ButtonsLayer/Control/VBoxContainer" unique_id=1028314999]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_c7dfy")
-theme_override_font_sizes/font_size = 100
+theme_override_colors/font_outline_color = Color(0.5529558, 0.5529555, 0.55295557, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("3_8lbci")
+theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = ExtResource("1_mpvma")
 theme_override_styles/pressed = ExtResource("2_c7dfy")
 theme_override_styles/hover = ExtResource("3_kakcx")
 text = "OPTIONS"
-
-[node name="ExitButton" type="Button" parent="ButtonsLayer/Control/VBoxContainer" unique_id=613089642]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_c7dfy")
-theme_override_font_sizes/font_size = 100
-theme_override_styles/normal = ExtResource("1_mpvma")
-theme_override_styles/pressed = ExtResource("2_c7dfy")
-theme_override_styles/hover = ExtResource("3_kakcx")
-text = "EXIT"
 
 [node name="LogoJuego" type="Sprite2D" parent="ButtonsLayer" unique_id=1332065663]
 position = Vector2(549, 314.15)
@@ -348,7 +356,7 @@ transform = Transform3D(0.64713573, 0, -0.7623747, 0, 1, 0, 0.7623747, 0, 0.6471
 script = ExtResource("3_ypcqp")
 skeleton = NodePath("Armature/Skeleton3D")
 
-[node name="Skeleton3D" parent="StartingScreenPlayer/Armature" parent_id_path=PackedInt32Array(1162770814, 1600617688) index="0" unique_id=425431502]
+[node name="Skeleton3D" parent="StartingScreenPlayer/Armature" parent_id_path=PackedInt32Array(1162770814, 705414284) index="0" unique_id=1893638140]
 bones/1/rotation = Quaternion(0.27542576, 0.0069736545, 0.006623335, 0.9612742)
 bones/2/rotation = Quaternion(-0.001871164, -0.068046734, -0.78247696, 0.6189475)
 bones/3/rotation = Quaternion(0.38943845, -0.24573413, -0.58478045, 0.6678205)
@@ -374,5 +382,27 @@ transform = Transform3D(1.679372, 0, 1.5376366, 0, 0.99999994, 0, -1.1569641, 0,
 mesh = SubResource("ArrayMesh_kakcx")
 skin = SubResource("Skin_8lbci")
 skeleton = NodePath("..")
+
+[connection signal="changed" from="OptionsLayer/Control/VBoxContainer/SoundSlider" to="." method="_on_sound_slider_changed"]
+[connection signal="value_changed" from="OptionsLayer/Control/VBoxContainer/SoundSlider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="changed" from="OptionsLayer/Control/VBoxContainer/MusicSlider" to="." method="_on_music_slider_changed"]
+[connection signal="value_changed" from="OptionsLayer/Control/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="changed" from="OptionsLayer/Control/VBoxContainer/NarrationSlider" to="." method="_on_narration_slider_changed"]
+[connection signal="value_changed" from="OptionsLayer/Control/VBoxContainer/NarrationSlider" to="." method="_on_narration_slider_value_changed"]
+[connection signal="focus_entered" from="OptionsLayer/Control/VBoxContainer/LanguageButton" to="." method="_on_language_button_focus_entered"]
+[connection signal="mouse_entered" from="OptionsLayer/Control/VBoxContainer/LanguageButton" to="." method="_on_language_button_mouse_entered"]
+[connection signal="pressed" from="OptionsLayer/Control/VBoxContainer/LanguageButton" to="." method="_on_language_button_pressed"]
+[connection signal="focus_entered" from="OptionsLayer/Control/VBoxContainer/ReturnButton" to="." method="_on_return_button_focus_entered"]
+[connection signal="mouse_entered" from="OptionsLayer/Control/VBoxContainer/ReturnButton" to="." method="_on_return_button_mouse_entered"]
+[connection signal="pressed" from="OptionsLayer/Control/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="focus_entered" from="ButtonsLayer/Control/VBoxContainer/StartButton" to="." method="_on_start_button_focus_entered"]
+[connection signal="mouse_entered" from="ButtonsLayer/Control/VBoxContainer/StartButton" to="." method="_on_start_button_mouse_entered"]
+[connection signal="pressed" from="ButtonsLayer/Control/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="focus_entered" from="ButtonsLayer/Control/VBoxContainer/ArcadeButton" to="." method="_on_arcade_button_focus_entered"]
+[connection signal="mouse_entered" from="ButtonsLayer/Control/VBoxContainer/ArcadeButton" to="." method="_on_arcade_button_mouse_entered"]
+[connection signal="pressed" from="ButtonsLayer/Control/VBoxContainer/ArcadeButton" to="." method="_on_arcade_button_pressed"]
+[connection signal="focus_entered" from="ButtonsLayer/Control/VBoxContainer/Options" to="." method="_on_options_focus_entered"]
+[connection signal="mouse_entered" from="ButtonsLayer/Control/VBoxContainer/Options" to="." method="_on_options_mouse_entered"]
+[connection signal="pressed" from="ButtonsLayer/Control/VBoxContainer/Options" to="." method="_on_options_pressed"]
 
 [editable path="StartingScreenPlayer"]

@@ -13,19 +13,6 @@
 [ext_resource type="Material" uid="uid://bmc1f4u4yiru7" path="res://Materials/Violet.tres" id="8_mb44e"]
 [ext_resource type="Shader" uid="uid://c4ki8ufcnqurf" path="res://Shaders/spinRotation.gdshader" id="13_aknpy"]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_bhy8k"]
-_surfaces = [{
-"aabb": AABB(-1.1973503, -1, -1.1973503, 2.3947005, 2, 2.3947005),
-"format": 34896613377,
-"index_count": 96,
-"index_data": PackedByteArray("AAABAAIAAAADAAEAAwAEAAEABQAAAAIABgADAAAABwAGAAAABwAAAAUABgAIAAMACQAHAAUABQACAAoACQAFAAsACwAFAAoADAAJAAsACwAKAA0ADAALAA4ADgALAA0ADwAMAA4ADgANABAADwAOABEAEQAOABAAEgAPABEAEQAQABMAEgARABQAFAARABMAFQASABQAFAATABYAFQAUABcAFwAUABYACAAVABcAFwAWAAQACAAXAAMAAwAXAAQA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 24,
-"vertex_data": PackedByteArray("/3//fwAAAACWy///aDQAAP9///8YFQAAgdr/f30lAADm6v///38AAH0l/399JQAA/38AABgVAABoNAAAaDQAAJbLAABoNAAAGBUAAP9/AABoNP//aDQAAAAA/3//fwAAaDQAAJbLAAAYFf///38AAH0l/3+B2gAA/38AAObqAABoNP//lssAAP9//3///wAAlssAAJbLAAD/f///5uoAAIHa/3+B2gAA5uoAAP9/AACWy///lssAAP///3//fwAA")
-}]
-blend_shape_mode = 0
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_x1a6r"]
 resource_name = "playerGame_Cylinder_001"
 _surfaces = [{
@@ -41,7 +28,6 @@ _surfaces = [{
 "vertex_data": PackedByteArray("/3//fwAAD/CWy///aDQP8P9///8YFQ/wgdr/f30lD/CB2v9/fSU30Obq////fzfQlsv//2g0N9D///9//3830P///3//f32wlsv//5bLfbDm6v///399sIHa/3+B2n2wgdr/f4HalZH/f///5uqVkZbL//+Wy5WR/3//f///lZH/f/9///+VkWg0//+Wy5WR/3///+bqlZF9Jf9/gdqVkX0l/3+B2n2wGBX///9/fbBoNP//lst9sAAA/3//f32wGBUAAP9/N9B9Jf9/fSU30AAA/3//fzfQaDQAAGg0N9AAAP9//3830Gg0//9oNDfQGBX///9/N9B9Jf9/fSU30H0l/399JQ/w/3///xgVD/BoNP//aDQP8P9//38AAA/waDQAAGg0D/D/f/9/AAAP8H0l/399JQ/w/38AABgVD/BoNAAAlst9sAAA/3//f32wfSX/f4HafbAYFQAA/399sP9/AADm6pWRfSX/f4HalZH/f/9///+VkWg0AACWy5WRlssAAJbLlZH/f/9///+VkYHa/3+B2pWR/38AAObqlZHm6gAA/399sIHa/3+B2n2w////f/9/fbCWywAAlst9sJbLAABoNDfQ////f/9/N9CB2v9/fSU30ObqAAD/fzfQ/38AABgVD/CB2v9/fSUP8P9//38AAA/wlssAAGg0D/CEjBMChIwTAoSMEwKEjBMCxpC4BsaQuAbGkLgGxpC4BpKXIQ6SlyEOkpchDpKXIQ4mraklJq2pJSatqSUmraklqaXX0qml19KppdfSqaXX0iGOa+ghjmvoIY5r6CGOa+g4b0b5OG9G+ThvRvk4b0b5t4Y377eGN++3hjfvt4Y37xOCefMTgnnzE4J58xOCefN6c+v9enPr/Xpz6/16c+v9bGjd8Wxo3fFsaN3xbGjd8dhSVdrYUlXa2FJV2thSVdpVWictVVonLVVaJy1VWict3XGTF91xkxfdcZMX3XGTF0d5xxBHeccQR3nHEEd5xxDrfYUM632FDOt9hQzrfYUM")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_bhy8k")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7shjf"]
 _surfaces = [{
@@ -603,13 +589,14 @@ material = SubResource("StandardMaterial3D_mb44e")
 radial_segments = 4
 rings = 2
 
-[node name="Jugador" type="CharacterBody3D" unique_id=1492616832 node_paths=PackedStringArray("hitbox", "daño_cd", "espada_cd", "hitbox_espada", "hitbox_espadas_cercanos", "espada_animacion", "animaciones", "escudo_forma", "escudo_cd", "escudo_posicion", "animacion_escudo", "punto_proyectil", "hitbox_proyectil", "nodo_torreta") groups=["jugador"]]
+[node name="Jugador" type="CharacterBody3D" unique_id=1492616832 node_paths=PackedStringArray("hitbox", "daño_cd", "desajuste_camara", "espada_cd", "hitbox_espada", "hitbox_espadas_cercanos", "espada_animacion", "animaciones", "escudo_forma", "escudo_cd", "escudo_posicion", "animacion_escudo", "punto_proyectil", "hitbox_proyectil", "nodo_torreta") groups=["jugador"]]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_5ydob")
 velocidad = 4.0
 hitbox = NodePath("Hitbox")
 "daño_cd" = NodePath("DañoCD")
+desajuste_camara = NodePath("DesajusteCamara")
 puede_espadear = true
 espada_cd = NodePath("EspadaCD")
 hitbox_espada = NodePath("HitboxEspada")

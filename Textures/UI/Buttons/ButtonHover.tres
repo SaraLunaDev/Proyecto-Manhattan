@@ -3,5 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://d2ykbo1ml0q3t" path="res://Textures/UI/Buttons/ButtonHover.png" id="1_7jrh6"]
 
 [resource]
+content_margin_top = 50.0
+content_margin_bottom = 10.0
 texture = ExtResource("1_7jrh6")
 region_rect = Rect2(0, 141.511, 576.02, 200.582)

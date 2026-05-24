@@ -1,14 +1,19 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://b03xda4iyk7w1"]
 
-[ext_resource type="Shader" uid="uid://dc2wpbq655tq6" path="res://Shaders/water.gdshader" id="1_7u5yi"]
-[ext_resource type="Texture2D" uid="uid://dfwe8pwjigha6" path="res://Textures/file.jpg" id="2_1eskk"]
+[ext_resource type="Shader" uid="uid://d1k7gwgybxs74" path="res://Shaders/agua_wapa.gdshader" id="1_7u5yi"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_7u5yi")
-shader_parameter/iChannel0 = ExtResource("2_1eskk")
-shader_parameter/water_color = Color(0.88553435, 1.1351439, 0.88553435, 1)
-shader_parameter/water_direction = Vector2(1, 0.5)
-shader_parameter/speed1 = 0.05
-shader_parameter/speed2 = 0.01
-shader_parameter/metalicValue = 0.5
+shader_parameter/color_1 = Color(0.5882353, 0.9843137, 0.78039217, 1)
+shader_parameter/color_2 = Color(0.96862745, 1, 0.68235296, 1)
+shader_parameter/color_3 = Color(1, 0.7019608, 0.79607844, 1)
+shader_parameter/color_4 = Color(0.84705883, 0.7490196, 0.84705883, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/scale = 4.0
+shader_parameter/speed = 0.1
+shader_parameter/distortion = 3.635
+shader_parameter/wave_height = 0.0
+shader_parameter/wave_speed = 2.0
+shader_parameter/wave_frequency = 0.0

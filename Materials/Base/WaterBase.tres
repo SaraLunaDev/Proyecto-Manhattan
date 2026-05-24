@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bmr2ypjxjpkba"]
+
+[ext_resource type="Shader" uid="uid://d1k7gwgybxs74" path="res://Shaders/agua_wapa.gdshader" id="1_mp20v"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_mp20v")
+shader_parameter/color_1 = Color(0.5882353, 0.9843137, 0.78039217, 1)
+shader_parameter/color_2 = Color(0.96862745, 1, 0.68235296, 1)
+shader_parameter/color_3 = Color(1, 0.7019608, 0.79607844, 1)
+shader_parameter/color_4 = Color(0.84705883, 0.7490196, 0.84705883, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/scale = 4.0
+shader_parameter/speed = 0.1
+shader_parameter/distortion = 3.635
+shader_parameter/wave_height = 0.0
+shader_parameter/wave_speed = 2.0
+shader_parameter/wave_frequency = 0.0

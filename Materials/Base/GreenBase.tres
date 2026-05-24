@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cs1exvdpf0ds0"]
+
+[ext_resource type="Shader" uid="uid://dvxjmshm5h4k4" path="res://Shaders/metalGreen.gdshader" id="1_jl3jx"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jl3jx")
+shader_parameter/metal_color = Vector3(0.588, 0.984, 0.78)
+shader_parameter/roughness = 0.0
+shader_parameter/metallic = 0.0

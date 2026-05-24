@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Poyecto Manhattan"
-run/main_scene="uid://hf208faeks6q"
+run/main_scene="uid://gx5j5xd2wvao"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -22,11 +22,13 @@ buses/default_bus_layout="uid://bl0hkpvprnnwa"
 [autoload]
 
 AudioManager="*uid://cjoa61mnstruh"
+Transicion="*uid://c8t7msovsq4nx"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
@@ -36,6 +38,7 @@ jugador=""
 enemigo=""
 proyectil=""
 gamemanager=""
+vida_jugador_barra=""
 
 [input]
 
@@ -71,6 +74,10 @@ derecha={
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":1.0,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://Traducciones/traducciones.en.translation", "res://Traducciones/traducciones.es.translation")
 
 [layer_names]
 

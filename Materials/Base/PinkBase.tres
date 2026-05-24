@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dfv2rou06ufq7"]
+
+[ext_resource type="Shader" uid="uid://gbvpaiojnsos" path="res://Shaders/metalPink.gdshader" id="1_6xe5d"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_6xe5d")
+shader_parameter/metal_color = Vector3(1, 0.702, 0.796)
+shader_parameter/roughness = 0.0
+shader_parameter/metallic = 0.0
