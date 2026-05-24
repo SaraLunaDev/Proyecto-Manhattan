@@ -212,6 +212,7 @@ func morir() -> void:
 	# Daño en area cuando muera
 	explotar_escudo()
 	ejecutar_animacion("muerto")
+	AudioManager.pausar_narracion()
 	await get_tree().create_timer(6).timeout
 	# Tras un tiempo resetear la escena
 	await Transicion.alpha_a_negro()

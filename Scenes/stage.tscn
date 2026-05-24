@@ -25,7 +25,9 @@
 [ext_resource type="FontFile" uid="uid://236eli2bxj5c" path="res://Fonts/OldeTome.ttf" id="19_x7hf8"]
 [ext_resource type="Texture2D" uid="uid://dn7xbqtiyyy2e" path="res://Textures/UI/Cards/GREEN/greenCard0002.png" id="20_gkqb8"]
 [ext_resource type="Script" uid="uid://daupqpdjyaohk" path="res://Scripts/texture_rect_animated.gd" id="20_maxbf"]
+[ext_resource type="FontFile" uid="uid://ck4y6ylhmjdop" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="21_70e0u"]
 [ext_resource type="Texture2D" uid="uid://bkqo437tqxq3r" path="res://Textures/UI/Cards/GREEN/greenCard0003.png" id="21_x7hf8"]
+[ext_resource type="FontFile" uid="uid://cj378y44qfnqx" path="res://Fonts/Silver.ttf" id="22_2u5bg"]
 [ext_resource type="StyleBox" uid="uid://cju0mr07m5i2i" path="res://Textures/UI/Buttons/ButtonNormal.tres" id="22_4l23a"]
 [ext_resource type="Texture2D" uid="uid://dqljyyhc6bus" path="res://Textures/UI/Cards/GREEN/greenCard0004.png" id="22_d4rnu"]
 [ext_resource type="Texture2D" uid="uid://db0gsjihw0ii1" path="res://Textures/UI/Cards/distanceHead.webp" id="22_gfj5q"]
@@ -303,6 +305,23 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.0
 shader_parameter/vignette_opacity = 0.0
 
+[sub_resource type="FontVariation" id="FontVariation_fxu2l"]
+fallbacks = Array[Font]([ExtResource("22_2u5bg"), ExtResource("21_70e0u")])
+base_font = ExtResource("19_x7hf8")
+
+[sub_resource type="LabelSettings" id="LabelSettings_p5qyf"]
+font_size = 46
+font_color = Color(0.84313726, 0.84313726, 0.84313726, 1)
+outline_size = 10
+outline_color = Color(0.056291588, 0.056291603, 0.056291595, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_70e0u"]
+font = ExtResource("19_x7hf8")
+font_size = 65
+font_color = Color(0.8431839, 0.8431839, 0.84318376, 1)
+outline_size = 12
+outline_color = Color(0.05490196, 0.05490196, 0.05490196, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkqb8"]
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -320,15 +339,13 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_gkqb8"]
-font = ExtResource("19_x7hf8")
 font_size = 50
 font_color = Color(0.26666668, 0.4745098, 0.44705883, 1)
 outline_size = 8
 outline_color = Color(0.6039216, 0.6745098, 0.64705884, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_x7hf8"]
-font = ExtResource("19_x7hf8")
-font_size = 29
+font_size = 32
 font_color = Color(0.86898494, 0.8689849, 0.8689849, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkkum"]
@@ -348,7 +365,6 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_3ltpe"]
-font = ExtResource("19_x7hf8")
 font_size = 50
 font_color = Color(0.5476778, 0.5281511, 0.29737356, 1)
 outline_size = 8
@@ -371,7 +387,6 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_wtasu"]
-font = ExtResource("19_x7hf8")
 font_size = 50
 font_color = Color(0.5968771, 0.3476914, 0.37188774, 1)
 outline_size = 8
@@ -394,7 +409,6 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 10
 
 [sub_resource type="LabelSettings" id="LabelSettings_dig2d"]
-font = ExtResource("19_x7hf8")
 font_size = 50
 font_color = Color(0.5249929, 0.3532047, 0.5793847, 1)
 outline_size = 8
@@ -669,6 +683,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Subtitulos" type="CanvasLayer" parent="." unique_id=670091369]
+
+[node name="MarginContainer" type="MarginContainer" parent="Subtitulos" unique_id=1061519216]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 100
+
+[node name="Subtitulo" type="Label" parent="Subtitulos/MarginContainer" unique_id=789634786 groups=["subtitulos_label"]]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_fonts/font = SubResource("FontVariation_fxu2l")
+label_settings = SubResource("LabelSettings_p5qyf")
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
 [node name="Seleccion" type="CanvasLayer" parent="." unique_id=1638595993]
 visible = false
 
@@ -680,27 +717,43 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 120
 
-[node name="Verde" type="HBoxContainer" parent="Seleccion/MarginContainer2" unique_id=1407353128]
+[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2" unique_id=1532555675]
 layout_mode = 2
+theme_override_constants/separation = -100
+alignment = 1
+
+[node name="Label" type="Label" parent="Seleccion/MarginContainer2/VBoxContainer" unique_id=1357242182]
+layout_mode = 2
+text = "DELETE_COLOR"
+label_settings = SubResource("LabelSettings_70e0u")
+horizontal_alignment = 1
+
+[node name="Verde" type="HBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer" unique_id=1407353128]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_constants/separation = 60
 alignment = 1
 
-[node name="Verde" type="VBoxContainer" parent="Seleccion/MarginContainer2/Verde" unique_id=1828024551]
+[node name="Verde" type="VBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde" unique_id=1828024551]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = -695
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/Verde/Verde" unique_id=2124008298]
+[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Verde" unique_id=2124008298]
 layout_mode = 2
 theme_override_constants/separation = -20
 
-[node name="Panel" type="Panel" parent="Seleccion/MarginContainer2/Verde/Verde/VBoxContainer" unique_id=1183925626]
+[node name="Panel" type="Panel" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Verde/VBoxContainer" unique_id=1183925626]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gkqb8")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/Verde/Verde/VBoxContainer/Panel" unique_id=1335192144]
+[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Verde/VBoxContainer/Panel" unique_id=1335192144]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -708,7 +761,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Seleccion/MarginContainer2/Verde/Verde/VBoxContainer/Panel/VBoxContainer" unique_id=1936542756]
+[node name="MarginContainer" type="MarginContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Verde/VBoxContainer/Panel/VBoxContainer" unique_id=1936542756]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 20
@@ -716,63 +769,65 @@ theme_override_constants/margin_top = 38
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/Verde/Verde/VBoxContainer/Panel/VBoxContainer/MarginContainer" unique_id=1587350098]
+[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Verde/VBoxContainer/Panel/VBoxContainer/MarginContainer" unique_id=1587350098]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Seleccion/MarginContainer2/Verde/Verde/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=747971067]
+[node name="Label" type="Label" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Verde/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=747971067]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_fxu2l")
 text = "GREEN"
 label_settings = SubResource("LabelSettings_gkqb8")
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="Seleccion/MarginContainer2/Verde/Verde/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1021924030]
+[node name="Label2" type="Label" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Verde/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1021924030]
 custom_minimum_size = Vector2(10, 95.005)
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_fxu2l")
 text = "GREEN_TEXT"
 label_settings = SubResource("LabelSettings_x7hf8")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Seleccion/MarginContainer2/Verde/Verde/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1325010091]
+[node name="HBoxContainer" type="HBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Verde/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1325010091]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Arma" type="TextureRect" parent="Seleccion/MarginContainer2/Verde/Verde/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=638823367]
+[node name="Arma" type="TextureRect" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Verde/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=638823367]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 texture = ExtResource("22_r0npb")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Enemigo" type="TextureRect" parent="Seleccion/MarginContainer2/Verde/Verde/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1959459258]
+[node name="Enemigo" type="TextureRect" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Verde/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1959459258]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 texture = ExtResource("22_gfj5q")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Entorno" type="TextureRect" parent="Seleccion/MarginContainer2/Verde/Verde/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=889110160]
+[node name="Entorno" type="TextureRect" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Verde/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=889110160]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 texture = ExtResource("23_opq6v")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Verde" type="Button" parent="Seleccion/MarginContainer2/Verde/Verde/VBoxContainer" unique_id=745997554]
+[node name="Verde" type="Button" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Verde/VBoxContainer" unique_id=745997554]
 modulate = Color(0.67785144, 0.90072787, 0.8191073, 1)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.5529558, 0.5529555, 0.55295557, 1)
 theme_override_constants/outline_size = 20
-theme_override_fonts/font = ExtResource("19_x7hf8")
+theme_override_fonts/font = SubResource("FontVariation_fxu2l")
 theme_override_font_sizes/font_size = 38
 theme_override_styles/normal = ExtResource("22_4l23a")
 theme_override_styles/pressed = ExtResource("23_3kf7h")
 theme_override_styles/hover = ExtResource("24_gf7bs")
 text = "CHOOSE"
 
-[node name="TextureRect" type="TextureRect" parent="Seleccion/MarginContainer2/Verde/Verde" unique_id=1492487294]
+[node name="TextureRect" type="TextureRect" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Verde" unique_id=1492487294]
 custom_minimum_size = Vector2(300, 400)
 layout_mode = 2
 texture = ExtResource("19_gevum")
@@ -781,21 +836,21 @@ stretch_mode = 5
 script = ExtResource("20_maxbf")
 imagenes = Array[Texture]([ExtResource("19_gevum"), ExtResource("20_gkqb8"), ExtResource("21_x7hf8"), ExtResource("22_d4rnu"), ExtResource("23_dsva2"), ExtResource("24_4l23a"), ExtResource("25_3kf7h"), ExtResource("26_gf7bs"), ExtResource("27_y7v7m"), ExtResource("28_o6t4l"), ExtResource("29_wnb33"), ExtResource("30_qnadg"), ExtResource("31_f4h2u"), ExtResource("32_icefw"), ExtResource("33_yeudi"), ExtResource("34_m3p8k"), ExtResource("35_hlrle"), ExtResource("36_rti8s"), ExtResource("37_jhof5"), ExtResource("38_mmnbs"), ExtResource("39_x1wya"), ExtResource("40_illkx"), ExtResource("41_h1rkg"), ExtResource("42_xqjpe"), ExtResource("43_8c67h"), ExtResource("44_1usat"), ExtResource("45_yvjxw"), ExtResource("46_r1wpj"), ExtResource("47_4ds87"), ExtResource("48_bapah"), ExtResource("49_ddnaa"), ExtResource("50_qg8ij"), ExtResource("51_14j6n"), ExtResource("52_ukaag"), ExtResource("53_pwv1a"), ExtResource("54_f16m4"), ExtResource("55_3v7ld"), ExtResource("56_7vs4p"), ExtResource("57_r8xhw"), ExtResource("58_1at6h"), ExtResource("59_oxj80"), ExtResource("60_486k6"), ExtResource("61_buvpn"), ExtResource("62_33pa6"), ExtResource("63_ipl3t"), ExtResource("64_o0qvi"), ExtResource("65_3piro")])
 
-[node name="Amarillo" type="VBoxContainer" parent="Seleccion/MarginContainer2/Verde" unique_id=2116593838]
+[node name="Amarillo" type="VBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde" unique_id=2116593838]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = -695
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/Verde/Amarillo" unique_id=1293032382]
+[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Amarillo" unique_id=1293032382]
 layout_mode = 2
 theme_override_constants/separation = -20
 
-[node name="Panel" type="Panel" parent="Seleccion/MarginContainer2/Verde/Amarillo/VBoxContainer" unique_id=1355544335]
+[node name="Panel" type="Panel" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Amarillo/VBoxContainer" unique_id=1355544335]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_vkkum")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/Verde/Amarillo/VBoxContainer/Panel" unique_id=652203494]
+[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Amarillo/VBoxContainer/Panel" unique_id=652203494]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -803,7 +858,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Seleccion/MarginContainer2/Verde/Amarillo/VBoxContainer/Panel/VBoxContainer" unique_id=1482430111]
+[node name="MarginContainer" type="MarginContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Amarillo/VBoxContainer/Panel/VBoxContainer" unique_id=1482430111]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 20
@@ -811,63 +866,65 @@ theme_override_constants/margin_top = 38
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/Verde/Amarillo/VBoxContainer/Panel/VBoxContainer/MarginContainer" unique_id=121668550]
+[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Amarillo/VBoxContainer/Panel/VBoxContainer/MarginContainer" unique_id=121668550]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Seleccion/MarginContainer2/Verde/Amarillo/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1133653606]
+[node name="Label" type="Label" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Amarillo/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1133653606]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_fxu2l")
 text = "YELLOW"
 label_settings = SubResource("LabelSettings_3ltpe")
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="Seleccion/MarginContainer2/Verde/Amarillo/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=276377138]
+[node name="Label2" type="Label" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Amarillo/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=276377138]
 custom_minimum_size = Vector2(10, 95.005)
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_fxu2l")
 text = "YELLOW_TEXT"
 label_settings = SubResource("LabelSettings_x7hf8")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Seleccion/MarginContainer2/Verde/Amarillo/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=408161685]
+[node name="HBoxContainer" type="HBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Amarillo/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=408161685]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Arma" type="TextureRect" parent="Seleccion/MarginContainer2/Verde/Amarillo/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1574575754]
+[node name="Arma" type="TextureRect" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Amarillo/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1574575754]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 texture = ExtResource("76_1uem3")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Enemigo" type="TextureRect" parent="Seleccion/MarginContainer2/Verde/Amarillo/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1862861506]
+[node name="Enemigo" type="TextureRect" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Amarillo/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1862861506]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 texture = ExtResource("77_8t184")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Entorno" type="TextureRect" parent="Seleccion/MarginContainer2/Verde/Amarillo/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=623407440]
+[node name="Entorno" type="TextureRect" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Amarillo/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=623407440]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 texture = ExtResource("78_bem2h")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Amarillo" type="Button" parent="Seleccion/MarginContainer2/Verde/Amarillo/VBoxContainer" unique_id=123021698]
+[node name="Amarillo" type="Button" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Amarillo/VBoxContainer" unique_id=123021698]
 modulate = Color(0.9238397, 0.9162351, 0.75426805, 1)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.5529558, 0.5529555, 0.55295557, 1)
 theme_override_constants/outline_size = 20
-theme_override_fonts/font = ExtResource("19_x7hf8")
+theme_override_fonts/font = SubResource("FontVariation_fxu2l")
 theme_override_font_sizes/font_size = 38
 theme_override_styles/normal = ExtResource("22_4l23a")
 theme_override_styles/pressed = ExtResource("23_3kf7h")
 theme_override_styles/hover = ExtResource("24_gf7bs")
 text = "CHOOSE"
 
-[node name="TextureRect" type="TextureRect" parent="Seleccion/MarginContainer2/Verde/Amarillo" unique_id=685894523]
+[node name="TextureRect" type="TextureRect" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Amarillo" unique_id=685894523]
 custom_minimum_size = Vector2(300, 400)
 layout_mode = 2
 texture = ExtResource("75_epaff")
@@ -876,21 +933,21 @@ stretch_mode = 5
 script = ExtResource("20_maxbf")
 imagenes = Array[Texture]([ExtResource("75_epaff"), ExtResource("76_y7wju"), ExtResource("77_r0npb"), ExtResource("78_1uem3"), ExtResource("79_8t184"), ExtResource("80_bem2h"), ExtResource("81_vkkum"), ExtResource("82_vsa6u"), ExtResource("83_uuf7d"), ExtResource("84_iercx"), ExtResource("85_ctqsn"), ExtResource("86_4e84j"), ExtResource("87_qiheg"), ExtResource("88_xnge5"), ExtResource("89_tm325"), ExtResource("90_ayi8r"), ExtResource("91_wjrlr"), ExtResource("92_f4gg6"), ExtResource("93_yh6uo"), ExtResource("94_hxkix"), ExtResource("95_h24by"), ExtResource("96_mov5a"), ExtResource("97_w3t1b"), ExtResource("98_8b75y"), ExtResource("99_mtpo5"), ExtResource("100_3boxa"), ExtResource("101_041kb"), ExtResource("102_q1c88"), ExtResource("103_t0ljp"), ExtResource("104_lhlfq"), ExtResource("105_n48ay"), ExtResource("106_holcb"), ExtResource("107_a2b1j"), ExtResource("108_ikaje"), ExtResource("109_580mf"), ExtResource("110_pdxr4"), ExtResource("111_60f1e"), ExtResource("112_pn43l"), ExtResource("113_i6am8"), ExtResource("114_acgag"), ExtResource("115_onfx5"), ExtResource("116_6p1ul"), ExtResource("117_evrj7"), ExtResource("118_dx6uh"), ExtResource("119_whsrg"), ExtResource("120_3r6u3"), ExtResource("121_pk0qq")])
 
-[node name="Rosa" type="VBoxContainer" parent="Seleccion/MarginContainer2/Verde" unique_id=510013669]
+[node name="Rosa" type="VBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde" unique_id=510013669]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = -695
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/Verde/Rosa" unique_id=817207693]
+[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Rosa" unique_id=817207693]
 layout_mode = 2
 theme_override_constants/separation = -20
 
-[node name="Panel" type="Panel" parent="Seleccion/MarginContainer2/Verde/Rosa/VBoxContainer" unique_id=1700188788]
+[node name="Panel" type="Panel" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Rosa/VBoxContainer" unique_id=1700188788]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_agq12")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/Verde/Rosa/VBoxContainer/Panel" unique_id=1045690731]
+[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Rosa/VBoxContainer/Panel" unique_id=1045690731]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -898,7 +955,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Seleccion/MarginContainer2/Verde/Rosa/VBoxContainer/Panel/VBoxContainer" unique_id=966446260]
+[node name="MarginContainer" type="MarginContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Rosa/VBoxContainer/Panel/VBoxContainer" unique_id=966446260]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 20
@@ -906,63 +963,65 @@ theme_override_constants/margin_top = 38
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/Verde/Rosa/VBoxContainer/Panel/VBoxContainer/MarginContainer" unique_id=269053626]
+[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Rosa/VBoxContainer/Panel/VBoxContainer/MarginContainer" unique_id=269053626]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Seleccion/MarginContainer2/Verde/Rosa/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=359009339]
+[node name="Label" type="Label" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Rosa/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=359009339]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_fxu2l")
 text = "PINK"
 label_settings = SubResource("LabelSettings_wtasu")
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="Seleccion/MarginContainer2/Verde/Rosa/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=425411399]
+[node name="Label2" type="Label" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Rosa/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=425411399]
 custom_minimum_size = Vector2(10, 95.005)
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_fxu2l")
 text = "PINK_TEXT"
 label_settings = SubResource("LabelSettings_x7hf8")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Seleccion/MarginContainer2/Verde/Rosa/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1012492273]
+[node name="HBoxContainer" type="HBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Rosa/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1012492273]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Arma" type="TextureRect" parent="Seleccion/MarginContainer2/Verde/Rosa/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=394361880]
+[node name="Arma" type="TextureRect" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Rosa/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=394361880]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 texture = ExtResource("126_wtasu")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Enemigo" type="TextureRect" parent="Seleccion/MarginContainer2/Verde/Rosa/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=647434397]
+[node name="Enemigo" type="TextureRect" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Rosa/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=647434397]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 texture = ExtResource("127_dig2d")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Entorno" type="TextureRect" parent="Seleccion/MarginContainer2/Verde/Rosa/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1845445914]
+[node name="Entorno" type="TextureRect" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Rosa/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1845445914]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 texture = ExtResource("128_04mx7")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Rosa" type="Button" parent="Seleccion/MarginContainer2/Verde/Rosa/VBoxContainer" unique_id=2089785881]
+[node name="Rosa" type="Button" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Rosa/VBoxContainer" unique_id=2089785881]
 modulate = Color(0.89242977, 0.69897467, 0.7440154, 1)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.5529558, 0.5529555, 0.55295557, 1)
 theme_override_constants/outline_size = 20
-theme_override_fonts/font = ExtResource("19_x7hf8")
+theme_override_fonts/font = SubResource("FontVariation_fxu2l")
 theme_override_font_sizes/font_size = 38
 theme_override_styles/normal = ExtResource("22_4l23a")
 theme_override_styles/pressed = ExtResource("23_3kf7h")
 theme_override_styles/hover = ExtResource("24_gf7bs")
 text = "CHOOSE"
 
-[node name="TextureRect" type="TextureRect" parent="Seleccion/MarginContainer2/Verde/Rosa" unique_id=1484196288]
+[node name="TextureRect" type="TextureRect" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Rosa" unique_id=1484196288]
 custom_minimum_size = Vector2(300, 400)
 layout_mode = 2
 texture = ExtResource("126_1c87u")
@@ -971,21 +1030,21 @@ stretch_mode = 5
 script = ExtResource("20_maxbf")
 imagenes = Array[Texture]([ExtResource("126_1c87u"), ExtResource("127_2fe4g"), ExtResource("128_hvxbd"), ExtResource("129_wtasu"), ExtResource("130_dig2d"), ExtResource("131_04mx7"), ExtResource("132_agq12"), ExtResource("133_7qdv3"), ExtResource("134_vhqv4"), ExtResource("135_3x6ou"), ExtResource("136_cxika"), ExtResource("137_sdaeh"), ExtResource("138_aghnk"), ExtResource("139_aqruw"), ExtResource("140_m20xp"), ExtResource("141_y27oi"), ExtResource("142_ks2fe"), ExtResource("143_54hs0"), ExtResource("144_36jju"), ExtResource("145_hh52b"), ExtResource("146_dh8b1"), ExtResource("147_oi1pl"), ExtResource("148_anayi"), ExtResource("149_efxei"), ExtResource("150_yyhbi"), ExtResource("151_hf2sd"), ExtResource("152_xqr0n"), ExtResource("153_oxy5w"), ExtResource("154_go133"), ExtResource("155_oxuur"), ExtResource("156_asbv5"), ExtResource("157_t6gt4"), ExtResource("158_a5db2"), ExtResource("159_rplyy"), ExtResource("160_edd7n"), ExtResource("161_7vh3t"), ExtResource("162_3eqai"), ExtResource("163_4ltwh"), ExtResource("164_lvjc1"), ExtResource("165_tpi2o"), ExtResource("166_k0kpd"), ExtResource("167_c08d5"), ExtResource("168_ckaqt"), ExtResource("169_c8i83"), ExtResource("170_ytiea"), ExtResource("171_4n1bi"), ExtResource("172_eqnyc")])
 
-[node name="Violeta" type="VBoxContainer" parent="Seleccion/MarginContainer2/Verde" unique_id=575298866]
+[node name="Violeta" type="VBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde" unique_id=575298866]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = -695
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/Verde/Violeta" unique_id=95155128]
+[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Violeta" unique_id=95155128]
 layout_mode = 2
 theme_override_constants/separation = -20
 
-[node name="Panel" type="Panel" parent="Seleccion/MarginContainer2/Verde/Violeta/VBoxContainer" unique_id=1166142537]
+[node name="Panel" type="Panel" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Violeta/VBoxContainer" unique_id=1166142537]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_wtasu")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/Verde/Violeta/VBoxContainer/Panel" unique_id=619871064]
+[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Violeta/VBoxContainer/Panel" unique_id=619871064]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -993,7 +1052,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Seleccion/MarginContainer2/Verde/Violeta/VBoxContainer/Panel/VBoxContainer" unique_id=1096756455]
+[node name="MarginContainer" type="MarginContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Violeta/VBoxContainer/Panel/VBoxContainer" unique_id=1096756455]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 20
@@ -1001,63 +1060,65 @@ theme_override_constants/margin_top = 38
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/Verde/Violeta/VBoxContainer/Panel/VBoxContainer/MarginContainer" unique_id=1309253090]
+[node name="VBoxContainer" type="VBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Violeta/VBoxContainer/Panel/VBoxContainer/MarginContainer" unique_id=1309253090]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Seleccion/MarginContainer2/Verde/Violeta/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=2024031124]
+[node name="Label" type="Label" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Violeta/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=2024031124]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_fxu2l")
 text = "VIOLET"
 label_settings = SubResource("LabelSettings_dig2d")
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="Seleccion/MarginContainer2/Verde/Violeta/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=907004755]
+[node name="Label2" type="Label" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Violeta/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=907004755]
 custom_minimum_size = Vector2(10, 95.005)
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_fxu2l")
 text = "VIOLET_TEXT"
 label_settings = SubResource("LabelSettings_x7hf8")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Seleccion/MarginContainer2/Verde/Violeta/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=955642272]
+[node name="HBoxContainer" type="HBoxContainer" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Violeta/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer" unique_id=955642272]
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 1
 
-[node name="Arma" type="TextureRect" parent="Seleccion/MarginContainer2/Verde/Violeta/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=562252201]
+[node name="Arma" type="TextureRect" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Violeta/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=562252201]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 texture = ExtResource("176_p5qyf")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Enemigo" type="TextureRect" parent="Seleccion/MarginContainer2/Verde/Violeta/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1347720839]
+[node name="Enemigo" type="TextureRect" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Violeta/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1347720839]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 texture = ExtResource("177_70e0u")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Entorno" type="TextureRect" parent="Seleccion/MarginContainer2/Verde/Violeta/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=140214040]
+[node name="Entorno" type="TextureRect" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Violeta/VBoxContainer/Panel/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=140214040]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 texture = ExtResource("178_2u5bg")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Violeta" type="Button" parent="Seleccion/MarginContainer2/Verde/Violeta/VBoxContainer" unique_id=1974431583]
+[node name="Violeta" type="Button" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Violeta/VBoxContainer" unique_id=1974431583]
 modulate = Color(0.86134255, 0.83048886, 0.9999992, 1)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.5529558, 0.5529555, 0.55295557, 1)
 theme_override_constants/outline_size = 20
-theme_override_fonts/font = ExtResource("19_x7hf8")
+theme_override_fonts/font = SubResource("FontVariation_fxu2l")
 theme_override_font_sizes/font_size = 38
 theme_override_styles/normal = ExtResource("22_4l23a")
 theme_override_styles/pressed = ExtResource("23_3kf7h")
 theme_override_styles/hover = ExtResource("24_gf7bs")
 text = "CHOOSE"
 
-[node name="TextureRect" type="TextureRect" parent="Seleccion/MarginContainer2/Verde/Violeta" unique_id=1064409825]
+[node name="TextureRect" type="TextureRect" parent="Seleccion/MarginContainer2/VBoxContainer/Verde/Violeta" unique_id=1064409825]
 custom_minimum_size = Vector2(300, 400)
 layout_mode = 2
 texture = ExtResource("176_b0ffi")
@@ -1102,10 +1163,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6016307, 9.947956, -10.956
 
 [connection signal="timeout" from="SpawnManager/TemporizadorSpawn" to="SpawnManager" method="_on_temporizador_spawn_timeout"]
 [connection signal="finished" from="Videos/Opening" to="GameManager" method="_on_opening_finished"]
-[connection signal="pressed" from="Seleccion/MarginContainer2/Verde/Verde/VBoxContainer/Verde" to="GameManager" method="_on_verde_pressed"]
-[connection signal="pressed" from="Seleccion/MarginContainer2/Verde/Amarillo/VBoxContainer/Amarillo" to="GameManager" method="_on_amarillo_pressed"]
-[connection signal="pressed" from="Seleccion/MarginContainer2/Verde/Rosa/VBoxContainer/Rosa" to="GameManager" method="_on_rosa_pressed"]
-[connection signal="pressed" from="Seleccion/MarginContainer2/Verde/Violeta/VBoxContainer/Violeta" to="GameManager" method="_on_violeta_pressed"]
+[connection signal="pressed" from="Seleccion/MarginContainer2/VBoxContainer/Verde/Verde/VBoxContainer/Verde" to="GameManager" method="_on_verde_pressed"]
+[connection signal="pressed" from="Seleccion/MarginContainer2/VBoxContainer/Verde/Amarillo/VBoxContainer/Amarillo" to="GameManager" method="_on_amarillo_pressed"]
+[connection signal="pressed" from="Seleccion/MarginContainer2/VBoxContainer/Verde/Rosa/VBoxContainer/Rosa" to="GameManager" method="_on_rosa_pressed"]
+[connection signal="pressed" from="Seleccion/MarginContainer2/VBoxContainer/Verde/Violeta/VBoxContainer/Violeta" to="GameManager" method="_on_violeta_pressed"]
 
 [editable path="Stage"]
 [editable path="Stage/Stage2"]

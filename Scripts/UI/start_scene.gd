@@ -4,9 +4,21 @@ extends Node3D
 @onready var options_layer: CanvasLayer = $OptionsLayer
 @onready var language_button: Button = $OptionsLayer/Control/VBoxContainer/LanguageButton
 const STAGE = preload("uid://hf208faeks6q")
+@onready var resource_preloader: ResourcePreloader = $ResourcePreloader
 
 
 func _ready() -> void:
+	for resource in resource_preloader.get_resource_list():
+		var particles = GPUParticles3D.new()
+		particles.process_material = resource_preloader.get_resource(resource)
+		particles.emitting = true
+		add_child(particles)
+	for resource in resource_preloader.get_resource_list():
+		var particles = GPUParticles3D.new()
+		particles.process_material = resource_preloader.get_resource(resource)
+		particles.emitting = true
+		add_child(particles)
+	await get_tree().create_timer(2).timeout
 	Transicion.negro_a_alpha()
 	AudioManager.reproducir_musica("SILENCIO")
 
@@ -42,10 +54,19 @@ func _on_narration_slider_value_changed(value: float) -> void:
 
 func _on_language_button_pressed() -> void:
 	var idioma_actual = TranslationServer.get_locale()
-	if idioma_actual == "es":
-		TranslationServer.set_locale("en")
-	else:
-		TranslationServer.set_locale("es")
+	match idioma_actual:
+		"es":
+			TranslationServer.set_locale("en")
+		"en":
+			TranslationServer.set_locale("cat")
+		"cat":
+			TranslationServer.set_locale("ro")
+		"ro":
+			TranslationServer.set_locale("lt")
+		"lt":
+			TranslationServer.set_locale("es")
+		_:
+			TranslationServer.set_locale("en")
 
 
 func _on_return_button_pressed() -> void:

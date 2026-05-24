@@ -11,7 +11,10 @@
 [ext_resource type="Material" uid="uid://c1ar0spnk5ljl" path="res://Materials/Purple.tres" id="6_x1a6r"]
 [ext_resource type="Material" uid="uid://ctaqk57hbgkrs" path="res://Materials/Pink.tres" id="7_oua2g"]
 [ext_resource type="Material" uid="uid://bmc1f4u4yiru7" path="res://Materials/Violet.tres" id="8_mb44e"]
-[ext_resource type="Shader" uid="uid://c4ki8ufcnqurf" path="res://Shaders/spinRotation.gdshader" id="13_aknpy"]
+[ext_resource type="Material" uid="uid://c2pqlb8xeyxgt" path="res://Cache/new_shader_material4.tres" id="12_fr03m"]
+[ext_resource type="Material" uid="uid://cl84hwveabcad" path="res://Cache/new_shader_material.tres" id="13_1bknw"]
+[ext_resource type="Material" uid="uid://c28ohiuduwjfa" path="res://Cache/new_shader_material2.tres" id="14_1bknw"]
+[ext_resource type="Material" uid="uid://nq2fiemxwa41" path="res://Cache/new_shader_material3.tres" id="15_yy7ku"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_x1a6r"]
 resource_name = "playerGame_Cylinder_001"
@@ -390,14 +393,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_scmwm")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bknw"]
-render_priority = 0
-shader = ExtResource("13_aknpy")
-shader_parameter/color = Vector3(0, 0, 0)
-shader_parameter/alpha = 0.5
-shader_parameter/emission = Color(1, 1, 1, 1)
-shader_parameter/spin_color = Color(1, 1, 1, 1)
-
 [sub_resource type="Animation" id="Animation_fr03m"]
 length = 0.001
 tracks/0/type = "value"
@@ -483,72 +478,20 @@ _data = {
 &"girar_espada": SubResource("Animation_1bknw")
 }
 
-[sub_resource type="Curve" id="Curve_mb44e"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5345912, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_jk04m"]
-curve = SubResource("Curve_mb44e")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aknpy"]
-particle_flag_align_y = true
-spread = 180.0
-initial_velocity_min = 4.0
-initial_velocity_max = 6.0
-gravity = Vector3(0, -4.33, 0)
-scale_min = 0.5
-scale_max = 1.5
-scale_curve = SubResource("CurveTexture_jk04m")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akxwv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aknpy"]
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 2.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_1bknw"]
-material = SubResource("StandardMaterial3D_akxwv")
+material = SubResource("StandardMaterial3D_aknpy")
 top_radius = 0.1
 bottom_radius = 0.0
 height = 0.3
 radial_segments = 4
 rings = 1
 
-[sub_resource type="Gradient" id="Gradient_mb44e"]
-colors = PackedColorArray(0.74509805, 0.45490196, 0.5803922, 1, 1, 0.9607843, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_aknpy"]
-gradient = SubResource("Gradient_mb44e")
-
-[sub_resource type="Curve" id="Curve_1bknw"]
-_data = [Vector2(0, 0.8852458), 0.0, 0.0, 0, 0, Vector2(1, 0.2950819), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_fr03m"]
-curve = SubResource("Curve_1bknw")
-
-[sub_resource type="Curve" id="Curve_aknpy"]
-_data = [Vector2(0, 0.090163946), 0.0, 0.0, 0, 0, Vector2(0.31132075, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_1bknw"]
-curve = SubResource("Curve_aknpy")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mb44e"]
-particle_flag_align_y = true
-emission_shape = 1
-emission_sphere_radius = 1.0
-direction = Vector3(0, -1, 0)
-spread = 180.0
-initial_velocity_min = 6.0
-initial_velocity_max = 8.0
-gravity = Vector3(0, -10.72, 0)
-scale_min = 0.5
-scale_max = 1.5
-scale_curve = SubResource("CurveTexture_1bknw")
-color_ramp = SubResource("GradientTexture1D_aknpy")
-emission_curve = SubResource("CurveTexture_fr03m")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aknpy"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bnm2g"]
 transparency = 1
 albedo_color = Color(1, 1, 1, 0.6117647)
 emission_enabled = true
@@ -556,36 +499,15 @@ emission = Color(0.8472476, 0.21194315, 0.4945287, 1)
 emission_energy_multiplier = 2.0
 
 [sub_resource type="PrismMesh" id="PrismMesh_mb44e"]
-material = SubResource("StandardMaterial3D_aknpy")
+material = SubResource("StandardMaterial3D_bnm2g")
 size = Vector3(0.19, 0.91, 0.06)
 
-[sub_resource type="Curve" id="Curve_fr03m"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5849057, 0.1311475), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_yy7ku"]
-curve = SubResource("Curve_fr03m")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1bknw"]
-emission_shape = 1
-emission_sphere_radius = 1.0
-direction = Vector3(0, -1, 0)
-spread = 90.0
-initial_velocity_min = 3.0
-initial_velocity_max = 5.0
-gravity = Vector3(0, -3.495, 0)
-scale_min = 3.0
-scale_max = 4.0
-scale_curve = SubResource("CurveTexture_1bknw")
-color = Color(0.8751937, 0.41450813, 0.33885664, 1)
-alpha_curve = SubResource("CurveTexture_yy7ku")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mb44e"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2gsv"]
 transparency = 1
 vertex_color_use_as_albedo = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_aknpy"]
-material = SubResource("StandardMaterial3D_mb44e")
+material = SubResource("StandardMaterial3D_y2gsv")
 radial_segments = 4
 rings = 2
 
@@ -728,7 +650,7 @@ autoplay = &"IdleShoot"
 [node name="SwordTrail" type="MeshInstance3D" parent="." unique_id=1647912955]
 transform = Transform3D(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.0075321, 0)
 mesh = SubResource("ArrayMesh_gdqma")
-surface_material_override/0 = SubResource("ShaderMaterial_1bknw")
+surface_material_override/0 = ExtResource("12_fr03m")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SwordTrail" unique_id=1645637281]
 libraries/ = SubResource("AnimationLibrary_fr03m")
@@ -741,7 +663,7 @@ one_shot = true
 explosiveness = 1.0
 randomness = 1.0
 fixed_fps = 8
-process_material = SubResource("ParticleProcessMaterial_aknpy")
+process_material = ExtResource("13_1bknw")
 draw_pass_1 = SubResource("CylinderMesh_1bknw")
 
 [node name="ExplosionEscudo2" type="GPUParticles3D" parent="." unique_id=386913431]
@@ -751,7 +673,7 @@ amount = 24
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 18
-process_material = SubResource("ParticleProcessMaterial_mb44e")
+process_material = ExtResource("14_1bknw")
 draw_pass_1 = SubResource("PrismMesh_mb44e")
 
 [node name="ExplosionEscudo3" type="GPUParticles3D" parent="." unique_id=1613016137]
@@ -762,7 +684,7 @@ lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 18
-process_material = SubResource("ParticleProcessMaterial_1bknw")
+process_material = ExtResource("15_yy7ku")
 draw_pass_1 = SubResource("SphereMesh_aknpy")
 
 [node name="DesajusteCamara" type="Marker3D" parent="." unique_id=1517118434]

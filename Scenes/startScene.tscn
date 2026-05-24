@@ -12,10 +12,29 @@
 [ext_resource type="Material" uid="uid://r56ga15gj7rd" path="res://Materials/SkyBoxMat.tres" id="4_hesrg"]
 [ext_resource type="Material" uid="uid://3hvgrqv00cq3" path="res://Materials/Green.tres" id="5_ut3hf"]
 [ext_resource type="Material" uid="uid://ctaqk57hbgkrs" path="res://Materials/Pink.tres" id="6_hfcnf"]
+[ext_resource type="FontFile" uid="uid://cj378y44qfnqx" path="res://Fonts/Silver.ttf" id="6_nafw0"]
+[ext_resource type="FontFile" uid="uid://ck4y6ylhmjdop" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="7_c5ghm"]
 [ext_resource type="Material" uid="uid://c1ar0spnk5ljl" path="res://Materials/Purple.tres" id="7_mmkrm"]
 [ext_resource type="Material" uid="uid://bmc1f4u4yiru7" path="res://Materials/Violet.tres" id="8_j2xy8"]
 [ext_resource type="Material" uid="uid://b658hxgiehj5g" path="res://Materials/Yellow.tres" id="9_mpvma"]
 [ext_resource type="Material" uid="uid://b03xda4iyk7w1" path="res://Materials/Water.tres" id="10_c7dfy"]
+[ext_resource type="Material" uid="uid://cl84hwveabcad" path="res://Cache/new_shader_material.tres" id="17_dwnn7"]
+[ext_resource type="Material" uid="uid://c28ohiuduwjfa" path="res://Cache/new_shader_material2.tres" id="18_ayefu"]
+[ext_resource type="Material" uid="uid://nq2fiemxwa41" path="res://Cache/new_shader_material3.tres" id="19_q0rx2"]
+[ext_resource type="Material" uid="uid://c2pqlb8xeyxgt" path="res://Cache/new_shader_material4.tres" id="20_nafw0"]
+[ext_resource type="Material" uid="uid://db4v0cgxu32sq" path="res://Cache/new_shader_material5.tres" id="21_ayefu"]
+
+[sub_resource type="FontVariation" id="FontVariation_nafw0"]
+fallbacks = Array[Font]([ExtResource("6_nafw0"), ExtResource("7_c5ghm")])
+base_font = ExtResource("3_8lbci")
+
+[sub_resource type="FontVariation" id="FontVariation_c5ghm"]
+fallbacks = Array[Font]([ExtResource("6_nafw0"), ExtResource("7_c5ghm")])
+base_font = ExtResource("3_8lbci")
+
+[sub_resource type="FontVariation" id="FontVariation_026jm"]
+fallbacks = Array[Font]([ExtResource("6_nafw0"), ExtResource("7_c5ghm")])
+base_font = ExtResource("3_8lbci")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bsgrl"]
 shader = ExtResource("1_dlh0t")
@@ -191,25 +210,39 @@ visible = false
 
 [node name="Control" type="Control" parent="OptionsLayer" unique_id=763275864]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="OptionsLayer/Control" unique_id=452552575]
-layout_mode = 0
-offset_left = 224.175
-offset_top = 127.8
-offset_right = 1010.169
-offset_bottom = 949.8
+[node name="MarginContainer" type="MarginContainer" parent="OptionsLayer/Control" unique_id=2099393105]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -370.5
+offset_right = 717.0
+offset_bottom = 370.5
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsLayer/Control/MarginContainer" unique_id=452552575]
+layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/separation = 6
 
-[node name="Sounds" type="Label" parent="OptionsLayer/Control/VBoxContainer" unique_id=1530351593]
+[node name="Sounds" type="Label" parent="OptionsLayer/Control/MarginContainer/VBoxContainer" unique_id=1530351593]
+custom_minimum_size = Vector2(558.055, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_8lbci")
-theme_override_font_sizes/font_size = 120
+theme_override_fonts/font = SubResource("FontVariation_nafw0")
+theme_override_font_sizes/font_size = 95
 text = "SOUNDS"
 
-[node name="SoundSlider" type="HSlider" parent="OptionsLayer/Control/VBoxContainer" unique_id=1643229363]
+[node name="SoundSlider" type="HSlider" parent="OptionsLayer/Control/MarginContainer/VBoxContainer" unique_id=1643229363]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 min_value = -50.0
@@ -217,55 +250,56 @@ max_value = 0.0
 step = 4.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Music" type="Label" parent="OptionsLayer/Control/VBoxContainer" unique_id=128113547]
+[node name="Music" type="Label" parent="OptionsLayer/Control/MarginContainer/VBoxContainer" unique_id=128113547]
+custom_minimum_size = Vector2(558.055, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_8lbci")
-theme_override_font_sizes/font_size = 120
+theme_override_fonts/font = SubResource("FontVariation_nafw0")
+theme_override_font_sizes/font_size = 95
 text = "MUSIC"
 
-[node name="MusicSlider" type="HSlider" parent="OptionsLayer/Control/VBoxContainer" unique_id=1180800504]
+[node name="MusicSlider" type="HSlider" parent="OptionsLayer/Control/MarginContainer/VBoxContainer" unique_id=1180800504]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 min_value = -50.0
 max_value = 0.0
 step = 4.0
-value = -8.0
+value = -6.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Narration" type="Label" parent="OptionsLayer/Control/VBoxContainer" unique_id=192813606]
+[node name="Narration" type="Label" parent="OptionsLayer/Control/MarginContainer/VBoxContainer" unique_id=192813606]
+custom_minimum_size = Vector2(558.055, 0)
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_8lbci")
-theme_override_font_sizes/font_size = 120
+theme_override_fonts/font = SubResource("FontVariation_nafw0")
+theme_override_font_sizes/font_size = 95
 text = "NARRATION"
 
-[node name="NarrationSlider" type="HSlider" parent="OptionsLayer/Control/VBoxContainer" unique_id=641100927]
+[node name="NarrationSlider" type="HSlider" parent="OptionsLayer/Control/MarginContainer/VBoxContainer" unique_id=641100927]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 min_value = -50.0
 max_value = 0.0
 step = 4.0
-value = -4.0
 metadata/_edit_use_anchors_ = true
 
-[node name="LanguageButton" type="Button" parent="OptionsLayer/Control/VBoxContainer" unique_id=1460211234]
+[node name="LanguageButton" type="Button" parent="OptionsLayer/Control/MarginContainer/VBoxContainer" unique_id=1460211234]
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.5529558, 0.5529555, 0.55295557, 1)
 theme_override_constants/outline_size = 20
 theme_override_constants/h_separation = 4
-theme_override_fonts/font = ExtResource("3_8lbci")
+theme_override_fonts/font = SubResource("FontVariation_c5ghm")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = ExtResource("1_mpvma")
 theme_override_styles/pressed = ExtResource("2_c7dfy")
 theme_override_styles/hover = ExtResource("3_kakcx")
 text = "LANGUAGE"
 
-[node name="ReturnButton" type="Button" parent="OptionsLayer/Control/VBoxContainer" unique_id=1128535771]
+[node name="ReturnButton" type="Button" parent="OptionsLayer/Control/MarginContainer/VBoxContainer" unique_id=1128535771]
 custom_minimum_size = Vector2(300, 75)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.5529558, 0.5529555, 0.55295557, 1)
 theme_override_constants/outline_size = 20
-theme_override_fonts/font = ExtResource("3_8lbci")
+theme_override_fonts/font = SubResource("FontVariation_c5ghm")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = ExtResource("1_mpvma")
 theme_override_styles/pressed = ExtResource("2_c7dfy")
@@ -277,59 +311,74 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Control" type="Control" parent="ButtonsLayer" unique_id=575443446]
 layout_mode = 3
-anchor_left = 0.133
-anchor_top = 0.544
-anchor_right = 0.478
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 40.0
-offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ButtonsLayer/Control" unique_id=146669365]
-layout_mode = 0
-offset_left = 14.005
-offset_top = -65.17
-offset_right = 614.005
-offset_bottom = 414.35004
-theme_override_constants/separation = 20
+[node name="MarginContainer" type="MarginContainer" parent="ButtonsLayer/Control" unique_id=1342536319]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ButtonsLayer/Control/MarginContainer" unique_id=453491697]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="ButtonsLayer/Control/MarginContainer/VBoxContainer2" unique_id=1253075302]
+z_index = 58
+custom_minimum_size = Vector2(546.69, 63.955)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("2_hfcnf")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ButtonsLayer/Control/MarginContainer/VBoxContainer2" unique_id=146669365]
+layout_mode = 2
+theme_override_constants/separation = 0
 alignment = 1
 
-[node name="StartButton" type="Button" parent="ButtonsLayer/Control/VBoxContainer" unique_id=1147295776]
+[node name="StartButton" type="Button" parent="ButtonsLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1147295776]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.5529558, 0.5529555, 0.55295557, 1)
 theme_override_constants/outline_size = 20
-theme_override_fonts/font = ExtResource("3_8lbci")
+theme_override_fonts/font = SubResource("FontVariation_026jm")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = ExtResource("1_mpvma")
 theme_override_styles/pressed = ExtResource("2_c7dfy")
 theme_override_styles/hover = ExtResource("3_kakcx")
 text = "START"
 
-[node name="ArcadeButton" type="Button" parent="ButtonsLayer/Control/VBoxContainer" unique_id=1310128256]
+[node name="ArcadeButton" type="Button" parent="ButtonsLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1310128256]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.5529558, 0.5529555, 0.55295557, 1)
 theme_override_constants/outline_size = 20
-theme_override_fonts/font = ExtResource("3_8lbci")
+theme_override_fonts/font = SubResource("FontVariation_026jm")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = ExtResource("1_mpvma")
 theme_override_styles/pressed = ExtResource("2_c7dfy")
 theme_override_styles/hover = ExtResource("3_kakcx")
 text = "ARCADE"
 
-[node name="Options" type="Button" parent="ButtonsLayer/Control/VBoxContainer" unique_id=1028314999]
+[node name="Options" type="Button" parent="ButtonsLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer" unique_id=1028314999]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0.5529558, 0.5529555, 0.55295557, 1)
 theme_override_constants/outline_size = 20
-theme_override_fonts/font = ExtResource("3_8lbci")
+theme_override_fonts/font = SubResource("FontVariation_026jm")
 theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = ExtResource("1_mpvma")
 theme_override_styles/pressed = ExtResource("2_c7dfy")
 theme_override_styles/hover = ExtResource("3_kakcx")
 text = "OPTIONS"
-
-[node name="LogoJuego" type="Sprite2D" parent="ButtonsLayer" unique_id=1332065663]
-position = Vector2(549, 314.15)
-scale = Vector2(1.113, 1.113)
-texture = ExtResource("2_hfcnf")
 
 [node name="Shaders" type="CanvasLayer" parent="." unique_id=922637592]
 
@@ -383,26 +432,29 @@ mesh = SubResource("ArrayMesh_kakcx")
 skin = SubResource("Skin_8lbci")
 skeleton = NodePath("..")
 
-[connection signal="changed" from="OptionsLayer/Control/VBoxContainer/SoundSlider" to="." method="_on_sound_slider_changed"]
-[connection signal="value_changed" from="OptionsLayer/Control/VBoxContainer/SoundSlider" to="." method="_on_sound_slider_value_changed"]
-[connection signal="changed" from="OptionsLayer/Control/VBoxContainer/MusicSlider" to="." method="_on_music_slider_changed"]
-[connection signal="value_changed" from="OptionsLayer/Control/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
-[connection signal="changed" from="OptionsLayer/Control/VBoxContainer/NarrationSlider" to="." method="_on_narration_slider_changed"]
-[connection signal="value_changed" from="OptionsLayer/Control/VBoxContainer/NarrationSlider" to="." method="_on_narration_slider_value_changed"]
-[connection signal="focus_entered" from="OptionsLayer/Control/VBoxContainer/LanguageButton" to="." method="_on_language_button_focus_entered"]
-[connection signal="mouse_entered" from="OptionsLayer/Control/VBoxContainer/LanguageButton" to="." method="_on_language_button_mouse_entered"]
-[connection signal="pressed" from="OptionsLayer/Control/VBoxContainer/LanguageButton" to="." method="_on_language_button_pressed"]
-[connection signal="focus_entered" from="OptionsLayer/Control/VBoxContainer/ReturnButton" to="." method="_on_return_button_focus_entered"]
-[connection signal="mouse_entered" from="OptionsLayer/Control/VBoxContainer/ReturnButton" to="." method="_on_return_button_mouse_entered"]
-[connection signal="pressed" from="OptionsLayer/Control/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="focus_entered" from="ButtonsLayer/Control/VBoxContainer/StartButton" to="." method="_on_start_button_focus_entered"]
-[connection signal="mouse_entered" from="ButtonsLayer/Control/VBoxContainer/StartButton" to="." method="_on_start_button_mouse_entered"]
-[connection signal="pressed" from="ButtonsLayer/Control/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="focus_entered" from="ButtonsLayer/Control/VBoxContainer/ArcadeButton" to="." method="_on_arcade_button_focus_entered"]
-[connection signal="mouse_entered" from="ButtonsLayer/Control/VBoxContainer/ArcadeButton" to="." method="_on_arcade_button_mouse_entered"]
-[connection signal="pressed" from="ButtonsLayer/Control/VBoxContainer/ArcadeButton" to="." method="_on_arcade_button_pressed"]
-[connection signal="focus_entered" from="ButtonsLayer/Control/VBoxContainer/Options" to="." method="_on_options_focus_entered"]
-[connection signal="mouse_entered" from="ButtonsLayer/Control/VBoxContainer/Options" to="." method="_on_options_mouse_entered"]
-[connection signal="pressed" from="ButtonsLayer/Control/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[node name="ResourcePreloader" type="ResourcePreloader" parent="." unique_id=331215896]
+resources = [PackedStringArray("new_shader_material", "new_shader_material2", "new_shader_material3", "new_shader_material4", "new_shader_material5"), [ExtResource("17_dwnn7"), ExtResource("18_ayefu"), ExtResource("19_q0rx2"), ExtResource("20_nafw0"), ExtResource("21_ayefu")]]
+
+[connection signal="changed" from="OptionsLayer/Control/MarginContainer/VBoxContainer/SoundSlider" to="." method="_on_sound_slider_changed"]
+[connection signal="value_changed" from="OptionsLayer/Control/MarginContainer/VBoxContainer/SoundSlider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="changed" from="OptionsLayer/Control/MarginContainer/VBoxContainer/MusicSlider" to="." method="_on_music_slider_changed"]
+[connection signal="value_changed" from="OptionsLayer/Control/MarginContainer/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="changed" from="OptionsLayer/Control/MarginContainer/VBoxContainer/NarrationSlider" to="." method="_on_narration_slider_changed"]
+[connection signal="value_changed" from="OptionsLayer/Control/MarginContainer/VBoxContainer/NarrationSlider" to="." method="_on_narration_slider_value_changed"]
+[connection signal="focus_entered" from="OptionsLayer/Control/MarginContainer/VBoxContainer/LanguageButton" to="." method="_on_language_button_focus_entered"]
+[connection signal="mouse_entered" from="OptionsLayer/Control/MarginContainer/VBoxContainer/LanguageButton" to="." method="_on_language_button_mouse_entered"]
+[connection signal="pressed" from="OptionsLayer/Control/MarginContainer/VBoxContainer/LanguageButton" to="." method="_on_language_button_pressed"]
+[connection signal="focus_entered" from="OptionsLayer/Control/MarginContainer/VBoxContainer/ReturnButton" to="." method="_on_return_button_focus_entered"]
+[connection signal="mouse_entered" from="OptionsLayer/Control/MarginContainer/VBoxContainer/ReturnButton" to="." method="_on_return_button_mouse_entered"]
+[connection signal="pressed" from="OptionsLayer/Control/MarginContainer/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="focus_entered" from="ButtonsLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer/StartButton" to="." method="_on_start_button_focus_entered"]
+[connection signal="mouse_entered" from="ButtonsLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer/StartButton" to="." method="_on_start_button_mouse_entered"]
+[connection signal="pressed" from="ButtonsLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="focus_entered" from="ButtonsLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer/ArcadeButton" to="." method="_on_arcade_button_focus_entered"]
+[connection signal="mouse_entered" from="ButtonsLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer/ArcadeButton" to="." method="_on_arcade_button_mouse_entered"]
+[connection signal="pressed" from="ButtonsLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer/ArcadeButton" to="." method="_on_arcade_button_pressed"]
+[connection signal="focus_entered" from="ButtonsLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer/Options" to="." method="_on_options_focus_entered"]
+[connection signal="mouse_entered" from="ButtonsLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer/Options" to="." method="_on_options_mouse_entered"]
+[connection signal="pressed" from="ButtonsLayer/Control/MarginContainer/VBoxContainer2/VBoxContainer/Options" to="." method="_on_options_pressed"]
 
 [editable path="StartingScreenPlayer"]

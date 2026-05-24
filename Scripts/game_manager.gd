@@ -45,10 +45,10 @@ const AmarilloMaterial_BASE = preload("uid://chuqgif6ghtlx")
 @onready var violeta_icono: TextureRect = $"../IngameMenu/MarginContainer/HBoxContainer/VBoxContainer/Violeta"
 @onready var vida_barra: TextureProgressBar = get_tree().get_first_node_in_group("vida_jugador_barra")
 
-@onready var verde_ui: VBoxContainer = $"../Seleccion/MarginContainer2/Verde/Verde"
-@onready var amarillo_ui: VBoxContainer = $"../Seleccion/MarginContainer2/Verde/Amarillo"
-@onready var rosa_ui: VBoxContainer = $"../Seleccion/MarginContainer2/Verde/Rosa"
-@onready var violeta_ui: VBoxContainer = $"../Seleccion/MarginContainer2/Verde/Violeta"
+@onready var verde_ui: VBoxContainer = $"../Seleccion/MarginContainer2/VBoxContainer/Verde/Verde"
+@onready var amarillo_ui: VBoxContainer = $"../Seleccion/MarginContainer2/VBoxContainer/Verde/Amarillo"
+@onready var rosa_ui: VBoxContainer = $"../Seleccion/MarginContainer2/VBoxContainer/Verde/Rosa"
+@onready var violeta_ui: VBoxContainer = $"../Seleccion/MarginContainer2/VBoxContainer/Verde/Violeta"
 @onready var seleccion_canvas: CanvasLayer = $"../Seleccion"
 
 var ha_elegido = false
@@ -56,6 +56,7 @@ var que_color_elegido = "Verde"
 
 
 func _ready() -> void:
+	AudioManager.set_subtitulos_label(get_tree().get_first_node_in_group("subtitulos_label"))
 	AudioManager.reproducir_narracion("OPENING", -5)
 	AudioManager.reproducir_musica("SILENCIO")
 	Transicion.negro_a_alpha()
@@ -97,9 +98,9 @@ func siguiente_acto() -> void:
 		if vida_barra:
 			if vida_barra is TextureProgressBar:
 				vida_barra.tint_progress = Color(1.0, 1.0, 1.0, 1.0)
-		await get_tree().create_timer(10).timeout
+		await get_tree().create_timer(16).timeout
 		ending_activo = true
-		await Transicion.alpha_a_negro()
+		await Transicion.alpha_a_negro("The End","THANKS", 6)
 		ending.play()
 		AudioManager.reproducir_narracion("ENDING", -5)
 		Transicion.negro_a_alpha()
@@ -107,8 +108,8 @@ func siguiente_acto() -> void:
 func gestionar_color_a_perder() -> void:
 	AudioManager.reproducir_musica("SILENCIO")
 	
-	await get_tree().create_timer(4).timeout
 	ingame_menu.hide()
+	seleccion_canvas.show()
 	await Transicion.negro_a_alpha()
 	await elegir_color_a_perder()
 	
@@ -141,7 +142,6 @@ func _on_opening_finished() -> void:
 	await Transicion.negro_a_alpha()
 
 func elegir_color_a_perder() -> void:
-	seleccion_canvas.show()
 	while not ha_elegido:
 		await get_tree().create_timer(.2).timeout
 		continue

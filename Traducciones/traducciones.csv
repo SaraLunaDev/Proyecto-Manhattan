@@ -1,63 +1,67 @@
-KEYS,es,en
-ACT1,ACTO 1,ACT 1
-ACT2,ACTO 2,ACT 2
-ACT3,ACTO 3,ACT 3
-ACT4,ACTO 4,ACT 4
-ACT1_SUB,Heroe,Hero
-ACT2_SUB,Destierro,Banishment
-ACT3_SUB,Destino,Destiny
-ACT4_SUB,Soledad,Lonelyness
-STORY_TEXT_1,"Erase una vez,",Once upon a time
-STORY_TEXT_2,un caballero de lustrosa y prismática armadura.,there was a knight in lustrous and prismatic armor.
-STORY_TEXT_3,Que defendía al pueblo de los monstruos con su luz y albura.,Who defended the people from monsters with his light and white demeanor
-STORY_TEXT_4,"El valiente caballero luchaba y luchaba,","The brave knight fought and fought,"
-STORY_TEXT_5,Su espada aurea con firmeza siempre era alzada.,His golden sword was always firmly caught.
-STORY_TEXT_6,Su arco con fuerza flechas de esmeralda disparaba.,His bow with strength shot arrows of emerald green.
-STORY_TEXT_7,Rayos amatista de su reflejo proyectaba.,Amethyst beams from his reflection could be seen.
-STORY_TEXT_8,Y un escudo zafiro de los enemigos le amparaba.,And a sapphire shield sheltered him from enemies unseen.
-STORY_TEXT_9,"Sin embargo la misma luz que amedrentaba a las bestias, cegaba a los aldeanos que trataban de observarlo.","However, the very same light that intimidated the beasts blinded the villagers who tried to look at him."
-STORY_TEXT_10,"Hubo algunos que dedicieron simplemente dejar de mirarlo,","There were some who decided to simply stop watching,"
-STORY_TEXT_11,"y para los otros que aun querían agasallarlo,","and for the others who still wished to praise him,"
-STORY_TEXT_12,el caballero prefirió simplemente no dejarles intentarlo.,the knight preferred to simply not let them try.
-STORY_TEXT_13,"Y poco a poco,","And bit by bit,"
-STORY_TEXT_14,"Día tras día,",Day after day
-STORY_TEXT_15,El caballero se dedicó a la misma monotonía.,The knight dedicated himself to the same monotonous way.
-STORY_TEXT_16,Enfrentarse a los monstruos que a su alrededor tenía.,"Facing the monsters that surrounded his domain,"
-STORY_TEXT_17,Para mantener la paz que el pueblo sentía.,To maintain the peace that the townspeople sustained.
-STORY_TEXT_18,"Pero en su interior algo faltaba,","But deep inside, something was missing from his charms,"
-STORY_TEXT_19,Sentir el calido abrazo de aquella gente que lo amaba...,"To feel the warm embrace of those people in his arms...
-"
-STORY_TEXT_20,Mas el no quería dañarlas con la luz que aun irradiaba.,Yet he did not want to hurt them with the light he still displayed.
-STORY_TEXT_21,"Y fue en ese entonces, cuando el diablo mostró su cara.","And it was then, that the devil's face portrayed."
-STORY_TEXT_22,"Al principio desde las sombras se proyectaba,","At first, from the shadows he would cast,"
-STORY_TEXT_23,"Fascinado de como el caballero blandía su luz alborada,",Fascinated by how the knight brandished his light from the past
-STORY_TEXT_24,"Pero algo le preocupaba,","But something worried him at last,"
-STORY_TEXT_25,Cada vez menos y menos el caballero brillaba,"Each time, the knight's glow faded too fast."
-STORY_TEXT_26,"Tanta batalla sin conocer la gracia,","So much battle without knowing grace or peace,"
-STORY_TEXT_27,Había hecho mella en su cara prismada.,"Had taken a toll on his prismatic visage, piece by piece."
-STORY_TEXT_28,"Y el diablo, apenado,","And the devil, feeling sorrow,"
-STORY_TEXT_29,Decidió ofrecerle un trato al caballero cansado.,Decided to offer a deal to the weary knight for tomorrow.
-STORY_TEXT_30,"Erase una vez,","Once upon a time,"
-STORY_TEXT_31,un diablo que a un guerrero cansado observo,to a tired knight a devil watched
-STORY_TEXT_32,"y al verlo rendido, su luz le pidió","seeing him laying, for his light he asked"
-STORY_TEXT_33,"a cambio de un abrazo, su pena calmó","in exchange of a hug, his sorrow appeased"
-STORY_TEXT_34,y en su cuento mal contado,in a bad told tale
-STORY_TEXT_35,el caballero,the knight
-STORY_TEXT_36,por fin descansó.,finally rested.
-START,Comezar,Start
-ARCADE,Arcade,Arcade
-OPTIONS,Opciones,Options
-SOUNDS,Sonido,Sound
-MUSIC,Musica,Music
-NARRATION,Narracion,Narration
-LANGUAGE,Español,English
-RETURN,Volver,Return
-GREEN,Verde,Green
-YELLOW,Amarillo,Yellow
-VIOLET,Violeta,Violet
-PINK,Rosa,Pink
-CHOOSE,Elegir,Choose
-GREEN_TEXT,Desaparecerá el verde de tu mundo,Green will dissapear from your world
-YELLOW_TEXT,Desaparecerá el amarillo de tu mundo,Yellow will dissapear from your world
-VIOLET_TEXT,Desaparecerá el violeta de tu mundo,Violet will dissapear from your world
-PINK_TEXT,Desaparecerá el rosa de tu mundo,Pink will dissapear from your world
+KEYS,es,en,cat,ro,lt
+ACT1,ACTO 1,ACT 1,ACTE 1,ACT 1,1 VEIKSMAS
+ACT2,ACTO 2,ACT 2,ACTE 2,ACT 2,2 VEIKSMAS
+ACT3,ACTO 3,ACT 3,ACTE 3,ACT 3,3 VEIKSMAS
+ACT4,ACTO 4,ACT 4,ACTE 4,ACT 4,4 VEIKSMAS
+ACT1_SUB,Héroe,Hero,Heroi,Erou,Herojus
+ACT2_SUB,Destierro,Banishment,Exili,Exil,Tremtis
+ACT3_SUB,Destino,Destiny,Destí,Destin,Likimas
+ACT4_SUB,Soledad,Loneliness,Solitud,"Singurătate
+",Vienatvė
+STORY_TEXT_1,"Erase una vez,",Once upon a time,"Vet aqui una vegada,","A fost odată ca niciodată,","Seniai seniai,"
+STORY_TEXT_2,un caballero de lustrosa y prismática armadura.,there was a knight in lustrous and prismatic armor.,un cavaller de prismàtica armadura i lluernor.,un cavaler în prismatică și strălucitoare armură.,Gyveno riteris su blizgančiais ir prizminiais šarvais.
+STORY_TEXT_3,Que defendía al pueblo de los monstruos con su luz y albura.,Who defended the people from monsters with his light and white demeanor,Que defensava el poble dels monstres amb la seva llum i albor.,Care apăra oamenii de monștri cu lumina și albură,Jis gynė žmones nuo monstrų savo šviesa ir nuoširdumu.
+STORY_TEXT_4,"El valiente caballero luchaba y luchaba,","The brave knight fought and fought,",El valent cavaller lluitava i lluitava:,"Viteazul cavaler lupta și lupta,","Drąsusis riteris kovojo ir kovojo,"
+STORY_TEXT_5,Su espada aurea con firmeza siempre era alzada.,His golden sword was always firmly caught.,La seva espassa àuria amb fermessa sempre era alçada;,"Cu o hotărâre neclintită, sabia sa de aura mereu o ridica.",Jo auksinis kardas buvo pakeltas tvirtai.
+STORY_TEXT_6,Su arco con fuerza flechas de esmeralda disparaba.,His bow with strength shot arrows of emerald green.,"El seu arc, amb força, fletxes de maragda disparava.",Săgeți de smarald puternic arcul său tragea.,Jo lankas su jėga šaudė smaragdo strėles.
+STORY_TEXT_7,Rayos amatista de su reflejo proyectaba.,Amethyst beams from his reflection could be seen.,Rajos d'ametista del seu reflex projectava;,"În reflexie, raze de amestist își proiecta;",Ametisto spinduliai sklido iš jo atspindžio.
+STORY_TEXT_8,Y un escudo zafiro de los enemigos le amparaba.,And a sapphire shield sheltered him from enemies unseen.,I el seu escut de safir dels enemics l'allunyava.,De dușmanii sai un scut de safir il proteja.,O safyrinis skydas jį saugojo nuo priešų.
+STORY_TEXT_9,"Sin embargo la misma luz que amedrentaba a las bestias, cegaba a los aldeanos que trataban de observarlo.","However, the very same light that intimidated the beasts blinded the villagers who tried to look at him.","No obstant la mateixa llum que atemoria les bèsties, cegava els vilatans que tractàven d'observar.","Totuși, aceeași lume care fiarele speria, sătenii care încercau sa se uite la el orbea.","Tačiau ta pati šviesa, kuri gąsdino žvėris, akino kaimo žmones, bandžiusiems į jį pažvelgti."
+STORY_TEXT_10,"Hubo algunos que dedicieron simplemente dejar de mirarlo,","There were some who decided to simply stop watching,","Alguns simplement decidiren deixar de mirar-lo,","Unii au decis nici-o privire să-i dea,","Kai kurie tiesiog nusprendė jo nežiūrėti,"
+STORY_TEXT_11,"y para los otros que aun querían agasallarlo,","and for the others who still wished to praise him,","i pels altres que encara voliren avassallar-lo,","iar pe ceilalți care încă incercau a-l flata,","o tie, kurie dar norėjo jį pagerbti,"
+STORY_TEXT_12,el caballero prefirió simplemente no dejarles intentarlo.,the knight preferred to simply not let them try.,El caballer no els deixà ni tan sols intentar-ho.,Cavalerul nu-i lasa nici a încerca,riteris pats nusprendė neleisti jiems prie jo artintis.
+STORY_TEXT_13,"Y poco a poco,","And bit by bit,","I poc a poc,","Si puțin câte puțin,","Po truputį,"
+STORY_TEXT_14,"Día tras día,",Day after day,"Dia rere dia,",Zi după zi,"Diena po dienos,"
+STORY_TEXT_15,El caballero se dedicó a la misma monotonía.,The knight dedicated himself to the same monotonous way.,El cavaller va caure en la mateixa monotonia.,Monotona rutină cavalerul și-a continuat,Riteris įstrigo toje pačioje monotonijoje.
+STORY_TEXT_16,Enfrentarse a los monstruos que a su alrededor tenía.,"Facing the monsters that surrounded his domain,",Enfrontar-s'hi als montres que al voltant tenia,Monștrii din jurul său infruntând.,"Kovoti su monstrais, kurie buvo aplink jį,"
+STORY_TEXT_17,Para mantener la paz que el pueblo sentía.,To maintain the peace that the townspeople sustained.,Per guarnir la pau que el poble requeria.,Pacea pe care oamenii o simțeau menținând,Kad išlaikytų kaimo ramybę.
+STORY_TEXT_18,"Pero en su interior algo faltaba,","But deep inside, something was missing from his charms,","Al seu interior quelcom faltava,",Dar în interior ceva îi lipsea.,"Bet jo viduje kažko trūko,"
+STORY_TEXT_19,Sentir el calido abrazo de aquella gente que lo amaba...,To feel the warm embrace of those people in his arms...,Sentir l'abraçada d'aquella gent que l'estimava.,Să simtă îmbrățișarea caldă a celor care îl iubea tănjea...,"Jausti šiltą apkabinimą nuo tų žmonių, kurie jį mylėjo..."
+STORY_TEXT_20,Mas el no quería dañarlas con la luz que aun irradiaba.,Yet he did not want to hurt them with the light he still displayed.,Més ell no volia fer mal amb la llum que encara irradiava.,"Totuși, nu voia să le facă rău cu lumina pe care încă o radia.","Tačiau jis nenorėjo jų sužeisti ta šviesa, kuri vis dar skleidėsi iš jo."
+STORY_TEXT_21,"Y fue en ese entonces, cuando el diablo mostró su cara.","And it was then, that the devil's face portrayed.",I va ser aleshores quan el diable mostrà la seva cara:,"Și atunci diavolul față și-a arătat,","Ir būtent tada, velnias parodė savo veidą."
+STORY_TEXT_22,"Al principio desde las sombras se proyectaba,","At first, from the shadows he would cast,","Al principi des de la foscor es projectava,","La început, a pândit în umbră,","Iš pradžių jis tik šešėliuose stebėjo,"
+STORY_TEXT_23,"Fascinado de como el caballero blandía su luz alborada,",Fascinated by how the knight brandished his light from the past,Fascinat en com el cavaller brandia la llum albada.,"Fascinat de modul în care cavalerul lumina zorilor mânuia,","susižavėjęs, kaip riteris valdo savo šviesą,"
+STORY_TEXT_24,"Pero algo le preocupaba,","But something worried him at last,","Alguna cosa, però, el preocupava,","Dar ceva îl tulbura,","Bet ji kažkas neramino,"
+STORY_TEXT_25,Cada vez menos y menos el caballero brillaba,"Each time, the knight's glow faded too fast.","Cada vegada menys el cavaller brillava,","Din ce în ce mai puțin cavalerul strălucea,",riteris vis mažiau ir mažiau švytėjo.
+STORY_TEXT_26,"Tanta batalla sin conocer la gracia,","So much battle without knowing grace or peace,","Tanta batalla sense conéixer la gràcia,",Atâta luptă fara grație cunoscută,"Tiek kovų nepažįstant malonumo,"
+STORY_TEXT_27,Había hecho mella en su cara prismada.,"Had taken a toll on his prismatic visage, piece by piece.",Havia fet forat a la seva àuria mirada.,Pe față sa prismatică a lăsat amprentă,paliko žymę jo prizminiame veide.
+STORY_TEXT_28,"Y el diablo, apenado,","And the devil, feeling sorrow,","El diable, apenat,","Și diavolul, întristat,","Ir velnias, nuliūdęs,"
+STORY_TEXT_29,Decidió ofrecerle un trato al caballero cansado.,Decided to offer a deal to the weary knight for tomorrow.,li oferí un pacte al cavaller cansat.,"O înțelegere sa-i ofere cavalerului obosit a decis,",nusprendė pasiūlyti pavargusiam riteriui sandorį.
+STORY_TEXT_30,"Erase una vez,","Once upon a time,","Vet aqui una vegada,","A fost odată ca niciodată,","Seniai seniai,"
+STORY_TEXT_31,un diablo que a un guerrero cansado observo,to a tired knight a devil watched,Un diable que a un guerrer cansat observava.,"un diavol a observat un războinic obosit,",velnias stebėjo pavargusį riterį
+STORY_TEXT_32,"y al verlo rendido, su luz le pidió","seeing him laying, for his light he asked","En veure'l rendit un pacte el va oferir,","și lumina i-a cerut, văzându-l învins,","Ir matydamas jį palūzusį, paprašė jo šviesos."
+STORY_TEXT_33,"a cambio de un abrazo, su pena calmó","in exchange of a hug, his sorrow appeased","i a canvi de la seva llum, una abraçada de caliu.","În schimbul unei îmbrățișări, durerea i-a potolit,",Už apkabinimą jis numalšino jo skausmą.
+STORY_TEXT_34,y en su cuento mal contado,in a bad told tale,"I en el seu conte mal explicat,","și în a sa prost spusă poveste,","Ir savo neteisingoje pasakoje,"
+STORY_TEXT_35,el caballero,the knight,el cavaller,cavalerul,riteris
+STORY_TEXT_36,por fin descansó.,finally rested.,per fi va descansar.,în sfărșit s-a odihnit.,pagaliau pailsėjo.
+START,Comenzar,Start,Comença,Începe,Pradėti
+ARCADE,Arcade,Arcade,Arcade,Arcade,Arcade
+OPTIONS,Opciones,Options,Opcions,Opțiuni,Opcijos
+SOUNDS,Sonido,Sound,So,Sunet,Garsas
+MUSIC,Musica,Music,Musica,Muzică,Muzika
+NARRATION,Narracion,Narration,Narració,Narațiune,Pasakojimas
+LANGUAGE,Español,English,Català,Română,Lietuvių
+RETURN,Volver,Return,Tornar,Înapoi,Grįžti
+GREEN,Verde,Green,Verd,Verde,Žalia
+YELLOW,Amarillo,Yellow,Groc,Galben,Geltona
+VIOLET,Violeta,Violet,Violeta,Violet,Violetinė
+PINK,Rosa,Pink,Rosa,Roz,Rožinė
+CHOOSE,Elegir,Choose,Tria,Alege,Pasirinkti
+GREEN_TEXT,Desaparecerá el verde de tu mundo,Green will dissapear from your world,Desapareixerà el verd del teu món,Verdele va dispărea din lumea ta,Žalia išnyks iš tavo pasaulio
+YELLOW_TEXT,Desaparecerá el amarillo de tu mundo,Yellow will dissapear from your world,Desapareixerà el groc del teu món,"Galbenul va dispărea din lumea ta
+",Geltona išnyks iš tavo pasaulio
+VIOLET_TEXT,Desaparecerá el violeta de tu mundo,Violet will dissapear from your world,Desapareixerà el violeta del teu món,"Violetul va dispărea din lumea ta
+",Violetinė išnyks iš tavo pasaulio
+PINK_TEXT,Desaparecerá el rosa de tu mundo,Pink will dissapear from your world,Desapareixerà el rosa del teu món,Rozul va dispărea din lumea ta,Rožinė išnyks iš tavo pasaulio
+DELETE_COLOR,Selecciona el color a eliminar de tu mundo,Select the color to remove form your world,Sel·lecciona el color a eliminar del teu món,Alege culoarea care vrei sa elimini din lumea ta,"Pasirinkite spalvą, kurią pašalinti iš savo pasaulio"
+THANKS,¡Gracias por jugar!,Thanks for playing,Gràcies per jugar!,Mulțumesc că ai jucat!,"Ačiū, kad žaidėte"
