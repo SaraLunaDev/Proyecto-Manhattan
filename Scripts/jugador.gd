@@ -57,6 +57,7 @@ const material_escudo = preload("uid://b75barw2orci0")
 @onready var explosion_escudo_3: GPUParticles3D = $ExplosionEscudo3
 var game_manager
 @onready var vida_barra: TextureProgressBar = get_tree().get_first_node_in_group("vida_jugador_barra")
+@onready var arcade: Arcade = get_tree().get_first_node_in_group("arcade")
 
 # Ready
 # -----------------------------------------------
@@ -170,6 +171,10 @@ func recibir_daño(daño_recibido) -> void:
 	# Si el daño_recibido esta en CD no hacer nada
 	if daño_cd.time_left > 0:
 		return
+	
+	if arcade:
+		arcade.añadir_hit_jugador(1)
+	
 	# Emitir particula de daño
 	daño_particula.emitting = true
 	AudioManager.reproducir_sfx("HIT")
@@ -354,3 +359,11 @@ func eliminar_color(color: String) -> void:
 		"Verde":
 			puede_disparar = false
 			nodo_torreta.hide()
+
+func restaurar_color() -> void:
+	puede_rayo = true
+	puede_disparar = true
+	nodo_torreta.show()
+	puede_escudo = true
+	escudo_forma.show()
+	puede_espadear = true

@@ -32,6 +32,7 @@ var muriendo = false
 @onready var daño_particula: GPUParticles3D = $Daño
 var inmovil = false
 @export var animacion_local: AnimationPlayer
+@onready var arcade: Arcade = get_tree().get_first_node_in_group("arcade")
 
 # Process
 # -----------------------------------------------
@@ -110,6 +111,8 @@ func recibir_daño(daño_recibido, tipo: int) -> void:
 # Gestionar muerte
 # -----------------------------------------------
 func morir() -> void:
+	if arcade:
+		arcade.añadir_muerte_enemigo(1)
 	hitbox.monitorable = false
 	hitbox.monitoring = false
 	colision.disabled = true

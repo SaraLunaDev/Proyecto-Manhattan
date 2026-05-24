@@ -2,9 +2,9 @@ extends Node3D
 
 @onready var main_layer: CanvasLayer = $ButtonsLayer
 @onready var options_layer: CanvasLayer = $OptionsLayer
-@onready var language_button: Button = $OptionsLayer/Control/VBoxContainer/LanguageButton
 const STAGE = preload("uid://hf208faeks6q")
 @onready var resource_preloader: ResourcePreloader = $ResourcePreloader
+const ARCADE = preload("uid://wcj11o2ie8sj")
 
 
 func _ready() -> void:
@@ -28,7 +28,8 @@ func _on_start_button_pressed() -> void:
 	get_tree().change_scene_to_packed(STAGE)
 
 func _on_arcade_button_pressed() -> void:
-	pass
+	await Transicion.alpha_a_negro()
+	get_tree().change_scene_to_packed(ARCADE)
 
 func _on_options_pressed() -> void:
 	main_layer.hide()
@@ -53,6 +54,7 @@ func _on_narration_slider_value_changed(value: float) -> void:
 
 
 func _on_language_button_pressed() -> void:
+	AudioManager.reproducir_sfx("ui_hover", -6, 1.0, "UI", ".mp3")
 	var idioma_actual = TranslationServer.get_locale()
 	match idioma_actual:
 		"es":

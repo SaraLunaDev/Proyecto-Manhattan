@@ -87,8 +87,8 @@ func reproducir_sfx(nombre: String, volumen: float = 1.0, pitch: float = 1.0, ti
 	reproductor.bus = "SFX"
 	reproductor.play()
 
-func reproducir_musica(nombre: String, volumen: float = 1.0, pitch: float = 1.0) -> void:
-	var audio = load("res://Audio/Music/" + nombre + ".mp3")
+func reproducir_musica(nombre: String, volumen: float = 1.0, pitch: float = 1.0, tipo: String = ".mp3") -> void:
+	var audio = load("res://Audio/Music/" + nombre + tipo)
 	musica.stream = audio
 	musica.volume_db = volumen
 	musica.pitch_scale = pitch

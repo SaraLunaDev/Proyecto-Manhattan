@@ -9,6 +9,7 @@ class_name SpawnManager
 @export var punto_spawn: PathFollow3D
 @export var enemigos_spawn: Array[int] = [2,2,1,5]
 @export var game_manager: GameManager
+@export var arcade_manager: Arcade
 var puede_spawnear = false
 
 # Spawn de Enemigos
@@ -47,8 +48,24 @@ func spawnear_enemigo() -> void:
 			enemigos_validos.append(i)
 	# Elegir un enemigo random de la lista de enemigos
 	var enemigo
-	if game_manager.get_colores_activos().size() > 0:
+	if game_manager and game_manager.get_colores_activos().size() > 0:
 		var enemigo_color = game_manager.get_colores_activos().pick_random()
+		for enemigo_objetivo in enemigos:
+			var enemigo_instanciado = enemigo_objetivo.instantiate()
+			if enemigo_instanciado is Enemigo:
+				if enemigo_instanciado.get_color_nombre() == enemigo_color and enemigos_validos.find(enemigo_instanciado.get_color()) != -1:
+					enemigo = enemigo_instanciado
+					break
+		if enemigo:
+			# Obtener una posicion random en el tablero
+			punto_spawn.progress_ratio = randf()
+			var posicion_spawn = punto_spawn.transform.origin
+			# Instanciar el enemigo
+			enemigo.transform.origin = posicion_spawn
+			if puede_spawnear:
+				add_child(enemigo)
+	elif arcade_manager:
+		var enemigo_color = arcade_manager.get_colores_activos().pick_random()
 		for enemigo_objetivo in enemigos:
 			var enemigo_instanciado = enemigo_objetivo.instantiate()
 			if enemigo_instanciado is Enemigo:

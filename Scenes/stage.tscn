@@ -1127,7 +1127,9 @@ stretch_mode = 5
 script = ExtResource("20_maxbf")
 imagenes = Array[Texture]([ExtResource("176_b0ffi"), ExtResource("177_f5lm3"), ExtResource("178_gs0yv"), ExtResource("179_p5qyf"), ExtResource("180_70e0u"), ExtResource("181_2u5bg"), ExtResource("182_fxu2l"), ExtResource("183_3nfnr"), ExtResource("184_k525f"), ExtResource("185_2m00l"), ExtResource("186_2oaep"), ExtResource("187_7c4dv"), ExtResource("188_b35n1"), ExtResource("189_2ur4r"), ExtResource("190_2t0r4"), ExtResource("191_fi4ho"), ExtResource("192_dgpuy"), ExtResource("193_af53p"), ExtResource("194_v4m4k"), ExtResource("195_syunx"), ExtResource("196_qjq21"), ExtResource("197_7tu12"), ExtResource("198_uqbmi"), ExtResource("199_sdvyt"), ExtResource("200_kxn10"), ExtResource("201_rl5ss"), ExtResource("202_0ki8s"), ExtResource("203_26xem"), ExtResource("204_tlndp"), ExtResource("205_d4387"), ExtResource("206_aspvw"), ExtResource("207_gmr4d"), ExtResource("208_scg1b"), ExtResource("209_gv4e5"), ExtResource("210_w737c"), ExtResource("211_b5p3t"), ExtResource("212_ggxmw"), ExtResource("213_ogby6"), ExtResource("214_w7uel"), ExtResource("215_bynxu"), ExtResource("216_bqdj7"), ExtResource("217_ub7h7"), ExtResource("218_7wq22"), ExtResource("219_ctqv4"), ExtResource("220_jhhyr"), ExtResource("221_n7vwq"), ExtResource("222_xep6f")])
 
-[node name="VHSShader" type="ColorRect" parent="Seleccion" unique_id=825116262]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=860131959]
+
+[node name="VHSShader" type="ColorRect" parent="CanvasLayer" unique_id=825116262]
 material = SubResource("ShaderMaterial_x7hf8")
 anchors_preset = 15
 anchor_right = 1.0

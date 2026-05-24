@@ -152,6 +152,9 @@ func elegir_color_a_perder() -> void:
 	var color_eliminar = que_color_elegido
 	print(color_eliminar)
 	jugador.eliminar_color(color_eliminar)
+	if acto > numero_actos:
+		var tween_lila := create_tween()
+		tween_lila.tween_property(LilaMaterial, 'shader_parameter/metal_color', Vector3(1,1,1), 4)
 	match color_eliminar:
 		"Amarillo":
 			amarillo_icono.texture = preload("uid://qsxv7vj2e0of")
@@ -231,7 +234,7 @@ func _on_violeta_pressed() -> void:
 	ha_elegido = true
 	violeta_ui.hide()
 
-
 func _on_ending_finished() -> void:
+	await get_tree().create_timer(6).timeout
 	await Transicion.alpha_a_negro("The End","THANKS", 1, 10)
 	get_tree().change_scene_to_packed(START_SCENE)
