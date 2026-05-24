@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://c8t7msovsq4nx"]
+
+[ext_resource type="Script" uid="uid://dpimbjrs3igqn" path="res://Scripts/transicion.gd" id="1_vt66k"]
+[ext_resource type="FontFile" uid="uid://6sodm1yo1tjh" path="res://Fonts/Aurusenthial Gothic.ttf" id="2_tuvsf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ph6m0"]
+font = ExtResource("2_tuvsf")
+font_size = 200
+
+[sub_resource type="LabelSettings" id="LabelSettings_tuvsf"]
+font = ExtResource("2_tuvsf")
+font_size = 90
+
+[node name="Transicion" type="Control" unique_id=1766121355]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vt66k")
+
+[node name="Titulo" type="CanvasLayer" parent="." unique_id=1854698023]
+layer = 20
+
+[node name="ColorRect" type="ColorRect" parent="Titulo" unique_id=1115946776]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Titulo" unique_id=2059445841]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 70
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Titulo/MarginContainer" unique_id=867120102]
+layout_mode = 2
+alignment = 1
+
+[node name="Titulo" type="Label" parent="Titulo/MarginContainer/VBoxContainer" unique_id=958565967]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_ph6m0")
+horizontal_alignment = 1
+
+[node name="Subtitulo" type="Label" parent="Titulo/MarginContainer/VBoxContainer" unique_id=25082217]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_tuvsf")
+horizontal_alignment = 1

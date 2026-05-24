@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b7vebl72fki7i"]
+
+[ext_resource type="Shader" uid="uid://bnxduoxb63av7" path="res://Shaders/metalPurple.gdshader" id="1_5ciie"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_5ciie")
+shader_parameter/metal_color = Vector3(0.455, 0.337, 0.608)
+shader_parameter/roughness = 0.0
+shader_parameter/metallic = 0.0

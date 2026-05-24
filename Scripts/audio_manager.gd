@@ -3,9 +3,10 @@ extends Node3D
 var reproductores_sfx: Array[AudioStreamPlayer] = []
 @onready var SFX: Node3D = $SFX
 @onready var musica: AudioStreamPlayer = $Musica
+@onready var narracion: AudioStreamPlayer = $Narracion
 
-func reproducir_sfx(nombre: String, volumen: float = 1.0, pitch: float = 1.0, tipo: String = "Jugador") -> void:
-	var audio = load("res://Audio/SoundEffects/" + tipo + "/" + nombre + ".wav")
+func reproducir_sfx(nombre: String, volumen: float = 1.0, pitch: float = 1.0, tipo: String = "Jugador", formato: String = ".wav") -> void:
+	var audio = load("res://Audio/SoundEffects/" + tipo + "/" + nombre + formato)
 	
 	var reproductor: AudioStreamPlayer = pillar_siguiente_reproductor()
 	
@@ -22,6 +23,14 @@ func reproducir_musica(nombre: String, volumen: float = 1.0, pitch: float = 1.0)
 	musica.pitch_scale = pitch
 	musica.bus = "Musica"
 	musica.play()
+
+func reproducir_narracion(nombre: String, volumen: float = 1.0, pitch: float = 1.0) -> void:
+	var audio = load("res://Audio/Narraciones/" + nombre + ".wav")
+	narracion.stream = audio
+	narracion.volume_db = volumen
+	narracion.pitch_scale = pitch
+	narracion.bus = "Narracion"
+	narracion.play()
 
 func pausar_musica():
 	musica.stop()

@@ -1,0 +1,63 @@
+KEYS,es,en
+ACT1,ACTO 1,ACT 1
+ACT2,ACTO 2,ACT 2
+ACT3,ACTO 3,ACT 3
+ACT4,ACTO 4,ACT 4
+ACT1_SUB,Heroe,Hero
+ACT2_SUB,Destierro,Banishment
+ACT3_SUB,Destino,Destiny
+ACT4_SUB,Soledad,Lonelyness
+STORY_TEXT_1,"Erase una vez,",Once upon a time
+STORY_TEXT_2,un caballero de lustrosa y prismática armadura.,there was a knight in lustrous and prismatic armor.
+STORY_TEXT_3,Que defendía al pueblo de los monstruos con su luz y albura.,Who defended the people from monsters with his light and white demeanor
+STORY_TEXT_4,"El valiente caballero luchaba y luchaba,","The brave knight fought and fought,"
+STORY_TEXT_5,Su espada aurea con firmeza siempre era alzada.,His golden sword was always firmly caught.
+STORY_TEXT_6,Su arco con fuerza flechas de esmeralda disparaba.,His bow with strength shot arrows of emerald green.
+STORY_TEXT_7,Rayos amatista de su reflejo proyectaba.,Amethyst beams from his reflection could be seen.
+STORY_TEXT_8,Y un escudo zafiro de los enemigos le amparaba.,And a sapphire shield sheltered him from enemies unseen.
+STORY_TEXT_9,"Sin embargo la misma luz que amedrentaba a las bestias, cegaba a los aldeanos que trataban de observarlo.","However, the very same light that intimidated the beasts blinded the villagers who tried to look at him."
+STORY_TEXT_10,"Hubo algunos que dedicieron simplemente dejar de mirarlo,","There were some who decided to simply stop watching,"
+STORY_TEXT_11,"y para los otros que aun querían agasallarlo,","and for the others who still wished to praise him,"
+STORY_TEXT_12,el caballero prefirió simplemente no dejarles intentarlo.,the knight preferred to simply not let them try.
+STORY_TEXT_13,"Y poco a poco,","And bit by bit,"
+STORY_TEXT_14,"Día tras día,",Day after day
+STORY_TEXT_15,El caballero se dedicó a la misma monotonía.,The knight dedicated himself to the same monotonous way.
+STORY_TEXT_16,Enfrentarse a los monstruos que a su alrededor tenía.,"Facing the monsters that surrounded his domain,"
+STORY_TEXT_17,Para mantener la paz que el pueblo sentía.,To maintain the peace that the townspeople sustained.
+STORY_TEXT_18,"Pero en su interior algo faltaba,","But deep inside, something was missing from his charms,"
+STORY_TEXT_19,Sentir el calido abrazo de aquella gente que lo amaba...,"To feel the warm embrace of those people in his arms...
+"
+STORY_TEXT_20,Mas el no quería dañarlas con la luz que aun irradiaba.,Yet he did not want to hurt them with the light he still displayed.
+STORY_TEXT_21,"Y fue en ese entonces, cuando el diablo mostró su cara.","And it was then, that the devil's face portrayed."
+STORY_TEXT_22,"Al principio desde las sombras se proyectaba,","At first, from the shadows he would cast,"
+STORY_TEXT_23,"Fascinado de como el caballero blandía su luz alborada,",Fascinated by how the knight brandished his light from the past
+STORY_TEXT_24,"Pero algo le preocupaba,","But something worried him at last,"
+STORY_TEXT_25,Cada vez menos y menos el caballero brillaba,"Each time, the knight's glow faded too fast."
+STORY_TEXT_26,"Tanta batalla sin conocer la gracia,","So much battle without knowing grace or peace,"
+STORY_TEXT_27,Había hecho mella en su cara prismada.,"Had taken a toll on his prismatic visage, piece by piece."
+STORY_TEXT_28,"Y el diablo, apenado,","And the devil, feeling sorrow,"
+STORY_TEXT_29,Decidió ofrecerle un trato al caballero cansado.,Decided to offer a deal to the weary knight for tomorrow.
+STORY_TEXT_30,"Erase una vez,","Once upon a time,"
+STORY_TEXT_31,un diablo que a un guerrero cansado observo,to a tired knight a devil watched
+STORY_TEXT_32,"y al verlo rendido, su luz le pidió","seeing him laying, for his light he asked"
+STORY_TEXT_33,"a cambio de un abrazo, su pena calmó","in exchange of a hug, his sorrow appeased"
+STORY_TEXT_34,y en su cuento mal contado,in a bad told tale
+STORY_TEXT_35,el caballero,the knight
+STORY_TEXT_36,por fin descansó.,finally rested.
+START,Comezar,Start
+ARCADE,Arcade,Arcade
+OPTIONS,Opciones,Options
+SOUNDS,Sonido,Sound
+MUSIC,Musica,Music
+NARRATION,Narracion,Narration
+LANGUAGE,Español,English
+RETURN,Volver,Return
+GREEN,Verde,Green
+YELLOW,Amarillo,Yellow
+VIOLET,Violeta,Violet
+PINK,Rosa,Pink
+CHOOSE,Elegir,Choose
+GREEN_TEXT,Desaparecerá el verde de tu mundo,Green will dissapear from your world
+YELLOW_TEXT,Desaparecerá el amarillo de tu mundo,Yellow will dissapear from your world
+VIOLET_TEXT,Desaparecerá el violeta de tu mundo,Violet will dissapear from your world
+PINK_TEXT,Desaparecerá el rosa de tu mundo,Pink will dissapear from your world

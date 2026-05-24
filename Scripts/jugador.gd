@@ -16,7 +16,7 @@ var ultima_animacion: StringName
 var cam: Camera3D
 @onready var daño_particula: GPUParticles3D = $ExplosionEscudo
 var inmovil = false
-@onready var desajuste_camara: Marker3D = $DesajusteCamara
+@export var desajuste_camara: Marker3D
 
 # -----------------------------------------------
 @export_category("Espada")
@@ -55,11 +55,13 @@ const material_escudo = preload("uid://b75barw2orci0")
 @onready var explosion_escudo: GPUParticles3D = $ExplosionEscudo
 @onready var explosion_escudo_2: GPUParticles3D = $ExplosionEscudo2
 @onready var explosion_escudo_3: GPUParticles3D = $ExplosionEscudo3
-
+var game_manager
+@onready var vida_barra: TextureProgressBar = get_tree().get_first_node_in_group("vida_jugador_barra")
 
 # Ready
 # -----------------------------------------------
 func _ready() -> void:
+	game_manager = get_tree().get_first_node_in_group("gamemanager")
 	ejecutar_animacion("quieto")
 	# Resetear escudo
 	material_escudo.set_shader_parameter("ray_sharpness", 0.1)
@@ -188,12 +190,17 @@ func recibir_daño(daño_recibido) -> void:
 	else:
 		# Si no tiene escudo, restar la vida al Jugador
 		vida -= daño_recibido
+		if vida_barra:
+			if vida_barra is TextureProgressBar:
+				vida_barra.value = vida
 		espada_cd.stop()
 		espada_cd.start()
 		# Si se queda sin vida, morir
 		if vida <= 0:
 			vida = 0.0
 			morir()
+	
+	cam.aplicar_temblor()
 	# Comenzar el CD
 	daño_cd.start()
 
@@ -207,6 +214,7 @@ func morir() -> void:
 	ejecutar_animacion("muerto")
 	await get_tree().create_timer(6).timeout
 	# Tras un tiempo resetear la escena
+	await Transicion.alpha_a_negro()
 	get_tree().reload_current_scene()
 
 # Gestion de disparo de proyectil
@@ -299,7 +307,7 @@ func explotar_escudo() -> void:
 # Gestion de aparicion del escudo
 # -----------------------------------------------
 func _on_escudo_cd_timeout() -> void:
-	if esta_muriendose:
+	if esta_muriendose or not puede_escudo:
 		return
 	animacion_escudo.play("aparecer_escudo")
 	escudo_forma.show()
@@ -314,7 +322,7 @@ func _on_animacion_escudo_animation_finished(anim_name: StringName) -> void:
 		escudo_forma.hide()
 
 func devolver_desajuste_camara():
-	get_tree().create_tween().tween_property(desajuste_camara, "position", Vector3(0,0,0), 1).set_ease(Tween.EASE_IN_OUT)
+	get_tree().create_tween().tween_property(desajuste_camara, "position", Vector3(0,0,0), .8).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 
 # Getters y Setters
 # -----------------------------------------------
@@ -329,6 +337,9 @@ func set_inmovil(value: bool) -> void:
 
 func get_desajuste_camara() -> Vector3:
 	return desajuste_camara.global_position
+
+func set_desajuste_camara() -> void:
+	desajuste_camara.position = Vector3(0,6,0)
 
 func eliminar_color(color: String) -> void:
 	match color:

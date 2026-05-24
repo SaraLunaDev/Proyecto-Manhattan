@@ -3,5 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://daapvp5uihqbu" path="res://Textures/UI/Buttons/Button.png" id="1_nq6ab"]
 
 [resource]
+content_margin_top = 60.0
+content_margin_bottom = 10.0
 texture = ExtResource("1_nq6ab")
+texture_margin_top = 35.0
 region_rect = Rect2(0, 141.511, 576.02, 200.582)

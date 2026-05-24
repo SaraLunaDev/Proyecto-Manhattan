@@ -2,7 +2,7 @@ extends Camera3D
 class_name Camara
 	
 @export var jugador: Jugador
-@export var desajuste: Vector3 = Vector3(0,6,7)
+@export var desajuste: Vector3 = Vector3(0,7,8)
 @export var fuerza_aleatoria = 0.3
 @export var temblor_desaparecer = 5.0
 @export var camara_base_posicion: Vector3 = Vector3(0,0.144,0.552)
@@ -10,13 +10,17 @@ class_name Camara
 var camara_iniciada = false
 var aleatorio = RandomNumberGenerator.new()
 var fuerza_temblor = 0.0
+var camara_cambio_acto = false
 
 func mover_hacia_jugador():
 	jugador.devolver_desajuste_camara()
-	get_tree().create_tween().tween_property(self, "position", jugador.global_position + desajuste, 1).set_ease(Tween.EASE_IN_OUT)
+	get_tree().create_tween().tween_property(self, "position", jugador.global_position + desajuste, .8).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	camara_iniciada = true
 
 func _physics_process(delta: float) -> void:
+	if camara_cambio_acto:
+		return
+	
 	look_at(jugador.get_desajuste_camara())
 	
 	if not camara_iniciada:
@@ -33,3 +37,6 @@ func aplicar_temblor() -> void:
 
 func desajuste_aleatorio() -> Vector2:
 	return Vector2(aleatorio.randf_range(-fuerza_temblor, fuerza_temblor), aleatorio.randf_range(-fuerza_temblor,fuerza_temblor))
+
+func set_camara_cambio_acto(value: bool) -> void:
+	camara_cambio_acto = value

@@ -6,5 +6,5 @@
 render_priority = 0
 shader = ExtResource("1_uxsiu")
 shader_parameter/metal_color = Vector3(0.968, 1, 0.682)
-shader_parameter/roughness = 0.70000003325
-shader_parameter/metallic = 0.50000002375
+shader_parameter/roughness = 0.0
+shader_parameter/metallic = 0.0

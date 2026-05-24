@@ -8,5 +8,9 @@ script = ExtResource("1_sm2tf")
 [node name="SFX" type="Node3D" parent="." unique_id=1345745991]
 
 [node name="Musica" type="AudioStreamPlayer" parent="." unique_id=1588610196]
+bus = &"Musica"
+
+[node name="Narracion" type="AudioStreamPlayer" parent="." unique_id=2123018962]
+bus = &"Narracion"
 
 [connection signal="finished" from="Musica" to="." method="_on_musica_finished"]
