@@ -1163,6 +1163,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6016307, 9.947956, -10.956
 
 [connection signal="timeout" from="SpawnManager/TemporizadorSpawn" to="SpawnManager" method="_on_temporizador_spawn_timeout"]
 [connection signal="finished" from="Videos/Opening" to="GameManager" method="_on_opening_finished"]
+[connection signal="finished" from="Videos/Ending" to="GameManager" method="_on_ending_finished"]
 [connection signal="pressed" from="Seleccion/MarginContainer2/VBoxContainer/Verde/Verde/VBoxContainer/Verde" to="GameManager" method="_on_verde_pressed"]
 [connection signal="pressed" from="Seleccion/MarginContainer2/VBoxContainer/Verde/Amarillo/VBoxContainer/Amarillo" to="GameManager" method="_on_amarillo_pressed"]
 [connection signal="pressed" from="Seleccion/MarginContainer2/VBoxContainer/Verde/Rosa/VBoxContainer/Rosa" to="GameManager" method="_on_rosa_pressed"]

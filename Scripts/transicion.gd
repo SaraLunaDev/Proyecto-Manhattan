@@ -8,7 +8,7 @@ extends Control
 @onready var subtitulo_label: Label = $Titulo/MarginContainer/VBoxContainer/Subtitulo
 
 
-func alpha_a_negro(titulo_transicion: String = "", subtitulo_transicion: String = "", duracion: int = 1) -> void:
+func alpha_a_negro(titulo_transicion: String = "", subtitulo_transicion: String = "", duracion: int = 1, duracion_texto: int = 4) -> void:
 	titulo.visible = true
 	textos.visible = false
 	titulo_label.text = titulo_transicion
@@ -22,7 +22,7 @@ func alpha_a_negro(titulo_transicion: String = "", subtitulo_transicion: String 
 		AudioManager.reproducir_sfx("poom", -4.0, 1.0, "Extras", ".mp3")
 		await get_tree().create_timer(.1).timeout
 		textos.visible = true
-		await get_tree().create_timer(4).timeout
+		await get_tree().create_timer(duracion_texto).timeout
 		textos.visible = false
 		await get_tree().create_timer(2).timeout
 

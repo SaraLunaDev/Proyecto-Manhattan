@@ -54,6 +54,8 @@ const AmarilloMaterial_BASE = preload("uid://chuqgif6ghtlx")
 var ha_elegido = false
 var que_color_elegido = "Verde"
 
+const START_SCENE = preload("uid://gx5j5xd2wvao")
+
 
 func _ready() -> void:
 	AudioManager.set_subtitulos_label(get_tree().get_first_node_in_group("subtitulos_label"))
@@ -99,8 +101,8 @@ func siguiente_acto() -> void:
 			if vida_barra is TextureProgressBar:
 				vida_barra.tint_progress = Color(1.0, 1.0, 1.0, 1.0)
 		await get_tree().create_timer(16).timeout
+		await Transicion.alpha_a_negro("","", 6)
 		ending_activo = true
-		await Transicion.alpha_a_negro("The End","THANKS", 6)
 		ending.play()
 		AudioManager.reproducir_narracion("ENDING", -5)
 		Transicion.negro_a_alpha()
@@ -228,3 +230,8 @@ func _on_violeta_pressed() -> void:
 	que_color_elegido = "Violeta"
 	ha_elegido = true
 	violeta_ui.hide()
+
+
+func _on_ending_finished() -> void:
+	await Transicion.alpha_a_negro("The End","THANKS", 1, 10)
+	get_tree().change_scene_to_packed(START_SCENE)
